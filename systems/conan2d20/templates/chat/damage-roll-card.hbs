@@ -1,0 +1,80 @@
+{{#if item}}
+	<h2>{{item.name}}</h2>
+	<h3>{{rollData.title}}</h3>
+{{else}}
+	{{#if isImpactDamage}}
+		<h2>{{localize 'CONAN.damageRollerImpactTitle'}}</h2>
+	{{else}}
+		<h2>{{rollData.title}}</h2>
+	{{/if}}
+{{/if}}
+<h4>
+	{{#if isImpactDamage}}
+	{{!-- {{localize 'CONAN.DamageRoll.BaseDamage.Short.label'}} {{rollData.base.numDice}} --}}
+	{{else}}
+		{{localize 'CONAN.DamageRoll.BaseDamage.Short.label'}} {{rollData.base.numDice}},
+		{{localize 'CONAN.Attribute.label'}} {{rollData.bonus.attribute}},
+		{{localize 'CONAN.Talent.label'}} {{rollData.bonus.talent}},
+		{{localize 'CONAN.Reloads.label'}} {{rollData.bonus.reloads}}
+	{{/if}}
+</h4>
+<div class="roll-card">
+	{{#each results.rolls as |roll r|}}
+	<span class="roll-list-entry roll d6-combat{{roll.result}}" id="{{r}}">{{{roll.display}}}</span>
+	{{/each}}
+</div>
+<div class="roll-outcomes">
+	<label>{{localize 'CONAN.numberOfDice'}}: </label>{{rollData.numDice}}
+	{{#if results.location}}
+		{{#unless isImpactDamage}}
+			<br />
+			<label>{{localize 'CONAN.hitLocation'}}: </label>{{results.location}}
+		{{/unless}}
+	{{/if}}
+	{{#ifCond rollData.spends.momentum '>' 0}}
+		<br />
+		<label>{{localize 'CONAN.momentum'}}: </label>{{rollData.spends.momentum}}
+	{{/ifCond}}
+	{{#ifCond rollData.spends.doom '>' 0}}
+		<br />
+		<label>{{localize 'CONAN.Doom'}}: </label>{{rollData.spends.doom}}
+	{{/ifCond}}
+	{{#ifCond results.effects '>' 0}}
+		<br />
+		<label>{{localize 'CONAN.Effects.label'}}: </label>{{results.effects}}
+	{{/ifCond}}
+</div>
+<div class="roll-complications">
+	<h2>
+		{{#if rollData.improvised}}
+			{{results.improvisedTotal}}
+		{{else}}
+			{{results.total}}
+		{{/if}}
+		{{#if isImpactDamage}}
+			{{localize 'CONAN.damageTypes.impact'}}
+		{{else}}
+			{{#ifEq rollData.damage.type 'mental'}}
+				{{localize 'CONAN.damageTypes.mental'}}
+			{{/ifEq}}
+			{{#ifEq rollData.damage.type 'physical'}}
+				{{localize 'CONAN.damageTypes.physical'}}
+			{{/ifEq}}
+		{{/if}}
+		{{localize "CONAN.Damage"}}
+	</h2>
+</div>
+{{#if rollData.itemData}}
+	<footer class="card-footer item-properties tags">
+		{{#each rollData.itemData.properties}}
+			<span class="tag chat-tag chat-tag_secondary" title="{{this}}">
+				{{this}}
+			</span>
+		{{/each}}
+		{{#each rollData.itemData.qualities}}
+			<span class="tag chat-tag" title="{{this.description}}">
+				{{this.label}}
+			</span>
+		{{/each}}
+	</footer>
+{{/if}}

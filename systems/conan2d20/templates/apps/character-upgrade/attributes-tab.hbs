@@ -1,0 +1,45 @@
+<div class="tab attributes" data-group="primary" data-tab="attributes">
+	<div class="grid-1-columns">
+		<table>
+			<tr>
+				<th>{{localize "CONAN.CharacterUpgrade.Attribute.label"}}</th>
+				<th>{{localize "CONAN.CharacterUpgrade.Change.label"}}</th>
+				<th>{{localize "CONAN.CharacterUpgrade.Cost.label"}}</th>
+				<th></th>
+			</tr>
+			{{#each attributes}}
+				<tr class="item-row">
+					<td>
+						{{this.label}}
+					</td>
+					<td>
+						{{#if this.atMaximum}}
+							&mdash;
+						{{else}}
+							{{this.value}} &rarr; {{this.newValue}}
+						{{/if}}
+					</td>
+					<td>
+						{{#if this.atMaximum}}
+							&mdash;
+						{{else}}
+							{{this.cost}}
+						{{/if}}
+					</td>
+					<td>
+						{{#if this.canUpgrade}}
+							<a
+								class="can-upgrade upgrade-attribute-link"
+								data-id="{{this.id}}"
+								data-value="{{this.newValue}}"
+								data-tooltip="{{localize 'CONAN.CharacterUpgrade.PurchaseImprovement.tooltip'}}"
+							>
+								<i class="fa-solid fa-coins"></i>
+							</a>
+						{{/if}}
+					</td>
+				</tr>
+			{{/each}}
+		</table>
+	</div>
+</div>

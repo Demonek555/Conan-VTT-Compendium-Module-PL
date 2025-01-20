@@ -1,0 +1,170 @@
+<div class="character-extras-container">
+
+	<div class="pc pc_experience">
+		<h3>
+			<a
+				class="character-upgrade"
+				data-tooltip="{{localize 'CONAN.Actor.SpendExperience.tooltip'}}"
+			>
+				<i class="fa-solid fa-coins fa-sm"></i>
+			</a>
+			{{localize "CONAN.experienceLabel"}}
+		</h3>
+		<label for="experience"> {{localize "CONAN.experienceEarnedLabel"}} </label>
+		<span>
+			<input
+				id="experience"
+				type="Number"
+				name="system.resources.xp.value"
+				data-dtype="Number"
+				value="{{system.resources.xp.value}}"
+				placeholder="0"
+			/>
+		</span>
+		<label for="experienceSpent"> {{localize "CONAN.experienceSpentLabel"}} </label>
+		<span>
+			<input
+				id="experienceSpent"
+				type="Number"
+				name="system.resources.xp.spent"
+				data-dtype="Number"
+				value="{{system.resources.xp.spent}}"
+				placeholder="0"
+			/>
+		</span>
+		<label for="experienceRemaining"> {{localize "CONAN.experienceRemainingLabel"}} </label>
+		<span>
+			<input
+				id="experienceRemaining"
+				type="Number"
+				data-dtype="Number"
+				value="{{system.resources.xp.available}}"
+				placeholder="0"
+				disabled
+			/>
+		</span>
+	</div>
+
+	<div class="pc pc_fortune">
+		<h3>{{localize "CONAN.Fortune"}}</h3>
+		<label for="fortune"> {{localize "CONAN.fortuneCurrentLabel"}} </label>
+		<span>
+			<input
+				id="fortune"
+				type="Number"
+				name="system.resources.fortune.value"
+				data-dtype="Number"
+				value="{{system.resources.fortune.value}}"
+				placeholder="0"
+			/>
+		</span>
+		<label for="startingFortune"> {{localize "CONAN.fortuneStartingLabel"}} </label>
+		<span>
+			<input
+				id="startingFortune"
+				type="Number"
+				name="system.resources.fortune.max"
+				data-dtype="Number"
+				value="{{system.resources.fortune.max}}"
+				placeholder="0"
+				{{#unless isGM}}
+					disabled
+				{{/unless}}
+			/>
+		</span>
+	</div>
+
+	<div class="character-conditions">
+		<h3>{{localize "CONAN.conditionsLabel"}}</h3>
+		{{#each conditions as |condition c|}}
+			<div
+				class="sheet-condition"
+				data-cond-id="{{condition.id}}"
+				title="{{localize condition.title}}"
+			>
+				<label>
+					{{localize condition.name}}
+				</label>
+				{{#if condition.boolean}}
+					{{#if condition.existing}}
+						<input
+							class="condition-toggle"
+							type="checkbox"
+							name="{{condition}}"
+							value="1"
+							data-dtype="bool"
+							{{checked condition.existing}}
+						/>
+					{{else}}
+						<input
+							class="condition-toggle"
+							type="checkbox"
+							name="{{condition}}"
+							value="0"
+							data-dtype="bool"
+							{{checked condition.existing}}
+						/>
+					{{/if}}
+				{{else}}
+					<input
+						class="condition-toggle"
+						type="checkbox"
+						name="{{condition}}"
+						value="1"
+						data-dtype="bool"
+						{{checked condition.existing}}
+					/>
+					<a class="condition-value">{{condition.value}}</a>
+				{{/if}}
+			</div>
+		{{/each}}
+	</div>
+
+	<div class="pc pc_renown">
+		<h3>{{localize "CONAN.renownLabel"}}</h3>
+		<label for="renown"> {{localize "CONAN.renownCurrentLabel"}} </label>
+		<span>
+			<input
+				id="renown"
+				type="Number"
+				name="system.background.renown"
+				data-dtype="Number"
+				value="{{system.background.renown}}"
+				placeholder="0"
+			/>
+		</span>
+	</div>
+
+	<div class="pc pc_unbankedMomentum">
+		<h3>{{localize "CONAN.momentum"}}</h3>
+		<label for="standing"> {{localize "CONAN.momentumUnbankedLabel"}} </label>
+		<span>
+			<input
+				id="pc_unbankedMomentum"
+				type="Number"
+				data-dtype="Number"
+				name="system.momentum"
+				value="{{system.momentum}}"
+				placeholder="0"
+				disabled
+			/>
+		</span>
+		<button class="bank-momentum">{{localize "CONAN.rollMomentumSpendAssert"}}</button>
+	</div>
+
+	<div class="pc pc_standing">
+		<h3>{{localize "CONAN.standingLabel"}}</h3>
+		<label for="standing"> {{localize "CONAN.standingCurrentLabel"}} </label>
+		<span>
+			<input
+				id="standing"
+				type="Number"
+				name="system.background.standing.value"
+				data-dtype="Number"
+				value="{{system.background.standing.value}}"
+				placeholder="0"
+			/>
+		</span>
+	</div>
+
+</div>

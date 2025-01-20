@@ -1,0 +1,67 @@
+<div class="form-group">
+	<div class="setting-grid">
+
+		<label>{{localize "CONAN.Item.Armor.Type.label"}}</label>
+		<select name="system.armorType" data-dtype="String">
+			{{#select item.system.armorType}}
+				{{#each CONFIG.armorTypes as |name type|}}
+					<option value="{{type}}">
+						{{localize name}}
+					</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+		<label>{{localize "CONAN.Item.Armor.Soak.label"}}</label>
+		<input
+			type="Number"
+			name="system.soak"
+			value="{{item.system.soak}}"
+			data-dtype="Number"
+		/>
+
+		<label for="system.coverage">
+			{{localize "CONAN.Item.Armor.Coverage.label"}}
+			<a
+				class="trait-selector"
+				data-options="coverageTypes"
+			>
+				<i class="fas fa-edit"></i>
+			</a>
+		</label>
+
+		<ul class="coverages-list tags">
+			{{#each item.system.coverage.value}}
+				<span
+					class="tag tag_secondary"
+					data-tooltip="{{lookup ../CONFIG.coverageTypes this}}"
+				>
+					{{lookup ../CONFIG.coverageTypes this}}
+				</span>
+			{{/each}}
+		</ul>
+
+		<label for="system.qualities.value">
+			{{localize "CONAN.Item.Qualities.label"}}
+			<a
+				class="trait-selector"
+				data-options="armorQualities"
+				data-has-values="true"
+				data-allow-empty-values="true"
+			>
+				<i class="fas fa-edit"></i>
+			</a>
+		</label>
+		<ul class="qualities-list tags">
+			{{#each item.system.qualities.value}}
+				<span
+					class="tag"
+					data-tooltip="{{this.description}}"
+				>
+					{{this.label}}
+				</span>
+			{{/each}}
+		</ul>
+
+	</div>
+</div>

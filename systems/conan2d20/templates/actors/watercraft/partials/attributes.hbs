@@ -1,0 +1,74 @@
+<section class="npc-sheet-attributes">
+	<div class="npc-sheet-sub-heading">
+		<h3>
+			{{localize "CONAN.npc.sections.attributes"}}
+		</h3>
+	</div>
+	<div class="npc-sheet-attributes__4-column-grid">
+		<div class="attribute-entry">
+			<h4
+				class="npc-sheet-field__label"
+				title="{{localize "CONAN.watercraft.attribute.sailing_range.tooltip"}}"
+			>
+				{{localize "CONAN.watercraft.attribute.sailing_range.label"}}
+			</h4>
+			<input
+				data-dtype="Number"
+				name="system.sailingRange"
+				type="number"
+				value="{{system.sailingRange}}"
+			/>
+		</div>
+		<div class="attribute-entry">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.watercraft.attribute.crew.label"}}
+			</h4>
+			<div class="npc-health__score">
+				<input
+					data-dtype="Number"
+					name="system.crew.value"
+					placeholder="0"
+					type="number"
+					value="{{system.crew.value}}"
+				/>
+				/
+				<input
+					data-dtype="Number"
+					name="system.crew.max"
+					placeholder="0"
+					type="number"
+					value="{{system.crew.max}}"
+				/>
+			</div>
+		</div>
+
+		<div class="attribute-entry">
+			<h4 class="npc-sheet-field__label impact-roll rollable">
+				<i class="fa-solid fa-dice"></i>
+				{{localize "CONAN.watercraft.attribute.impact_damage.label"}}
+			</h4>
+			<input
+				data-dtype="Number"
+				name="system.impactDamage"
+				type="number"
+				value="{{system.impactDamage}}"
+			/>
+		</div>
+
+		<div class="attribute-entry">
+			<h4
+				class="npc-sheet-field__label"
+				title="{{localize 'CONAN.watercraft.attribute.maneuver.tooltip'}}"
+			>
+				{{localize "CONAN.watercraft.attribute.maneuver.label"}}
+			</h4>
+			<input
+				data-dtype="Number"
+				name="system.maneuver"
+				type="number"
+				value="{{system.maneuver}}"
+				placeholder="&mdash;"
+			/>
+		</div>
+	</div>
+</section>

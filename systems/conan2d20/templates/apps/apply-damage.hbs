@@ -1,0 +1,169 @@
+<div class="dialog">
+  <div class="dialog-content apply-damage">
+
+		<div class="character-grid">
+			<div class="label">{{localize 'CONAN.ApplyDamage.SelectedTargets.label'}}</div>
+
+			{{#each selectedTargets}}
+				<div
+					class="character"
+					data-actor-index="{{this.index}}"
+				>
+					<div class="character-portrait">
+						<img
+							src="{{this.img}}"
+							height="64"
+							width="64"
+						/>
+					</div>
+					<div
+						class="character-name"
+						title="{{localize 'CONAN.ApplyDamage.Character.tooltip'}}"
+					>
+						{{this.name}}
+					</div>
+				</div>
+			{{/each}}
+		</div>
+
+		<div class="damage-values">
+			<div class="label">{{localize 'CONAN.ApplyDamage.Damage.label'}}</div>
+
+				<div class="dialog-inputs apply-damage grid-2-columns">
+
+				{{!-- VIGOR DAMAGE --}}
+				<div class="quantity-grid">
+					<div class="quantity-header">
+						{{#if isWatercraft}}
+							{{localize 'CONAN.Actor.Health.Structure.label'}}
+						{{else}}
+							{{localize 'CONAN.Actor.Health.Vigor.label'}}
+						{{/if}}
+					</div>
+					<input type="number" min="0" max="3" value="{{damage.vigor}}" data-quantity-type="vigor" disabled/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+
+				{{!-- RESOLVE DAMAGE --}}
+				<div class="quantity-grid apply-damage {{#if isWatercraft}}disable{{/if}}">
+					<div class="quantity-header">{{localize 'CONAN.Actor.Health.Resolve.label'}}</div>
+					<input
+						id="momentum"
+						type="number"
+						min="0"
+						max="3"
+						value="{{damage.resolve}}"
+						data-quantity-type="resolve"
+						disabled
+					/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+
+				{{!-- Effects --}}
+				<div class="quantity-grid {{#unless item}}disable{{/unless}}">
+					<div class="quantity-header">{{localize 'CONAN.Effects.label'}}</div>
+					<input
+						type="number"
+						min="0"
+						max="3"
+						value="{{damage.effects}}"
+						data-quantity-type="effects"
+						disabled
+					/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+
+				{{!-- Penetration --}}
+				<div class="quantity-grid">
+					<div class="quantity-header">{{localize 'CONAN.ApplyDamage.Penetration.label'}}</div>
+					<input
+						type="number"
+						min="0"
+						value="{{damage.penetration}}"
+						data-quantity-type="penetration"
+						disabled
+					/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		{{#if hasQualities}}
+			<div class="damage-qualties">
+				<div
+					class="label"
+					data-tooltip="{{localize 'CONAN.DamageRoll.Qualities.tooltip'}}"
+				>
+					{{localize 'CONAN.Item.Qualities.label'}}
+				</div>
+
+				<div class="damage-quality-list">
+					{{#each qualities}}
+						{{#if this.supported}}
+							<span
+								{{#if this.enabled}}
+									class="tag quality-tag"
+								{{else}}
+									class="tag quality-tag quality-tag_disabled"
+								{{/if}}
+								data-quality="{{this.slug}}"
+								title="{{this.description}}"
+							>
+								{{this.label}}
+							</span>
+						{{/if}}
+					{{/each}}
+				</div>
+			</div>
+		{{/if}}
+
+		<div class="damage-location">
+			<div class="label">
+				{{localize 'CONAN.ApplyDamage.Location.label'}}
+			</div>
+			<select class="apply-damage location" name="location" data-dtype="String">
+				{{#select location}}
+					{{#each locations as |location key|}}
+					<option
+						value="{{key}}"
+						{{#ifEq key ../damage.location}}
+							selected
+						{{/ifEq}}
+					>
+						{{location}}
+					</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		</div>
+
+		<div class="dialog-inputs">
+			<button class="apply-damage-button">
+				{{localize 'CONAN.ApplyDamage.title'}}
+			</button>
+		</div>
+
+	</div>
+</div>

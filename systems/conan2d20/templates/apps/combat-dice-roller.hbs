@@ -1,0 +1,28 @@
+<div class="dialog">
+  <div class="dialog-content combat-dice-roller">
+
+		<div class="grid-1-columns">
+
+			{{!-- BASE DICE QUANTITY --}}
+			<div class="combat-dice-roller quantity-grid">
+				<div class="quantity-header">{{localize 'CONAN.CombatDice'}}</div>
+				<input id="numDice" type="number" min="1" value="1" data-quantity-type="base.numDice" disabled/>
+				<div class="quantity-up">
+					<i class="fa-regular fa-square-plus"></i>
+				</div>
+				<div class="quantity-down">
+					<i class="fa-regular fa-square-minus"></i>
+				</div>
+			</div>
+
+		</div>
+
+		{{!-- Submit button --}}
+		<div class="dialog-inputs">
+			<button class="roll-dice">
+				{{localize 'CONAN.RollDice'}}
+			</button>
+		</div>
+
+	</div>
+</div>

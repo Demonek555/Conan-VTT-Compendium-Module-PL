@@ -1,0 +1,85 @@
+<div class="grid-2-columns">
+
+	<div class="form-group stacked">
+		{{> items/partials/choice-selector
+			config=mandatorySkillsConfig
+		}}
+	</div>
+
+	<div class="form-group stacked">
+		{{> items/partials/choice-selector
+			config=electiveSkillsConfig
+		}}
+	</div>
+
+	<div class="grid-2-columns">
+		<div class="form-group">
+			<label>
+				<input
+					type="checkbox"
+					name="system.mandatorySkill.career"
+					value="1"
+					data-dtype="Boolean"
+					{{checked item.system.mandatorySkill.career}}
+				/>
+				{{localize "CONAN.Item.Education.CareerSkill.label"}}
+			</label>
+		</div>
+
+		<div class="form-group">
+			<label>
+				<input
+					type="checkbox"
+					name="system.mandatorySkill.randomCareer"
+					value="1"
+					data-dtype="Boolean"
+					{{checked item.system.mandatorySkill.randomCareer}}
+				/>
+				{{localize "CONAN.Item.Education.RandomCareerSkill.label"}}
+			</label>
+		</div>
+	</div>
+
+	<div class="grid-2-columns">
+		<div class="form-group">
+			<label>
+				<input
+					type="checkbox"
+					name="system.electiveSkill.career"
+					value="1"
+					data-dtype="Boolean"
+					{{checked item.system.electiveSkill.career}}
+				/>
+				{{localize "CONAN.Item.Education.CareerSkill.label"}}
+			</label>
+		</div>
+
+		<div class="form-group">
+			<label>
+				<input
+					type="checkbox"
+					name="system.electiveSkill.randomCareer"
+					value="1"
+					data-dtype="Boolean"
+					{{checked item.system.electiveSkill.randomCareer}}
+				/>
+				{{localize "CONAN.Item.Education.RandomCareerSkill.label"}}
+			</label>
+		</div>
+	</div>
+
+	<div class="form-group stacked">
+		<label>{{localize "CONAN.Item.Nature.AttributeImprovement.label"}}</label>
+		<select name="system.attribute" data-dtype="String">
+			{{#select item.system.attribute}}
+				<option value="">&nbsp;</option>
+				{{#each CONFIG.sortedAttributes}}
+					<option value="{{this.key}}">
+						{{this.name}}
+					</option>
+				{{/each}}
+			{{/select}}
+		</select>
+	</div>
+
+</div>

@@ -1,0 +1,28 @@
+<div class="npc-actions">
+	<div class="npc-sheet-sub-heading">
+		<h3>{{localize "CONAN.npc.sections.attacks"}}</h3>
+		{{#if owner}}
+			<div class="item-controls">
+				<a
+					class="item-control item-create"
+					title="{{localize 'CONAN.createItemTitle'}}"
+					data-type="npcattack"
+				>
+					<i class="fas fa-plus"></i>
+				</a>
+			</div>
+		{{/if}}
+	</div>
+	{{#each attacks as |section sid|}}
+		{{#each section as |item itemId|}}
+			<div class="npc-actions-list">
+			{{> actors/_shared-partials/attack
+				isWatercraft=../../isWatercraft
+				item=item
+				level=1
+				owner=../../owner
+			}}
+			</div>
+		{{/each}}
+	{{/each}}
+</div>

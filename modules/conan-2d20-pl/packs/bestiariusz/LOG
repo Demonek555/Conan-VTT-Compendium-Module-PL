@@ -1,0 +1,8 @@
+2025/01/20-18:01:17.529 2e04 Recovering log #219
+2025/01/20-18:01:17.533 2e04 Delete type=0 #219
+2025/01/20-18:01:17.534 2e04 Delete type=3 #217
+2025/01/20-18:01:25.927 10bc Level-0 table #224: started
+2025/01/20-18:01:25.927 10bc Level-0 table #224: 0 bytes OK
+2025/01/20-18:01:25.927 10bc Delete type=0 #222
+2025/01/20-18:01:25.932 10bc Manual compaction at level-0 from '!actors!04REHhK7gSpy09vp' @ 72057594037927935 : 1 .. '!folders!zxKfz37xmnkudErE' @ 0 : 0; will stop at (end)
+2025/01/20-18:01:25.932 10bc Manual compaction at level-1 from '!actors!04REHhK7gSpy09vp' @ 72057594037927935 : 1 .. '!folders!zxKfz37xmnkudErE' @ 0 : 0; will stop at (end)

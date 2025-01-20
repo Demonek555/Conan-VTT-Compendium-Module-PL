@@ -1,0 +1,128 @@
+<li class="item" data-item-id="{{item._id}}">
+	<div class="item-name rollable">
+		<div
+			class="item-image execute-attack"
+			style="background-image: url('{{item.img}}')"
+			title="{{localize 'CONAN.PostItemToChat'}}"
+		>
+			<i class="fas fa-comment-alt"></i>
+		</div>
+		<h4>
+			{{item.name}}
+		</h4>
+	</div>
+
+	{{#if section.standardHeader}}
+		<span class="item-quantity item-property-1">
+			<a class="item-decrease-quantity">&ndash;</a>
+			<span>
+				{{item.system.quantity}}
+			</span>
+			<a class="item-increase-quantity">+</a>
+		</span>
+		<span class="item-weight item-property-2">
+			{{item.system.encumbrance}}
+		</span>
+	{{else}}
+		{{#ifCond item.type '===' 'enchantment'}}
+			<span class="item-quantity item-property-1">
+				<a class="item-decrease-uses">&ndash;</a>
+				<span>
+					{{item.system.uses.value}}
+				</span>
+				<a class="item-increase-uses">+</a>
+			</span>
+			<span class="item-weight item-property-2">
+				&nbsp;
+			</span>
+		{{/ifCond}}
+
+		{{#ifCond item.type '===' 'kit'}}
+			<span class="item-quantity item-property-1">
+				<a class="item-decrease-uses">&ndash;</a>
+				<span>
+					{{item.system.uses.value}}/{{item.system.uses.max}}
+				</span>
+				<a class="item-increase-uses">+</a>
+			</span>
+			<span class="item-weight item-property-2">
+				{{item.system.encumbrance}}
+			</span>
+		{{/ifCond}}
+
+		{{#ifCond item.type '===' 'transportation' }}
+			<span class="item-quantity item-property-1">
+				<a class="mount-decrease-pass">&ndash;</a>
+				<span
+					{{#if item.maxPassengersExceeded}}
+						class="exceeded-max"
+					{{/if}}
+				>
+					{{item.system.passengers.value}}/{{item.system.passengers.max}}
+				</span>
+				<a class="mount-increase-pass">+</a>
+			</span>
+			<span class="item-weight item-property-2">
+				{{#ifCond item.system.stowage.max '===' null }}
+					{{item.system.stowage.value}}/&mdash;
+				{{else}}
+					{{#if item.system.stowage.value}}
+						<span class="{{#if item.stowageExceeded}}exceeded-max{{/if}}">
+							{{item.system.stowage.value}}/{{item.system.stowage.max}}
+						</span>
+					{{else}}
+						0/{{item.system.stowage.max}}
+					{{/if}}
+				{{/ifCond}}
+			</span>
+		{{/ifCond}}
+	{{/if}}
+
+	{{#if owner}}
+		<div class="item-controls">
+			{{#if item.canBeEquipped}}
+
+				{{#if item.isBroken}}
+					<a class="item-control item-toggle-broken active"
+						title="{{localize 'CONAN.Item.Physical.Broken.label'}}"
+					>
+						<i class="fas fa-unlink"></i>
+					</a>
+				{{else}}
+					<a class="item-control item-toggle-broken"
+						title="{{localize 'CONAN.itemNotBroken'}}"
+					>
+						<i class="fas fa-link"></i>
+					</a>
+				{{/if}}
+
+				{{#unless ownedByTransportActor}}
+					{{#if item.isEquipped}}
+						<a
+							class="item-control item-toggle-equip active"
+							title="{{localize 'CONAN.itemEquipped'}}"
+						>
+							<i class="fas fa-tshirt"></i>
+						</a>
+					{{else}}
+						<a
+							class="item-control item-toggle-equip"
+							title="{{localize 'CONAN.itemUnequipped'}}"
+						>
+							<i class="fas fa-tshirt"></i>
+						</a>
+					{{/if}}
+				{{/unless}}
+			{{/if}}
+
+			{{#if item.canBeStowed}}
+				<a
+					class="item-control item-stowage-view"
+					title="{{localize 'CONAN.sendItemTitle'}}"
+				>
+					<i class="fas fa-box-open"></i>
+				</a>
+			{{/if}}
+		</div>
+	{{/if}}
+</li>

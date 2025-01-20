@@ -1,0 +1,73 @@
+<div class="form-group">
+	<div class="setting-grid">
+		{{#if stage.caste}}
+			<div class="grid-1-columns">
+				<label>
+					<span>
+						<a
+							class="roll story-roll"
+							data-roll-type="story"
+							data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{stage.storyLabel}}"
+						>
+							<i class="fa-solid fa-dice"></i>
+						</a>
+						{{stage.storyLabel}}
+					</span>
+				</label>
+
+
+				{{#if stage.story}}
+					<div class="flexrow">
+						<a
+							class="content-link uuid-link"
+							data-link
+							data-type="Item"
+							data-uuid="{{stage.story.uuid}}"
+							title="Item"
+						>
+							{{stage.story.name}}
+						</a>
+					</div>
+				{{/if}}
+
+				<input
+					data-is-item="true"
+					list="{{stage.uuid}}-cc_story_list"
+					name="storyUuid"
+					placeholder="{{localize "CONAN.Form.SelectStory.prompt"}}"
+					type="text"
+					value=""
+				/>
+
+				<datalist id="{{stage.uuid}}-cc_story_list">
+					{{#each stage.unselected}}
+						<option
+							data-uuid="{{this.uuid}}"
+							value="{{this.name}}"
+						></option>
+					{{/each}}
+				</datalist>
+
+				{{#if stage.story}}
+					<div>{{{stage.storyDescriptionHTML}}}</div>
+				{{/if}}
+			</div>
+		{{/if}}
+	</div>
+</div>
+<div class="form-group">
+	<div class="setting-grid stacked">
+		{{#if stage.story}}
+			<div class="grid-1-columns">
+				<div>
+					<label>{{localize "CONAN.CharacterCreator.Story.Trait.label"}}</label>
+					<div class="flexrow">
+						<a class="fake-uuid-link">
+							{{stage.story.system.trait}}
+						</a>
+					</div>
+				</div>
+			</div>
+		{{/if}}
+	</div>
+</div>

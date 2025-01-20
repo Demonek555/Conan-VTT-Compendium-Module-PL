@@ -1,0 +1,9 @@
+<div class="tab npc-details" data-group="primary" data-tab="npc-details">
+	{{> actors/_shared-partials/type }}
+
+	{{#unless isTransport}}
+		{{> actors/npc/partials/attributes }}
+		{{> actors/npc/partials/skills }}
+		{{> actors/npc/partials/health }}
+	{{/unless}}
+</div>

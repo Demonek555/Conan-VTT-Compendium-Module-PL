@@ -1,0 +1,52 @@
+<div class="tab npc-mob" data-group="primary" data-tab="npc-mob">
+	<div class="npc-mob-grid">
+		<div class="npc-mob-settings">
+			<div class="npc-skills__item">
+				<h4 class="npc-sheet-field__label">{{localize "CONAN.npcIsMobLabel"}}</h4>
+				<div class="npc-mob-settings__toggle">
+					<input
+						class="isMob-checkbox"
+						type="checkbox"
+						name="system.isMob"
+						data-dtype="Boolean"
+						{{checked system.isMob}}
+					/>
+				</div>
+			</div>
+			<div class="npc-skills__item">
+				{{#if system.isMob}}
+					<h4 class="npc-sheet-field__label">{{localize "CONAN.npcMobCountLabel"}}</h4>
+					<div class="npc-mob-settings__count">
+						<i class="npc-mob-count-minus fa-solid fa-minus"></i>
+						<input
+							type="Number"
+							name="system.mobCount"
+							title="{{localize 'CONAN.MobCountTooltip'}}"
+							value="{{system.mobCount}}"
+							data-dtype="Number"
+							disabled
+						/>
+						<i class="npc-mob-count-plus fa-solid fa-plus"></i>
+					</div>
+				{{/if}}
+			</div>
+		</div>
+		<div class="npc-mob-members">
+			{{#if system.isMob}}
+				{{#if noMobMemberId}}
+					<div class="npc-mob-members__warning">
+						{{localize "CONAN.NoBaseNpcGroupMemberSetDetails"}}
+					</div>
+				{{/if}}
+				{{#each system.grouping.members as |member memberId|}}
+					{{> actors/npc/partials/mob-member
+						member=member
+						memberId=memberId
+						name=../system.grouping.memberName
+						img=../system.grouping.memberImage
+					}}
+				{{/each}}
+			{{/if}}
+		</div>
+	</div>
+</div>

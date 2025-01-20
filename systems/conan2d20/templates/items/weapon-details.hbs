@@ -1,0 +1,106 @@
+<div class="form-group">
+	<div class="setting-grid">
+
+		<label>{{localize "CONAN.Item.Weapon.Type.label"}}</label>
+		<select name="system.weaponType" data-dtype="String">
+			{{#select item.system.weaponType}}
+				{{#each CONFIG.weaponTypes as |name type|}}
+				<option value="{{type}}">
+					{{name}}
+				</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+		<label>{{localize "CONAN.Item.Weapon.Size.label"}}</label>
+		<select name="system.size" data-dtype="String">
+			{{#select item.system.size}}
+				<option value=""></option>
+				{{#each CONFIG.weaponSizes as |name size|}}
+					<option value="{{size}}">
+						{{name}}
+					</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+		{{#ifEq item.system.size "crew"}}
+			<label>{{localize "CONAN.Item.Weapon.CrewCount.label"}}</label>
+			<input
+				type="Number"
+				name="system.crew"
+				value="{{item.system.crew}}"
+				data-dtype="Number"
+			/>
+		{{/ifEq}}
+
+		{{#ifEq item.system.weaponType "ranged"}}
+			<label>{{localize "CONAN.Item.Weapon.Range.label"}}</label>
+			<select name="system.range" data-dtype="String">
+				{{#select item.system.range}}
+					{{#each CONFIG.weaponRanges as |name range|}}
+						<option value="{{range}}">
+							{{name}}
+						</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		{{else}}
+			<label>{{localize "CONAN.Item.Weapon.Reach.label"}}</label>
+			<input
+				type="Number"
+				name="system.range"
+				value="{{item.system.range}}"
+				data-dtype="Number"
+				min="1"
+			/>
+		{{/ifEq}}
+
+		<label>{{localize "CONAN.Item.Weapon.BaseDamage.label"}}</label>
+		<div class="base-damage">
+			<input
+				type="Number"
+				name="system.damage.dice"
+				value="{{item.system.damage.dice}}"
+				data-dtype="Number"
+				min="1"
+			/>
+			<div class="combat-dice"></div>
+		</div>
+
+		<label>{{localize "CONAN.Item.SkillOverride.label"}}</label>
+		<select name="system.skillOverride" data-dtype="String">
+			{{#select item.system.skillOverride}}
+				<option value="">-- {{localize "CONAN.Item.DefaultSkill.label"}} --</option>
+				{{#each CONFIG.sortedSkills as |skill|}}
+				<option value="{{skill.key}}">
+					{{skill.name}}
+				</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+		<label for="system.qualities.value">
+			{{localize "CONAN.Item.Qualities.label"}}
+			<a
+				class="trait-selector"
+				data-options="weaponQualities"
+				data-has-values="true"
+				data-allow-empty-values="true"
+			>
+				<i class="fas fa-edit"></i>
+			</a>
+		</label>
+
+		<ul class="qualities-list tags">
+			{{#each item.system.qualities.value}}
+				<span
+					class="tag"
+					data-tooltip="{{this.description}}"
+				>
+					{{this.label}}
+				</span>
+			{{/each}}
+		</ul>
+	</div>
+</div>

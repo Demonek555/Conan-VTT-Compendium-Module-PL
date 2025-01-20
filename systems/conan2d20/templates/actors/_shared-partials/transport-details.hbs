@@ -1,0 +1,80 @@
+<section class="npc-skills">
+
+	<div
+		class="npc-skills__grid"
+		{{#if isTransport }}
+			style="grid-template-columns: 1fr 1fr 1fr;"
+		{{/if}}
+	>
+		{{#if isTransport }}
+			<div class="npc-skills__item">
+				<h4 class="npc-sheet-field__label">
+					{{localize "CONAN.transportation.animals.label"}}
+				</h4>
+				<div class="npc-sheet-field__value">
+					<input
+						name="system.animals"
+						type="Number"
+						value="{{system.animals}}"
+						placeholder="0"
+					/>
+				</div>
+			</div>
+		{{/if}}
+		<div class="npc-skills__item">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.transportation.passengers.label"}}
+			</h4>
+			<div class="npc-sheet-field__value">
+				<div class="npc-health__score">
+					<input
+						{{#ifCond system.passengers.value ">" system.passengers.max}}
+							style="color: red;"
+						{{/ifCond}}
+						name="system.passengers.value"
+						type="Number"
+						value="{{system.passengers.value}}"
+						placeholder="0"
+					/>
+					/
+					<input
+						name="system.passengers.max"
+						type="Number"
+						value="{{system.passengers.max}}"
+						placeholder="0"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<div class="npc-skills__item">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.transportation.stowage.label"}}
+			</h4>
+			<div class="npc-sheet-field__value">
+				<div class="npc-health__score">
+					<input
+						data-tooltip="{{localize 'CONAN.Actor.Warnings.DerivedValue'}}"
+						name="system.stowage.value"
+						{{#ifCond system.stowage.value ">" system.stowage.max}}
+							{{#unless noMaxStowage}}
+								style="color: red;"
+							{{/unless}}
+						{{/ifCond}}
+						type="Number"
+						value="{{system.stowage.value}}"
+						disabled
+					/>
+					/
+					<input
+						name="system.stowage.max"
+						type="Number"
+						value="{{system.stowage.max}}"
+						placeholder="&mdash;"
+					/>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>

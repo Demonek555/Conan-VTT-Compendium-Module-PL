@@ -1,0 +1,16 @@
+<div class="dialog">
+	<div class="dialog-content momentum-banker">
+		<p>{{localize "CONAN.rollMomentumSpendInfo"}}</p>
+		<div class="dialog-inputs">
+			<input
+				type="range"
+				id="momentumSpend"
+				name="momentumSpend"
+				min="0"
+				max="{{personalMomentum}}"
+				value="0"
+			>
+		</div>
+		<button id="spendBankButton">Spend: 0, Bank: {{personalMomentum}}</button>
+	</div>
+</div>

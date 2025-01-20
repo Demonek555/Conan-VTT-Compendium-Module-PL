@@ -1,0 +1,47 @@
+<li class="item" data-item-id="{{item._id}}">
+	<div class="item-name rollable">
+		<div
+			class="item-image"
+			style="background-image: url('{{item.img}}')"
+			title="{{localize 'CONAN.PostItemToChat'}}"
+		>
+			<i class="fas fa-comment-alt"></i>
+		</div>
+		<h4>{{item.name}}</h4>
+	</div>
+	{{#if owner}}
+		<div class="item-controls">
+			{{#if item.isShield}}
+				<a
+					class="item-control item-control__shield"
+					title="{{localize 'CONAN.RollShieldSoak'}}"
+				>
+					<i class="fa-solid fa-shield-quartered"></i>
+				</a>
+			{{/if}}
+			{{#unless isWatercraft}}
+				<a
+					class="item-control item-control__attack"
+					title="{{localize 'CONAN.RollAttack'}}"
+				>
+					{{#ifEq item.system.attackType "melee"}}
+						<i class="fa-solid fa-swords"></i>
+					{{/ifEq}}
+					{{#ifEq item.system.attackType "ranged"}}
+						<i class="fa-solid fa-bow-arrow"></i>
+					{{/ifEq}}
+					{{#ifEq item.system.attackType "threaten"}}
+						<i class="fa-solid fa-face-angry-horns"></i>
+					{{/ifEq}}
+				</a>
+			{{/unless}}
+			<a
+				class="item-control item-control__damage"
+				title="{{localize 'CONAN.RollDamage'}}"
+			>
+				<i class="fa-solid fa-droplet"></i>
+			</a>
+		</div>
+	{{/if}}
+
+</li>

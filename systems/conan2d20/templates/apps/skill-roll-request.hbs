@@ -1,0 +1,64 @@
+<div class="dialog">
+	<div class="dialog-content skill-roll-reqeust">
+		<div class="skill-roll-request-content">
+
+			{{!-- Difficulty setting --}}
+			<div class="difficulty-settings">
+				<div
+					class="label"
+					data-tooltip="{{localize "CONAN.SkillRoll.Difficulty.Actor.tooltip"}}"
+				>
+					{{localize 'CONAN.SkillRoll.Difficulty.label'}}
+				</div>
+
+				<div>
+					<div class="dialog-inputs grid-6-columns">
+						{{#each difficulties as |difficulty index|}}
+							<button
+								class="skill-roll-difficulty button {{#if difficulty.active}}active{{/if}}"
+								title="{{difficulty.tooltip}}"
+								data-difficulty={{index}}
+							>
+								D{{index}}
+							</button>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+
+			<div class="dialog-inputs skill-selectors grid-1-columns">
+				<div
+					class="label"
+					data-tooltip="{{localize 'CONAN.SkillRoll.Skill.tooltip'}}"
+				>
+					{{localize 'CONAN.skillShortLabel'}}
+				</div>
+				<div>
+					<select class="skill-roll-select skill-roller" name="skill" data-dtype="String">
+						{{#select skill}}
+							{{#each skills as |skill|}}
+								<option
+									value="{{skill.key}}"
+									{{#ifEq skill.key ../selectedSkill}}
+										selected
+									{{/ifEq}}
+								>
+									{{skill.name}}
+								</option>
+							{{/each}}
+						{{/select}}
+					</select>
+				</div>
+			</div>
+
+			<div class="dialog-inputs request-controls grid-2-columns">
+				<button class="copy-skill-check">
+					<i class="fa-regular fa-clipboard"></i> {{localize 'CONAN.SkillRollRequest.CopyButton.title'}}
+				</button>
+				<button class="request-skill-check">
+					<i class="fa-regular fa-comment-dots"></i> {{localize 'CONAN.SkillRollRequest.title'}}
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

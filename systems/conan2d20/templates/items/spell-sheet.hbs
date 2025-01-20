@@ -1,0 +1,220 @@
+<form class="{{cssClass}}" autocomplete="off">
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		<a class="item" data-tab="description"
+			>{{localize "CONAN.Item.Description.label"}}</a
+		>
+		<a class="item" data-tab="momentum"
+			>{{localize "CONAN.spellMomentumSpendHeader"}}</a
+		>
+		<a class="item" data-tab="alternative"
+			>{{localize "CONAN.spellAltEffectsHeader"}}</a
+		>
+		<a class="item" data-tab="notes">{{localize "CONAN.spellNotesHeader"}}</a>
+
+		<a class="item" data-tab="source">{{localize "CONAN.Item.Source.label"}}</a>
+	</nav>
+
+	{{!-- Sheet Body --}}
+	<section class="spell-sheet-body sheet-body">
+		{{!-- Description Tab --}}
+		<div class="tab" data-group="primary" data-tab="description">
+			<div class="spell-details">
+				<div class="form-group">
+					<label>{{localize "CONAN.Sorcery.Difficulty.label"}}</label>
+					<select name="system.difficulty.value" data-dtype="String">
+						{{#select item.system.difficulty.value}}
+							{{#each CONFIG.rollDifficultyLevels as |label key|}}
+								<option value="{{key}}">
+									{{localize label}}
+								</option>
+							{{/each}}
+						{{/select}}
+					</select>
+				</div>
+				<div class="form-group">
+					<label>{{localize "CONAN.difficultyIncludesLabel"}}</label>
+					<input
+						type="text"
+						name="system.difficulty.includes"
+						value="{{item.system.difficulty.includes}}"
+						data-dtype="String"
+					/>
+				</div>
+				<div class="form-group">
+					<label>{{localize "CONAN.spellDurationLabel"}}</label>
+					<input
+						type="text"
+						name="system.duration"
+						value="{{item.system.duration}}"
+						data-dtype="String"
+					/>
+				</div>
+				<div class="form-group">
+					<label>{{localize "CONAN.spellCostLabel"}}</label>
+					<input
+						type="text"
+						name="system.cost"
+						value="{{item.system.cost}}"
+						data-dtype="String"
+					/>
+				</div>
+			</div>
+			<div class="spell-description">
+				<label></label>
+				{{
+					editor
+					item.system.description.value
+					target="system.description.value"
+					button=true
+					owner=owner
+					editable=editable
+				}}
+			</div>
+		</div>
+
+		{{!-- Momentum Spends Tab --}}
+		<div class="tab momentum" data-group="primary" data-tab="momentum">
+			<div class="spell-table">
+				<table id="spellSpends">
+					<th>Type</th>
+					<th>Momentum</th>
+					<th>Effect</th>
+					{{#each item.system.effects.momentum as |v k|}}
+					<tr>
+						<td class="effect-type">
+							<textarea
+								name="system.effects.momentum.{{k}}.type"
+								value="{{v.type}}"
+								data-dtype="String"
+								data-autosize-input='{ "space": 40 }'
+							>{{v.type}}</textarea>
+						</td>
+						<td class="effect-alt">
+							<textarea
+								name="system.effects.momentum.{{k}}.spend"
+								value="{{v.spend}}"
+								data-dtype="String"
+								data-autosize-input='{ "space": 40 }'
+							>{{v.spend}}</textarea>
+						</td>
+						<td class="effect-value">
+							<textarea
+								name="system.effects.momentum.{{k}}.effect"
+								value="{{v.effect}}"
+								data-dtype="String"
+								data-autosize-input='{ "space": 40 }'
+							>{{v.effect}}</textarea>
+						</td>
+					</tr>
+					{{/each}}
+				</table>
+				<input type="button" class="spend-row-add" value="add" />
+				<input type="button" class="spend-row-delete" value="delete" />
+			</div>
+		</div>
+
+		{{!-- Alternative Effects Tab --}}
+		<div class="tab alternative" data-group="primary" data-tab="alternative">
+			<div class="spell-table">
+				<table id="altEffects">
+					<th>Type</th>
+					<th>Difficulty</th>
+					<th>Effect</th>
+					{{#each item.system.effects.alternative as |v k|}}
+					<tr>
+						<td class="effect-type">
+							<textarea
+								class="autofit"
+								name="system.effects.alternative.{{k}}.type"
+								value="{{v.type}}"
+								data-dtype="String"
+								data-autosize-input='{ "space": 40 }'
+							>{{v.type}}</textarea>
+						</td>
+						<td class="effect-alt">
+							<textarea
+								class="autofit"
+								name="system.effects.alternative.{{k}}.difficulty"
+								value="{{v.difficulty}}"
+								data-dtype="String"
+								data-autosize-input='{ "space": 40 }'
+							>{{v.difficulty}}</textarea>
+						</td>
+						<td class="effect-value">
+							<textarea
+								class="autofit"
+								name="system.effects.alternative.{{k}}.effect"
+								value="{{v.effect}}"
+								data-dtype="String"
+								data-autosize-input='{ "space": 40 }'
+							>{{v.effect}}</textarea>
+						</td>
+					</tr>
+					{{/each}}
+				</table>
+				<input type="button" class="alt-row-add" value="add" />
+				<input type="button" class="alt-row-delete" value="delete" />
+			</div>
+		</div>
+
+		{{!-- Alternative Effects Tab --}}
+		<div class="tab notes" data-group="primary" data-tab="notes">
+			<div class="spell-description">
+				{{editor
+					item.system.notes
+					target="system.notes"
+					button=true
+					owner=owner
+					editable=editable
+				}}
+			</div>
+		</div>
+
+		<div class="tab item-source" data-tab="source">
+			<div class="grid-2-columns">
+				<div class="form-group">
+					<div class="setting-grid">
+						<label>{{localize "CONAN.Item.SourceBook.Title.label"}}</label>
+						<select name="system.description.source.book" data-dtype="String">
+							{{#select item.system.description.source.book}}
+								<option value="">&nbsp;</option>
+								{{#each CONFIG.sources as |name key|}}
+									<option value="{{key}}">
+										{{name}}
+									</option>
+								{{/each}}
+							{{/select}}
+						</select>
+
+						<label>{{localize "CONAN.Item.SourceBook.Page.label"}}</label>
+						<input
+							type="Number"
+							name="system.description.source.page"
+							data-dtype="Number"
+							value="{{item.system.description.source.page}}"
+							placeholder="0"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</form>
+
+<script>
+	$('textarea')
+		.on('keydown', function (e) {
+			if (e.which == 13) {
+				e.preventDefault();
+			}
+		})
+		.on('input', function () {
+			$(this).height(1);
+			var totalHeight =
+				$(this).prop('scrollHeight') -
+				parseInt($(this).css('padding-top')) -
+				parseInt($(this).css('padding-bottom'));
+			$(this).height(totalHeight);
+		});
+</script>

@@ -1,0 +1,8 @@
+2025/01/20-16:22:02.739 1e5c Recovering log #211
+2025/01/20-16:22:02.742 1e5c Delete type=0 #211
+2025/01/20-16:22:02.743 1e5c Delete type=3 #210
+2025/01/20-18:01:14.550 10bc Level-0 table #215: started
+2025/01/20-18:01:14.550 10bc Level-0 table #215: 0 bytes OK
+2025/01/20-18:01:14.551 10bc Delete type=0 #213
+2025/01/20-18:01:14.551 10bc Manual compaction at level-0 from '!scenes!ESR2ICMOdnrgIM5l' @ 72057594037927935 : 1 .. '!scenes!ZN1CIAwjovPj9qNX' @ 0 : 0; will stop at (end)
+2025/01/20-18:01:14.551 10bc Manual compaction at level-1 from '!scenes!ESR2ICMOdnrgIM5l' @ 72057594037927935 : 1 .. '!scenes!ZN1CIAwjovPj9qNX' @ 0 : 0; will stop at (end)

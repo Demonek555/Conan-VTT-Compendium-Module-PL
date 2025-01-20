@@ -1,0 +1,89 @@
+<div>
+	<h3 class="damage-header">{{localize 'CONAN.DamageResults.RequestedDamage.label'}}</h3>
+	<p>
+		<span>
+			{{#if isWatercraft}}
+				<b>{{localize 'CONAN.Actor.Health.Structure.label'}}:</b>
+				<i>{{initialDamage.vigor}},</i>
+				<b>{{localize 'CONAN.Effects.label'}}:</b>
+				<i>{{initialDamage.effects}},</i>
+				<b>{{localize 'CONAN.ApplyDamage.Penetration.label'}}:</b>
+				<i>{{initialDamage.penetration}}</i>
+			{{else}}
+				<b>{{localize 'CONAN.Actor.Health.Vigor.label'}}:</b>
+				<i>{{initialDamage.vigor}},</i>
+				<b>{{localize 'CONAN.Actor.Health.Resolve.label'}}:</b>
+				<i>{{initialDamage.resolve}},</i>
+				<b>{{localize 'CONAN.Effects.label'}}:</b>
+				<i>{{initialDamage.effects}},</i>
+				<b>{{localize 'CONAN.ApplyDamage.Location.label'}}:</b>
+				<i>{{initialDamage.locationLocalized}},</i>
+				<b>{{localize 'CONAN.ApplyDamage.Penetration.label'}}:</b>
+				<i>{{initialDamage.penetration}}</i>
+			{{/if}}
+		</span>
+	</p>
+</div>
+{{#if hasQualities}}
+	<div class="applied-qualities">
+		{{#each qualitiesApplied}}
+			<div class="applied-quality">
+				<div>
+					<span class="chat-tag">
+						{{this.name}}
+					</span>
+				</div>
+				<div>
+					{{{this.text}}}
+				</div>
+			</div>
+		{{/each}}
+	</div>
+{{/if}}
+<div>
+	<h3 class="damage-header">{{localize 'CONAN.DamageResults.DamageTaken.label'}}</h3>
+	{{#if isMob}}
+		<h4 class="damage-subheader">Leader</h4>
+	{{/if}}
+	<p>
+		<span>
+			{{#if isWatercraft}}
+				<b>{{localize 'CONAN.Actor.Health.Structure.label'}}:</b>
+				<i>{{damageTaken.vigor}},</i>
+				<b>{{localize 'CONAN.watercraft.health.breaks.label'}}:</b>
+				<i>{{damageTaken.wounds}}</i>
+			{{else}}
+				<b>{{localize 'CONAN.Actor.Health.Vigor.label'}}:</b>
+				<i>{{damageTaken.vigor}},</i>
+				<b>{{localize 'CONAN.healthWounds'}}:</b>
+				<i>{{damageTaken.wounds}},</i>
+				<b>{{localize 'CONAN.Actor.Health.Resolve.label'}}:</b>
+				<i>{{damageTaken.resolve}},</i>
+				<b>{{localize 'CONAN.traumasLabel'}}:</b>
+				<i>{{damageTaken.traumas}}</i>
+			{{/if}}
+		</span>
+	</p>
+	{{#if isMob}}
+		<h4 class="damage-subheader">{{localize 'CONAN.DamageResults.MobMembers.label'}}</h4>
+		<p>
+			<span>
+				<b>{{localize 'CONAN.Actor.Health.Vigor.label'}}:</b>
+				<i>{{damageTaken.mob.vigor}},</i>
+				<b>{{localize 'CONAN.healthWounds'}}:</b>
+				<i>{{damageTaken.mob.wounds}},</i>
+				<b>{{localize 'CONAN.Actor.Health.Resolve.label'}}:</b>
+				<i>{{damageTaken.mob.resolve}},</i>
+				<b>{{localize 'CONAN.traumasLabel'}}:</b>
+				<i>{{damageTaken.mob.traumas}},</i>
+				<b>{{localize 'CONAN.DamageResults.MobDeaths'}}:</b>
+				<i>{{damageTaken.mob.deaths}}</i>
+			</span>
+		</p>
+	{{/if}}
+</div>
+{{#if isDead}}
+	<div class="dead-image">
+		<img src="systems/conan2d20/assets/icons/skull_and_crossbones.svg">
+	</div>
+{{/if}}

@@ -1,0 +1,157 @@
+<form class="editable" autocomplete="off">
+	<div class="talent-requirement-editor">
+		<div class="form-group">
+			<div class="setting-grid">
+				<label>{{localize "CONAN.Item.Talent.RequirementType.label"}}</label>
+				<select class="requirement-type" name="type" data-dtype="String">
+					{{#select requirement.type}}
+						{{#each CONFIG.talentRequirementTypes as |label key|}}
+							<option value="{{key}}">
+								{{label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+
+			{{#ifEq requirement.type "expertise"}}
+				<div class="setting-grid">
+
+					<label>{{localize "CONAN.Item.Talent.RequirementType.Skill.label"}}</label>
+					<select class="requirement-skill" name="skill" data-dtype="String">
+						{{#select requirement.skill}}
+							{{#each CONFIG.sortedSkills}}s
+								<option value="{{this.key}}">
+									{{this.name}}
+								</option>
+							{{/each}}
+						{{/select}}
+					</select>
+
+					<label>{{localize "CONAN.Item.Talent.RequirementType.ExpertiseValue.label"}}</label>
+					<input
+						type="Number"
+						name="expertise"
+						min="1"
+						max="5"
+						value="{{requirement.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			{{/ifEq}}
+
+			{{#ifEq requirement.type "focus"}}
+				<div class="setting-grid">
+
+					<label>{{localize "CONAN.Item.Talent.RequirementType.Skill.label"}}</label>
+					<select class="requirement-skill" name="skill" data-dtype="String">
+						{{#select requirement.skill}}
+							{{#each CONFIG.sortedSkills}}
+								<option value="{{this.key}}">
+									{{this.name}}
+								</option>
+							{{/each}}
+						{{/select}}
+					</select>
+
+					<label>{{localize "CONAN.Item.Talent.RequirementType.FocusValue.label"}}</label>
+					<input
+						type="Number"
+						name="focus"
+						min="1"
+						max="5"
+						value="{{requirement.value}}"
+						data-dtype="Number"
+					/>
+				</div>
+			{{/ifEq}}
+
+			{{#ifEq requirement.type "special"}}
+				<div class="setting-grid">
+					<label>{{localize "CONAN.Item.Talent.RequirementType.Special.label"}}</label>
+					<input
+						type="text"
+						name="special"
+						data-dtype="String"
+						value="{{requirement.value}}"
+					/>
+				</div>
+			{{/ifEq}}
+
+			{{#ifEq requirement.type "talent"}}
+				<div class="grid-1-columns">
+
+					<div class="setting-grid">
+						<label>{{localize "CONAN.Item.Talent.RequirementType.MinTalentCount.label"}}</label>
+						<input
+							type="Number"
+							name="talentMin"
+							min="1"
+							value="{{requirement.min}}"
+							data-dtype="Number"
+						/>
+					</div>
+
+					<div class="talent-group">
+						{{#each requirement.talents}}
+							<div class="talent flexrow">
+								<a
+									class="content-link uuid-link"
+									data-link
+									data-type="Item"
+									data-uuid="{{this.uuid}}"
+								>
+									<i
+										class="delete-talent fas fa-delete-right"
+										data-action="delete"
+										data-uuid="{{this.uuid}}"
+									></i>
+									{{this.name}}
+								</a>
+							</div>
+							<label>{{localize "CONAN.Item.Talent.RequirementType.MinRank.label"}}</label>
+							<input
+								style="text-align: center;"
+								type="number"
+								name="rank_{{this.uuid}}"
+								min="1"
+								value="{{this.rank}}"
+								data-dtype="Number"
+								data-tooltip="Rank"
+								placeholder="1"
+							/>
+
+						{{/each}}
+					</div>
+
+					<input
+						data-is-item="true"
+						list="{{appId}}-required-talent-options"
+						name="reguiredTalentUuid"
+						placeholder="{{localize "CONAN.Form.SelectTalent.prompt"}}"
+						type="text"
+						value=""
+					/>
+
+					<datalist id="{{appId}}-required-talent-options">
+						{{#each unselected}}
+							<option
+								data-uuid="{{this.uuid}}"
+								value="{{this.name}}"
+							></option>
+						{{/each}}
+					</datalist>
+
+				</div>
+
+			{{/ifEq}}
+
+		</div>
+		<button class="requirement-save-button">
+			<i class="fa-solid fa-floppy-disk"></i>
+			{{localize "CONAN.Item.Talent.RequirementType.SaveButton.label"}}
+		</button>
+	</div>
+</form>

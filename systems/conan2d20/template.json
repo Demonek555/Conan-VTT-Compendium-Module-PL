@@ -1,0 +1,902 @@
+{
+	"Actor": {
+		"types": [
+			"character",
+			"mount",
+			"npc",
+			"transport",
+			"watercraft"
+		],
+		"templates": {
+			"common": {
+				"grouping": {
+					"baseActorId": null,
+					"memberImage": null,
+					"memberName": null,
+					"members": [],
+					"type": null
+				},
+				"momentum": 0
+			},
+			"commonAttributes": {
+				"attributes": {
+					"agi": {
+						"inhuman": 0,
+						"value": 7
+					},
+					"awa": {
+						"inhuman": 0,
+						"value": 7
+					},
+					"bra": {
+						"inhuman": 0,
+						"value": 7
+					},
+					"coo": {
+						"inhuman": 0,
+						"value": 7
+					},
+					"int": {
+						"inhuman": 0,
+						"value": 7
+					},
+					"per": {
+						"inhuman": 0,
+						"value": 7
+					},
+					"wil": {
+						"inhuman": 0,
+						"value": 7
+					}
+				}
+			},
+			"commonDetails": {
+				"details": {
+					"biography": {
+						"public": false,
+						"value": ""
+					},
+					"notes": ""
+				}
+			},
+			"commonHealth": {
+				"health": {
+					"courage": 0,
+					"mental": {
+						"bonus": 0,
+						"despair": 0,
+						"max": 7,
+						"min": 0,
+						"traumas": {
+							"dots": {
+								"0": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								},
+								"1": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								},
+								"2": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								},
+								"3": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								},
+								"4": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								}
+							},
+							"max": 5,
+							"min": 0,
+							"value": 0
+						},
+						"value": 7
+					},
+					"physical": {
+						"bonus": 0,
+						"fatigue": 0,
+						"max": 7,
+						"min": 0,
+						"value": 7,
+						"wounds": {
+							"dots": {
+								"0": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								},
+								"1": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								},
+								"2": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								},
+								"3": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								},
+								"4": {
+									"icon": "far fa-circle",
+									"status": "healed"
+								}
+							},
+							"max": 5,
+							"min": 0,
+							"value": 0
+						}
+					}
+				}
+			},
+			"npcCommon": {
+				"armor": 0,
+				"tags": {
+					"value": []
+				}
+			},
+			"npcHealth": {
+				"health": {
+					"courage": 0,
+					"mental": {
+						"bonus": 0,
+						"max": 7,
+						"min": 0,
+						"traumas": {
+							"max": 1,
+							"min": 0,
+							"value": 0
+						},
+						"value": 7
+					},
+					"physical": {
+						"bonus": 0,
+						"fatigue": 0,
+						"max": 7,
+						"min": 0,
+						"value": 7,
+						"wounds": {
+							"max": 1,
+							"min": 0,
+							"value": 0
+						}
+					}
+				}
+			},
+			"npcSkills": {
+				"skills": {
+					"cmb": {
+						"value": null
+					},
+					"frt": {
+						"value": null
+					},
+					"knw": {
+						"value": null
+					},
+					"mov": {
+						"value": null
+					},
+					"scl": {
+						"value": null
+					},
+					"sns": {
+						"value": null
+					}
+				},
+				"type": "minion"
+			},
+			"transportCommon": {
+				"animals": 0,
+				"availability": 0,
+				"cost": 0,
+				"passengers": {
+					"max": 0,
+					"value": 0
+				},
+				"stowage": {
+					"max": 0,
+					"value": 0
+				}
+			}
+		},
+		"character": {
+			"armor": {
+				"head": {
+					"qualities": [],
+					"soak": [
+						0
+					]
+				},
+				"l-arm": {
+					"qualities": [],
+					"soak": [
+						0
+					]
+				},
+				"l-leg": {
+					"qualities": [],
+					"soak": [
+						0
+					]
+				},
+				"r-arm": {
+					"qualities": [],
+					"soak": [
+						0
+					]
+				},
+				"r-leg": {
+					"qualities": [],
+					"soak": [
+						0
+					]
+				},
+				"shield": {
+					"soak": [
+						0
+					]
+				},
+				"torso": {
+					"qualities": [],
+					"soak": [
+						0
+					]
+				}
+			},
+			"background": {
+				"age": {
+					"value": ""
+				},
+				"archetype": {
+					"value": ""
+				},
+				"caste": {
+					"value": ""
+				},
+				"education": {
+					"value": ""
+				},
+				"gender": {
+					"value": ""
+				},
+				"homeland": {
+					"value": ""
+				},
+				"languages": [],
+				"nature": {
+					"value": ""
+				},
+				"renown": 0,
+				"standing": {
+					"max": 5,
+					"min": -2,
+					"value": 0
+				},
+				"story": {
+					"value": ""
+				},
+				"trait": {
+					"value": ""
+				},
+				"warstory": {
+					"value": ""
+				}
+			},
+			"qualities": {
+				"value": []
+			},
+			"resources": {
+				"fortune": {
+					"max": 3,
+					"min": 0,
+					"value": 3
+				},
+				"gold": {
+					"max": 100,
+					"min": 0,
+					"value": 0
+				},
+				"momentum": {
+					"max": 6,
+					"min": 0,
+					"value": 0
+				},
+				"upkeep": {
+					"min": 0,
+					"value": 3
+				},
+				"xp": {
+					"log": [],
+					"min": 0,
+					"spent": 0,
+					"value": 0
+				}
+			},
+			"skills": {
+				"acr": {
+					"attribute": "agi",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"alc": {
+					"attribute": "int",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"ani": {
+					"attribute": "per",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"ath": {
+					"attribute": "bra",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"com": {
+					"attribute": "per",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"cou": {
+					"attribute": "per",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"cra": {
+					"attribute": "int",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"dis": {
+					"attribute": "wil",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"hea": {
+					"attribute": "int",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"ins": {
+					"attribute": "awa",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"lin": {
+					"attribute": "int",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"lor": {
+					"attribute": "int",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"mel": {
+					"attribute": "agi",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"obs": {
+					"attribute": "awa",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"par": {
+					"attribute": "coo",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"per": {
+					"attribute": "per",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"ran": {
+					"attribute": "coo",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"res": {
+					"attribute": "bra",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"sai": {
+					"attribute": "coo",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"soc": {
+					"attribute": "per",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"sor": {
+					"attribute": "wil",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"ste": {
+					"attribute": "agi",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"sur": {
+					"attribute": "awa",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"thi": {
+					"attribute": "awa",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				},
+				"war": {
+					"attribute": "int",
+					"expertise": {
+						"value": 0
+					},
+					"focus": {
+						"value": 0
+					}
+				}
+			},
+			"templates": [
+				"common",
+				"commonAttributes",
+				"commonDetails",
+				"commonHealth"
+			]
+		},
+		"mount": {
+			"templates": [
+				"common",
+				"commonAttributes",
+				"commonDetails",
+				"npcHealth",
+				"npcCommon",
+				"npcSkills",
+				"transportCommon"
+			]
+		},
+		"npc": {
+			"isMob": false,
+			"mobCount": {
+				"max": 0,
+				"value": 0
+			},
+			"templates": [
+				"common",
+				"commonAttributes",
+				"commonDetails",
+				"npcCommon",
+				"npcHealth",
+				"npcSkills"
+			]
+		},
+		"transport": {
+			"templates": [
+				"common",
+				"commonDetails",
+				"npcCommon",
+				"transportCommon"
+			]
+		},
+		"watercraft": {
+			"crew": {
+				"max": 0,
+				"value": 0
+			},
+			"impactDamage": 1,
+			"maneuever": 0,
+			"sailingRange": 0,
+			"templates": [
+				"common",
+				"commonDetails",
+				"npcCommon",
+				"npcHealth",
+				"transportCommon"
+			]
+		}
+	},
+	"Item": {
+		"types": [
+			"action",
+			"archetype",
+			"armor",
+			"aspect",
+			"caste",
+			"display",
+			"education",
+			"enchantment",
+			"homeland",
+			"kit",
+			"language",
+			"miscellaneous",
+			"nature",
+			"npcaction",
+			"npcattack",
+			"spell",
+			"story",
+			"talent",
+			"warstory",
+			"weapon"
+		],
+		"templates": {
+			"consumable": {
+				"consume": {
+					"amount": null,
+					"target": null,
+					"type": ""
+				},
+				"uses": {
+					"max": "",
+					"value": ""
+				}
+			},
+			"itemDescription": {
+				"description": {
+					"source": {
+						"book": "",
+						"page": 0
+					},
+					"value": ""
+				}
+			},
+			"physicalItem": {
+				"broken": false,
+				"encumbrance": 0,
+				"equipped": false,
+				"hideInInventory": false,
+				"quantity": 1,
+				"stowedIn": ""
+			},
+			"purchasable": {
+				"availability": 0,
+				"cost": 0
+			},
+			"qualities": {
+				"qualities": {
+					"value": []
+				}
+			},
+			"weaponDetails": {
+				"crew": 0,
+				"damage": {
+					"dice": 1,
+					"type": "physical"
+				},
+				"range": "",
+				"size": ""
+			}
+		},
+		"action": {
+			"actionType": "",
+			"isMovementAction": false,
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"archetype": {
+			"careerSkill": {
+				"choices": []
+			},
+			"careerTalent": {
+				"choices": []
+			},
+			"electiveSkill": {
+				"choices": []
+			},
+			"equipment": [],
+			"equipmentChoices": [],
+			"mandatorySkill": {
+				"choices": []
+			},
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"armor": {
+			"armorType": "",
+			"coverage": {
+				"value": []
+			},
+			"soak": 0,
+			"templates": [
+				"itemDescription",
+				"physicalItem",
+				"purchasable",
+				"qualities"
+			]
+		},
+		"aspect": {
+			"mandatoryAttribute": {
+				"choices": []
+			},
+			"optionalAttribute": {
+				"choices": []
+			},
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"caste": {
+			"skill": "",
+			"socialStanding": 0,
+			"story": {
+				"choices": []
+			},
+			"talent": {
+				"choices": []
+			},
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"display": {
+			"damage": {
+				"dice": 1,
+				"special": false,
+				"type": "mental"
+			},
+			"range": "",
+			"skill": "",
+			"templates": [
+				"itemDescription",
+				"qualities"
+			]
+		},
+		"education": {
+			"attribute": "",
+			"electiveSkill": {
+				"career": false,
+				"choices": [],
+				"randomCareer": false
+			},
+			"mandatorySkill": {
+				"career": false,
+				"choices": [],
+				"randomCareer": false
+			},
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"enchantment": {
+			"damage": {
+				"dice": 1,
+				"hitLocation": [],
+				"type": "physical"
+			},
+			"difficulty": "",
+			"effects": {
+				"value": []
+			},
+			"enchantmentType": "",
+			"templates": [
+				"consumable",
+				"itemDescription"
+			],
+			"traits": {}
+		},
+		"homeland": {
+			"language": {
+				"choices": []
+			},
+			"talent": {
+				"choices": []
+			},
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"kit": {
+			"kitType": "",
+			"skill": "",
+			"templates": [
+				"consumable",
+				"itemDescription",
+				"physicalItem",
+				"purchasable"
+			]
+		},
+		"language": {
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"miscellaneous": {
+			"templates": [
+				"itemDescription",
+				"physicalItem",
+				"purchasable"
+			]
+		},
+		"nature": {
+			"attribute": "",
+			"electiveSkill": {
+				"choices": []
+			},
+			"mandatorySkill": {
+				"choices": []
+			},
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"npcaction": {
+			"actionType": "",
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"npcattack": {
+			"attackType": "",
+			"templates": [
+				"itemDescription",
+				"weaponDetails",
+				"qualities"
+			]
+		},
+		"spell": {
+			"cost": "",
+			"difficulty": {
+				"includes": "",
+				"value": ""
+			},
+			"duration": "",
+			"effects": {
+				"alternative": [],
+				"momentum": []
+			},
+			"notes": "",
+			"spellLevel": 1,
+			"templates": [
+				"consumable",
+				"itemDescription"
+			]
+		},
+		"story": {
+			"templates": [
+				"itemDescription"
+			],
+			"trait": ""
+		},
+		"talent": {
+			"cost": 200,
+			"linkedSkill": "",
+			"rank": {
+				"max": 1,
+				"value": 0
+			},
+			"requirements": [],
+			"talentType": "skill",
+			"templates": [
+				"itemDescription"
+			],
+			"tree": ""
+		},
+		"warstory": {
+			"skills": {
+				"choices": []
+			},
+			"templates": [
+				"itemDescription"
+			]
+		},
+		"weapon": {
+			"shots": 1,
+			"skillOverride": "",
+			"templates": [
+				"itemDescription",
+				"physicalItem",
+				"weaponDetails",
+				"purchasable",
+				"qualities"
+			],
+			"weaponType": ""
+		}
+	}
+}

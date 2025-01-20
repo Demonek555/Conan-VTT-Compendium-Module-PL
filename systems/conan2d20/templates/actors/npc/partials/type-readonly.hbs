@@ -1,0 +1,35 @@
+<div class="npc-type-grid readonly">
+	<img
+		class="npc-sheet__portrait"
+		src="{{actor.img}}"
+		data-edit="img"
+		title="{{actor.name}}"
+	/>
+	<div class="npc-type">
+		<h4 class="npc-sheet-field__label">{{localize 'CONAN.npcTypeLabel'}}</h4>
+		<div>
+			<select name="system.type" data-dtype="String" disabled>
+				{{#each CONFIG.NPC_TYPES as |type key|}}
+					<option
+						value="{{key}}"
+						{{#ifCond ../system.type "===" key}}
+							selected
+						{{/ifCond}}
+					>
+						{{type}}
+					</option>
+				{{/each}}
+			</select>
+		</div>
+	</div>
+	<div class="npc-categories">
+		<h4 class="npc-sheet-field__label">{{localize 'CONAN.npcTraitsLabel'}}</h4>
+		<ul class="tags">
+			{{#each traits as |v k|}}
+				<li class="tag tag--black {{k}}">
+					{{v}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</div>

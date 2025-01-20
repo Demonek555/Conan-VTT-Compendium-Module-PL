@@ -1,0 +1,92 @@
+{
+  "id": "conan-2d20-pl",
+  "title": "Conan 2d20 PL",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "conan2d20",
+        "type": "system",
+        "compatibility": {}
+      }
+    ]
+  },
+  "authors": [
+    {
+      "name": "Demonek",
+      "flags": {}
+    }
+  ],
+  "packs": [
+    {
+      "name": "bestiariusz",
+      "label": "Bestiariusz",
+      "path": "packs/bestiariusz",
+      "type": "Actor",
+      "system": "conan2d20",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "zwierzeta-uzytkowe-i-srodki-transportu",
+      "label": "Zwierzęta użytkowe i środki transportu",
+      "path": "packs/zwierzeta-uzytkowe-i-srodki-transportu",
+      "type": "Actor",
+      "system": "conan2d20",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "gracze",
+      "label": "Gracze",
+      "path": "packs/gracze",
+      "type": "Item",
+      "system": "conan2d20",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "inne",
+      "label": "Inne",
+      "path": "packs/inne",
+      "type": "Item",
+      "system": "conan2d20",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "mapy",
+      "label": "Mapy",
+      "path": "packs/mapy",
+      "type": "Scene",
+      "system": "conan2d20",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "tabelki-losowe",
+      "label": "Tabelki losowe",
+      "path": "packs/tabelki-losowe",
+      "type": "RollTable",
+      "system": "conan2d20",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ]
+}

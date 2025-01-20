@@ -1,0 +1,101 @@
+<div class="form-group">
+	<div class="setting-grid">
+
+		<label>{{localize "CONAN.Item.Transportation.Category.label"}}</label>
+		<select name="system.categories" data-dtype="String">
+			{{#select item.system.categories}}
+				{{#each CONFIG.transpoCategories as |label key|}}
+					<option value="{{key}}">{{localize label}}</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+		{{#ifCond item.system.categories '==' 'mounts' }}
+			<label>{{localize "CONAN.Item.Transportation.Type.label"}}</label>
+			<select name="system.transpoType" data-dtype="String">
+				{{#select item.system.transpoType}}
+					{{#each CONFIG.transpoMountTypes as |label key|}}
+						<option value="{{key}}">{{localize label}}</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		{{/ifCond}}
+
+		{{#ifCond item.system.categories '==' 'carts' }}
+			<label>{{localize "CONAN.Item.Transportation.Type.label"}}</label>
+			<select name="system.transpoType" data-dtype="String">
+				{{#select item.system.transpoType}}
+					{{#each CONFIG.transpoCartTypes as |label key|}}
+					<option value="{{key}}">{{localize label}}</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		{{/ifCond}}
+
+		{{#ifCond item.system.categories '==' 'boats' }}
+			<label>{{localize "CONAN.Item.Transportation.Type.label"}}</label>
+			<select name="system.transpoType" data-dtype="String">
+				{{#select item.system.transpoType}}
+					{{#each CONFIG.transpoBoatTypes as |label key|}}
+						<option value="{{key}}">{{localize label}}</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		{{/ifCond}}
+
+		<label>{{localize "CONAN.Item.Transportation.Stowage.label"}}</label>
+		<input
+			type="Number"
+			name="system.stowage.value"
+			value="{{item.system.stowage.value}}"
+			data-dtype="Number"
+		/>
+
+		<label>{{localize "CONAN.Item.Transportation.StowageCapacity.label"}}</label>
+		<input
+			type="Number"
+			name="system.stowage.max"
+			value="{{item.system.stowage.max}}"
+			data-dtype="Number"
+		/>
+
+		<label>{{localize "CONAN.Item.Transportation.Passengers.label"}}</label>
+		<input
+			type="Number"
+			name="system.passengers.value"
+			value="{{item.system.passengers.value}}"
+			data-dtype="Number"
+		/>
+
+		<label>{{localize "CONAN.Item.Transportation.PassengerCapacity.label"}}</label>
+		<input
+			type="Number"
+			name="system.passengers.max"
+			value="{{item.system.passengers.max}}"
+			data-dtype="Number"
+		/>
+
+		{{#ifCond item.system.categories '==' 'mounts' }}
+			<label>{{localize "CONAN.Item.Transportation.Capabilities.label"}}</label>
+			<select name="system.capabilities" data-dtype="String">
+				{{#select item.system.capabilities}}
+					{{#each CONFIG.transpoCapabilities as |label key|}}
+						<option value="{{key}}">{{localize label}}</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		{{/ifCond}}
+
+		{{#ifCond item.system.categories '==' 'carts' }}
+			<label>{{localize "CONAN.Item.Transportation.Animals.label"}}</label>
+			<select name="system.animals" data-dtype="String">
+				{{#select item.system.animals}}
+					{{#each CONFIG.transpoAnimals as |label key|}}
+					<option value="{{key}}">{{localize label}}</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		{{/ifCond}}
+
+	</div>
+</div>

@@ -1,0 +1,61 @@
+<div class="grid-2-columns">
+	<div class="form-group">
+		<div class="setting-grid">
+			<label>{{localize "CONAN.Item.Talent.Type.label"}}</label>
+			<select name="system.talentType" data-dtype="String">
+				{{#select item.system.talentType}}
+					{{#each CONFIG.talentTypes as |name type|}}
+						<option value="{{type}}">
+							{{name}}
+						</option>
+					{{/each}}
+				{{/select}}
+			</select>
+
+			{{#ifEq item.system.talentType "other"}}
+				<label>{{localize "CONAN.Item.Talent.Tree.label"}}</label>
+				<input
+					type="text"
+					name="system.tree"
+					value="{{item.system.tree}}"
+					data-dtype="String"
+				/>
+			{{/ifEq}}
+			{{#ifEq item.system.talentType "skill"}}
+				<label>{{localize "CONAN.Item.Talent.Skill.label"}}</label>
+				<select name="system.linkedSkill" data-dtype="String">
+					{{#select item.system.linkedSkill}}
+						{{#each CONFIG.sortedSkills}}
+							<option value="{{this.key}}">
+								{{this.name}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+			{{/ifEq}}
+			<label>{{localize "CONAN.Item.Talent.Rank.label"}}</label>
+			<input
+				type="Number"
+				name="system.rank.value"
+				value="{{item.system.rank.value}}"
+				data-dtype="Number"
+			/>
+
+			<label>{{localize "CONAN.Item.Talent.MaxRank.label"}}</label>
+			<input
+				type="Number"
+				name="system.rank.max"
+				value="{{item.system.rank.max}}"
+				data-dtype="Number"
+			/>
+
+			<label>{{localize "CONAN.Item.Talent.Cost.label"}}</label>
+			<input
+				type="Number"
+				name="system.cost"
+				value="{{item.system.cost}}"
+				data-dtype="Number"
+			/>
+		</div>
+	</div>
+</div>

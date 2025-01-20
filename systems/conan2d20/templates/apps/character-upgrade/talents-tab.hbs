@@ -1,0 +1,58 @@
+<div class="tab talents" data-group="primary" data-tab="talents">
+	<table>
+		<tr>
+			<th>{{localize "CONAN.CharacterCreator.Talent.label"}}</th>
+			<th>{{localize "CONAN.CharacterCreator.LinkedSkill.label"}}</th>
+			<th>{{localize "CONAN.CharacterUpgrade.Cost.label"}}</th>
+			<th></th>
+		</tr>
+		{{#if talentsAvailable}}
+			{{#each availableTalents}}
+				<tr class="item-row">
+					<td>
+						<div class="flexrow">
+							<a
+								class="content-link uuid-link"
+								data-link
+								data-uuid="{{this.item.uuid}}"
+								title="{{localize 'CONAN.OpenItem.tooltip'}}"
+							>
+								{{this.item.name}}
+								{{#if this.item.system.multiRank}}
+									({{localize "CONAN.Item.Talent.Rank.label"}} {{this.rank}})
+								{{/if}}
+							</a>
+						</div>
+					</td>
+					<td>
+						<div class="flexrow">
+							{{#ifCond this.item.system.linkedSkill '!==' ''}}
+								<a
+									class="fake-uuid-link"
+									data-uuid="{{this.item.uuid}}"
+								>
+									{{lookup ../skillLabels this.item.system.linkedSkill}}
+								</a>
+							{{/ifCond}}
+						</div>
+					</td>
+					<td>
+						{{this.cost}}
+					</td>
+					<td align="center">
+						<a
+							class="can-upgrade purchase-talent-link"
+							data-id="{{this.item.system.talentIdentifier}}"
+							data-rank="{{this.rank}}"
+							data-tooltip="{{localize 'CONAN.CharacterUpgrade.PurchaseTalent.tooltip'}}"
+						>
+							<i class="fa-solid fa-coins"></i>
+						</a>
+					</td>
+				</tr>
+			{{/each}}
+		{{else}}
+			<td colspan="4"><em>No Talents Currently Available</em></td>
+		{{/if}}
+	</table>
+</div>

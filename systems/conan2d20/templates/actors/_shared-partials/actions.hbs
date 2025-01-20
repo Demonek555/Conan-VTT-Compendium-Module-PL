@@ -1,0 +1,35 @@
+<div class="npc-actions">
+	{{#each actions as |section sid|}}
+		<div class="npc-sheet-sub-heading">
+			<h3>{{section.label}}</h3>
+			{{#if ../owner}}
+				<div class="item-controls">
+					<a
+						class="item-control item-create"
+						title="{{localize 'CONAN.createItemTitle'}}"
+						data-type="npcaction"
+						data-action-type="{{sid}}"
+					>
+						<i class="fas fa-plus"></i>
+					</a>
+				</div>
+			{{/if}}
+		</div>
+		{{#each section.actions as |action aid|}}
+			<div class="npc-actions-list">
+				<li class="item" data-item-id="{{action._id}}">
+					<div class="item-name rollable">
+						<div
+							class="item-image"
+							style="background-image: url({{action.img}})"
+							title="{{localize 'CONAN.PostItemToChat'}}"
+						>
+							<i class="fas fa-comment-alt"></i>
+						</div>
+						<h4>{{action.name}}</h4>
+					</div>
+				</li>
+			</div>
+		{{/each}}
+	{{/each}}
+</div>

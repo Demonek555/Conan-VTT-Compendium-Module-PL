@@ -1,0 +1,31 @@
+<form class="{{cssClass}} npc-sheet" autocomplete="off">
+	<div class="npc-sheet__header">
+
+		{{> actors/_shared-partials/header }}
+
+		<nav class="npc-sheet-navigation npc-sheet-navigation__grid" data-group="primary">
+			<div class="npc-sheet-navigation__flex">
+				<a class="npc-sheet-navigation active" data-tab="npc-details">
+					{{localize "CONAN.tabNpcDetailsLabel"}}
+				</a>
+
+				<a class="npc-sheet-navigation" data-tab="npc-stowage">
+					{{localize "CONAN.transportation.stowage.label"}}
+				</a>
+
+				<a class="npc-sheet-navigation" data-tab="npc-notes">
+					{{localize "CONAN.tabNotesLabel"}}
+				</a>
+			</div>
+		</nav>
+
+		<hr />
+
+	</div>
+
+	<section class="npc-sheet__body">
+		{{> actors/_shared-partials/tabs/details }}
+		{{> actors/_shared-partials/tabs/stowage }}
+		{{> actors/_shared-partials/tabs/notes }}
+	</section>
+</form>

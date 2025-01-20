@@ -1,0 +1,53 @@
+<div class="form-group">
+	<div class="setting-grid">
+		<div class="grid-1-columns">
+			<table>
+				<tr>
+					<th>{{localize "CONAN.CharacterCreator.Talent.label"}}</th>
+					<th>{{localize "CONAN.CharacterCreator.LinkedSkill.label"}}</th>
+					<th>{{localize "CONAN.CharacterCreator.Select.label"}}</th>
+				</tr>
+				{{#each stage.availableTalents}}
+					<tr class="item-row">
+						<td>
+							<div class="flexrow">
+								<a
+									class="content-link uuid-link"
+									data-link
+									data-uuid="{{this.item.uuid}}"
+									title="Item"
+								>
+									{{this.item.name}}
+									{{#if this.item.system.multiRank}}
+										({{localize "CONAN.Item.Talent.Rank.label"}} {{this.rank}})
+									{{/if}}
+								</a>
+							</div>
+						</td>
+							<td>
+							<div class="flexrow">
+								<a
+									class="fake-uuid-link"
+									data-uuid="{{this.item.uuid}}"
+									title="Item"
+								>
+									{{lookup ../CONFIG.skills this.item.system.linkedSkill}}
+								</a>
+							</div>
+						</td>
+						<td align="center">
+							<input
+								type="radio"
+								name="final_talent"
+								value="{{this.item.uuid}}"
+								{{#ifEq ../selectedTalent this.item.uuid}}
+									checked
+								{{/ifEq}}
+							/>
+						</td>
+					</tr>
+				{{/each}}
+			</table>
+		</div>
+	</div>
+</div>

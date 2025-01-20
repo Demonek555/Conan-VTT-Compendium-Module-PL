@@ -1,0 +1,79 @@
+<section class="npc-sheet-attributes">
+	<div class="npc-sheet-sub-heading">
+		<h3>
+			{{#if editInhumanAttributes}}
+				<a
+					class="npc-edit-inhuman"
+					data-tooltip="{{localize "CONAN.npc.attributes.inhuman.save"}}"
+				>
+					<i class="fa-solid fa-floppy-disk fa-2xs"></i>
+					{{localize "CONAN.npc.sections.attributes"}}
+				</a>
+			{{else}}
+				<a
+					class="npc-edit-inhuman"
+					data-tooltip="{{localize "CONAN.npc.attributes.inhuman.edit"}}"
+				>
+					<i class="fa-solid fa-pen-to-square fa-2xs"></i>
+					{{localize "CONAN.npc.sections.attributes"}}
+				</a>
+			{{/if}}
+		</h3>
+	</div>
+	<div class="npc-sheet-attributes__4-column-grid">
+		{{> attribute attribute=system.attributes.awa key="awa"}}
+		{{> attribute attribute=system.attributes.int key="int"}}
+		{{> attribute attribute=system.attributes.per key="per"}}
+		{{> attribute attribute=system.attributes.wil key="wil"}}
+	</div>
+	<div class="npc-sheet-attributes__3-column-grid">
+		{{> attribute attribute=system.attributes.agi key="agi"}}
+		{{> attribute attribute=system.attributes.bra key="bra"}}
+		{{> attribute attribute=system.attributes.coo key="coo"}}
+	</div>
+</section>
+
+{{#*inline "attribute"}}
+	<div class="attribute-entry">
+		<h4
+			class="npc-sheet-field__label"
+			title="{{attribute.tooltip}}"
+		>
+			{{attribute.label}}
+		</h4>
+		{{#if editInhumanAttributes}}
+			<div class="grid grid-2-columns">
+				<input
+					data-dtype="Number"
+					name="system.attributes.{{key}}.value"
+					type="number"
+					value="{{attribute.value}}"
+				/>
+				<input
+					data-dtype="Number"
+					name="system.attributes.{{key}}.inhuman"
+					type="number"
+					value="{{attribute.inhuman}}"
+				/>
+			</div>
+		{{else}}
+			{{#ifCond attribute.inhuman ">" 0}}
+				<input
+					class="npc-sheet-attributes inhuman-value"
+					data-dtype="String"
+					data-tooltip="{{localize 'CONAN.npc.attributes.inhuman.tooltip'}}"
+					type="string"
+					value="{{attribute.value}} ({{attribute.inhuman}})"
+					disabled
+				/>
+			{{else}}
+				<input
+					data-dtype="Number"
+					name="system.attributes.{{key}}.value"
+					type="number"
+					value="{{attribute.value}}"
+				/>
+			{{/ifCond}}
+		{{/if}}
+	</div>
+{{/inline}}

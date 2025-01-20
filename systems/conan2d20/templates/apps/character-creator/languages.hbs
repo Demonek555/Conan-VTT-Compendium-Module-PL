@@ -1,0 +1,42 @@
+<div class="form-group">
+	<div class="setting-grid">
+		<div class="grid-1-columns">
+			<div class="flexrow">
+				{{#each stage.selected}}
+					<div class="flexrow">
+						<a
+							class="content-link uuid-link"
+							data-link
+							data-uuid="{{this.uuid}}"
+							title="Remove Language"
+						>
+							<i
+								class="delete-choice fas fa-delete-right"
+								data-action="delete"
+								data-uuid="{{this.uuid}}"
+							></i>
+							{{this.name}}
+						</a>
+					</div>
+				{{/each}}
+			</div>
+
+			<input
+				data-is-item="true"
+				list="{{stage.uuid}}-cc_languages_list"
+				name="languageUuid"
+				placeholder="{{localize "CONAN.Form.SelectLanguage.prompt"}}"
+				type="text"
+				value=""
+			/>
+			<datalist id="{{stage.uuid}}-cc_languages_list">
+				{{#each stage.unselected}}
+					<option
+						data-uuid="{{this.uuid}}"
+						value="{{this.name}}"
+					></option>
+				{{/each}}
+			</datalist>
+		</div>
+	</div>
+</div>

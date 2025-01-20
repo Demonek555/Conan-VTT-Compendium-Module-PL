@@ -1,0 +1,26 @@
+{{#if rollData.itemName}}
+	<h2>{{rollData.itemName}}</h2>
+	<h3>{{rollData.title}}</h4>
+{{else}}
+	<h2>{{rollData.title}}</h2>
+{{/if}}
+<div class="roll-card">
+	{{#each results.rolls as |roll r|}}
+		<span
+			class="roll-list-entry roll d6-combat{{roll.result}}"
+			id="{{r}}"
+		>
+			{{{roll.display}}}
+		</span>
+	{{/each}}
+</div>
+<div class="roll-outcomes">
+	<label>{{localize 'CONAN.numberOfDice'}}: </label>{{rollData.numDice}}
+	{{#ifCond results.effects '>' 0}}
+		<br />
+		<label>{{localize 'CONAN.Effects.label'}}: </label>{{results.effects}}
+	{{/ifCond}}
+</div>
+<h2>
+	{{results.total}} {{localize "CONAN.Soak"}}
+</h2>

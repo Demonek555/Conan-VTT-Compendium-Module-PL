@@ -1,0 +1,73 @@
+<div class="form-group">
+	<div class="setting-grid">
+		<div class="grid-1-columns">
+			<label>
+				<span>
+					<a
+						class="roll war-story-roll"
+						data-roll-type="war-story"
+						data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{stage.label}}"
+					>
+						<i class="fa-solid fa-dice"></i>
+					</a>
+					{{stage.label}}
+				</span>
+			</label>
+
+			{{#if stage.warStory}}
+				<div class="flexrow">
+					<a
+						class="content-link uuid-link"
+						data-link
+						data-type="Item"
+						data-uuid="{{stage.warStory.uuid}}"
+						title="Item"
+					>
+						{{stage.warStory.name}}
+					</a>
+				</div>
+			{{/if}}
+
+			<input
+				data-is-item="true"
+				list="{{stage.uuid}}-cc_warStories_list"
+				name="warStoryUuid"
+				placeholder="{{localize "CONAN.Form.SelectNature.prompt"}}"
+				type="text"
+				value=""
+			/>
+			<datalist id="{{stage.uuid}}-cc_warStories_list">
+				{{#each stage.unselected}}
+					<option
+						data-uuid="{{this.uuid}}"
+						value="{{this.name}}"
+					></option>
+				{{/each}}
+			</datalist>
+
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<div class="setting-grid stacked">
+		{{#if stage.warStory}}
+
+			<div class="grid-1-columns">
+				<label>{{localize "CONAN.CharacterCreator.SkillImprovements.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.MandatorySkills.description"}}</em></p>
+				<div class="flexrow">
+					{{#each stage.warStorySkills}}
+						<a
+							class="fake-uuid-link"
+							data-uuid="{{this.skill}}"
+							title="Item"
+						>
+							{{this.label}}
+						</a>
+					{{/each}}
+				</div>
+			</div>
+
+		{{/if}}
+	</div>
+</div>

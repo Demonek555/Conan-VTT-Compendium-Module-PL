@@ -1,0 +1,126 @@
+<form class="{{cssClass}}" autocomplete="off">
+	<!-- ITEM SHEET HEADER -->
+	<header class="sheet-header">
+		<img
+			src="{{item.img}}"
+			data-edit="img"
+			title="{{item.name}}"
+			height="64"
+			width="64"
+		/>
+		<h1>
+			<input
+				name="name" type="text" value="{{item.name}}"
+				placeholder="{{localize "CONAN.Item.Name.placeholder"}}"
+			/>
+		</h1>
+	</header>
+	{{#ifEq item.type 'spell'}}
+		{{> items/spell-sheet }}
+	{{else}}
+		<!-- ITEM SHEET CONTENT -->
+		<article class="sheet-content{{#if hasSidebar}}-has-sidebar{{/if}}">
+
+			<!-- ITEM SHEET SIDEBAR -->
+			{{#if hasSidebar}}
+				<section class="item sheet-sidebar">{{> (sidebarTemplate) }}</section>
+			{{/if}}
+
+			<!-- ITEM SHEET BODY -->
+			<section class="sheet-body">
+
+				<!-- ITEM SHEET NAV -->
+				<nav class="sheet-tabs tabs" data-tab-container="primary">
+
+					<a
+						class="item active"
+						data-tab="description"
+					>
+						{{localize "CONAN.Item.Description.label"}}
+					</a>
+
+					{{#unless hasNoDetails}}
+						<a
+							class="item"
+							data-tab="details"
+						>
+							{{localize "CONAN.Item.Details.label"}}
+						</a>
+					{{/unless}}
+
+					{{#if hasRequirements}}
+						<a
+							class="item"
+							data-tab="requirements"
+						>
+							{{localize "CONAN.Item.Talent.Requirements.label"}}
+						</a>
+					{{/if}}
+
+					<a
+						class="item"
+						data-tab="source"
+					>
+						{{localize "CONAN.Item.Source.label"}}
+					</a>
+				</nav>
+
+				<!-- ITEM DESCRIPTION -->
+				<div class="tab item-description" data-tab="description">
+					{{editor
+						descriptionHTML
+						target="system.description.value"
+						button=true
+						owner=owner
+						editable=editable
+					}}
+				</div>
+
+				<!-- ITEM DETAILS -->
+				{{#unless hasNoDetails}}
+					<div class="tab item-details" data-tab="details">
+						{{> (detailsTemplate)}}
+					</div>
+				{{/unless}}
+
+				<!-- ITEM REQUIREMENTS -->
+				{{#if hasRequirements}}
+					<div class="tab item-requirements" data-tab="requirements">
+						{{> (requirementsTemplate)}}
+					</div>
+				{{/if}}
+
+				<div class="tab item-source" data-tab="source">
+					<div class="grid-2-columns">
+						<div class="form-group">
+							<div class="setting-grid">
+								<label>{{localize "CONAN.Item.SourceBook.Title.label"}}</label>
+								<select name="system.description.source.book" data-dtype="String">
+									{{#select item.system.description.source.book}}
+										<option value="">&nbsp;</option>
+										{{#each CONFIG.sources as |name key|}}
+											<option value="{{key}}">
+												{{name}}
+											</option>
+										{{/each}}
+									{{/select}}
+								</select>
+
+								<label>{{localize "CONAN.Item.SourceBook.Page.label"}}</label>
+								<input
+									type="Number"
+									name="system.description.source.page"
+									data-dtype="Number"
+									value="{{item.system.description.source.page}}"
+									placeholder="0"
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+		</article>
+	{{/ifEq}}
+</form>

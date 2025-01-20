@@ -1,0 +1,22 @@
+<form class="{{cssClass}} npc-sheet" autocomplete="off">
+
+	<div class="npc-sheet__header">
+
+		{{> actors/_shared-partials/header }}
+
+		<nav class="npc-sheet-navigation npc-sheet-navigation__grid" data-group="primary">
+			<div class="npc-sheet-navigation__flex" hidden>
+				<a class="npc-sheet-navigation active" data-tab="npc-details"></a>
+			</div>
+		</nav>
+
+		<hr />
+
+	</div>
+
+	<section class="npc-sheet__body">
+		<div class="tab npc-details" data-group="primary" data-tab="npc-details">
+			{{> actors/npc/partials/type-readonly }}
+		</div>
+	</section>
+</form>

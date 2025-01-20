@@ -1,0 +1,29 @@
+<div class="dialog">
+	<div class="dialog-content send-item">
+		<h3>{{itemName}}</h3>
+		<p class="note">
+			{{localize "CONAN.sendItemPrompt"}}
+		</p>
+		<form autocomplete="off">
+			<select class="send-item" data-dtype="String">
+				{{#each containers}}
+					<option
+						value="{{this.id}}"
+					>
+						{{this.name}}
+					</option>
+				{{/each}}
+			</select>
+		</form>
+	</div>
+	<div class="dialog-buttons send-item">
+		<button class="dialog-button Save default send-item-save" data-button="Save">
+			<i class="fa fa-check"></i>
+			Send
+		</button>
+		<button class="dialog-button Cancel send-item-cancel" data-button="Cancel">
+			<i class="fa fa-times"></i>
+			Cancel
+		</button>
+	</div>
+</div>

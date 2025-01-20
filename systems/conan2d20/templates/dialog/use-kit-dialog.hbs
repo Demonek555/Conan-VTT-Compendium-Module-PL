@@ -1,0 +1,16 @@
+<div class="dialog">
+  <div class="dialog-content use-kit">
+		<header>
+			<h3>{{kitName}}</h3>
+			<p><b>{{localize 'CONAN.KitUsesTotal'}}:</b> {{totalUses}}</p>
+			<p><b>{{localize 'CONAN.KitUsesMaxForCheck'}}:</b> {{availableUses}}</p>
+		</header>
+		<content>
+			<div class="dialog-inputs">
+				<label for="uses">{{localize 'CONAN.KitUsesInputLabel'}}</label>
+				<input class="chosen-uses" name="uses" type="number" min="1" max="{{availableUses}}" value="1"/>
+			</div>
+		</content>
+		<br />
+	</div>
+</div>

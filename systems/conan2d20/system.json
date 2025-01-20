@@ -1,0 +1,299 @@
+{
+	"id": "conan2d20",
+	"title": "Robert E. Howard's Conan: Adventures in an Age Undreamed Of",
+	"description": "An unofficial system for playing the Conan 2d20 RPG from Modiphius Entertainment Ltd.",
+	"version": "2.3.0",
+	"compatibility": {
+		"minimum": "12",
+		"verified": "12"
+	},
+	"authors": [
+		{
+			"name": "Jerome Lavoie",
+			"email": "kayhos@gmail.com",
+			"discord": "KayhosRaven#1642",
+			"reddit": "u/Kayhosraven"
+		},
+		{
+			"name": "Ian Henry",
+			"url": "http://www.blackbell.games/",
+			"discord": "eeyun#0890"
+		},
+		{
+			"name": "Paul Maskelyne",
+			"discord": "muttley",
+			"email": "mu77ley@gmail.com",
+			"mastodon": "@muttley@dice.camp"
+		}
+	],
+	"scripts": [],
+	"esmodules": ["conan2d20-compiled.mjs"],
+	"styles": ["css/conan2d20.css"],
+	"packs": [
+		{
+			"label": "Adventures",
+			"module": "conan2d20",
+			"name": "adventures",
+			"path": "packs/adventures",
+			"system": "conan2d20",
+			"type": "Adventure"
+		},
+		{
+			"label": "Actions (Core)",
+			"module": "conan2d20",
+			"name": "actions-core",
+			"path": "./packs/actions-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Archetypes (Core)",
+			"module": "conan2d20",
+			"name": "archetypes-core",
+			"path": "./packs/archetypes-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Attribute Aspects (Core)",
+			"module": "conan2d20",
+			"name": "attribute-aspects-core",
+			"path": "./packs/attribute-aspects-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Belongings (Core)",
+			"module": "conan2d20",
+			"name": "belongings-core",
+			"path": "./packs/belongings-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Castes (Core)",
+			"module": "conan2d20",
+			"name": "castes-core",
+			"path": "./packs/castes-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Displays (Core)",
+			"module": "conan2d20",
+			"name": "displays-core",
+			"path": "./packs/displays-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Educations (Core)",
+			"module": "conan2d20",
+			"name": "educations-core",
+			"path": "./packs/educations-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Homelands (Core)",
+			"module": "conan2d20",
+			"name": "homelands-core",
+			"path": "./packs/homelands-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Languages (Core)",
+			"module": "conan2d20",
+			"name": "languages-core",
+			"path": "./packs/languages-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Mounts and Transportation (Core)",
+			"module": "conan2d20",
+			"name": "mounts-and-transportation-core",
+			"path": "./packs/mounts-and-transportation-core",
+			"system": "conan2d20",
+			"type": "Actor"
+		},
+		{
+			"label": "Natures (Core)",
+			"module": "conan2d20",
+			"name": "natures-core",
+			"path": "./packs/natures-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "New Character Items (Core)",
+			"module": "conan2d20",
+			"name": "new-character-items",
+			"path": "./packs/new-character-items",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Personal Belongings (Core)",
+			"module": "conan2d20",
+			"name": "personal-belongings-core",
+			"path": "./packs/personal-belongings-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Sorcery (Core)",
+			"module": "conan2d20",
+			"name": "sorcery-core",
+			"path": "./packs/sorcery-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Stories (Core)",
+			"module": "conan2d20",
+			"name": "stories-core",
+			"path": "./packs/stories-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Talents (Core)",
+			"module": "conan2d20",
+			"name": "talents-core",
+			"path": "./packs/talents-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "War Stories (Core)",
+			"module": "conan2d20",
+			"name": "war-stories-core",
+			"path": "./packs/war-stories-core",
+			"system": "conan2d20",
+			"type": "Item"
+		},
+		{
+			"label": "Documentation",
+			"module": "conan2d20",
+			"name": "documentation",
+			"path": "packs/documentation",
+			"system": "conan2d20",
+			"type": "JournalEntry"
+		},
+		{
+			"label": "Macros",
+			"module": "conan2d20",
+			"name": "macro-core",
+			"path": "./packs/macro-core",
+			"system": "conan2d20",
+			"type": "Macro"
+		},
+		{
+			"label": "Rollable Tables (Core)",
+			"module": "conan2d20",
+			"name": "rollable-tables",
+			"path": "./packs/rollable-tables",
+			"system": "conan2d20",
+			"type": "RollTable"
+		},
+		{
+			"label": "Character Creation Tables (Core)",
+			"module": "conan2d20",
+			"name": "character-creation-tables-core",
+			"path": "./packs/character-creation-tables-core",
+			"system": "conan2d20",
+			"type": "RollTable"
+		},
+		{
+			"label": "Maps",
+			"module": "conan2d20",
+			"name": "maps-core",
+			"path": "packs/maps-core",
+			"system": "conan2d20",
+			"type": "Scene"
+		}
+	],
+	"packFolders": [
+		{
+			"name": "Conan System Data",
+			"sorting": "m",
+			"color": "#40450a",
+			"packs": [
+				"documentation",
+				"adventures",
+				"maps-core",
+				"macro-core",
+				"rollable-tables"
+			],
+			"folders": [
+				{
+					"name": "Items & Abilities",
+					"sorting": "a",
+					"color": "#40450a",
+					"packs": [
+						"belongings-core",
+						"actions-core",
+						"displays-core",
+						"mounts-and-transportation-core",
+						"talents-core",
+						"sorcery-core"
+					]
+				},
+				{
+					"name": "Character Features",
+					"sorting": "a",
+					"color": "#40450a",
+					"packs": [
+						"archetypes-core",
+						"attribute-aspects-core",
+						"castes-core",
+						"educations-core",
+						"homelands-core",
+						"languages-core",
+						"natures-core",
+						"personal-belongings-core",
+						"stories-core",
+						"talents-homeland-core",
+						"war-stories-core",
+						"new-character-items",
+						"character-creation-tables-core"
+					]
+				}
+			]
+		}
+	],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "i18n/en.json"
+		},
+		{
+			"lang": "es",
+			"name": "Español",
+			"path": "i18n/es.json"
+		},
+		{
+			"lang": "fr",
+			"name": "Français",
+			"path": "i18n/fr.json"
+		},
+		{
+			"lang": "pl",
+			"name": "polski",
+			"path": "i18n/pl.json"
+		}
+	],
+	"socket": true,
+	"initiative": null,
+	"primaryTokenAttribute": "health.physical",
+	"secondaryTokenAttribute": "health.mental",
+	"bugs": "https://gitlab.com/fvtt-modiphius/foundryvtt-conan2d20/-/issues",
+	"url": "https://gitlab.com/fvtt-modiphius/foundryvtt-conan2d20",
+	"manifest": "https://gitlab.com/fvtt-modiphius/foundryvtt-conan2d20/-/jobs/artifacts/release/raw/system.json?job=build",
+	"download": "https://gitlab.com/fvtt-modiphius/foundryvtt-conan2d20/-/jobs/artifacts/release/raw/conan2d20.zip?job=build",
+	"license": "LICENSE",
+	"background": "systems/conan2d20/assets/images/conan2d20-splash.webp"
+}

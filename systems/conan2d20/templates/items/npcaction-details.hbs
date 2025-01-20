@@ -1,0 +1,16 @@
+<div class="form-group">
+	<div class="setting-grid">
+
+		<label>{{localize "CONAN.Item.NpcAction.Type.label"}}</label>
+		<select name="system.actionType" data-dtype="String">
+			{{#select item.system.actionType}}
+				{{#each CONFIG.npcActionTypes as |name type|}}
+					<option value="{{type}}">
+						{{name}}
+					</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+	</div>
+</div>

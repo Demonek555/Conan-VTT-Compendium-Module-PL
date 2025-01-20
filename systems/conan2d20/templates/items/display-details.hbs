@@ -1,0 +1,80 @@
+<div class="form-group">
+	<div class="setting-grid">
+
+		<label>{{localize "CONAN.Item.Display.Skill.label"}}</label>
+
+		<select name="system.skill" data-dtype="String">
+			{{#select item.system.skill}}
+				{{#each CONFIG.sortedSkills as |skill|}}
+					<option value="{{skill.key}}">
+						{{skill.name}}
+					</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+		<label>{{localize "CONAN.Item.Display.Range.label"}}</label>
+
+		<select name="system.range" data-dtype="String">
+			{{#select item.system.range}}
+				{{#each CONFIG.weaponRanges as |name range|}}
+					<option value="{{range}}">
+						{{name}}
+					</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+		<label>{{localize "CONAN.Item.Display.BaseDamage.label"}}</label>
+		<div class="base-damage">
+			<input
+				type="Number"
+				name="system.damage.dice"
+				value="{{item.system.damage.dice}}"
+				data-dtype="Number"
+				min="1"
+			/>
+			<div class="combat-dice"></div>
+		</div>
+
+		<div style="grid-column: span 2">
+			<label
+				data-tooltip="{{localize "CONAN.Item.Display.VariableDamage.tooltip"}}"
+			>
+				<input
+					type="checkbox"
+					name="system.damage.special"
+					value="1"
+					data-dtype="Boolean"
+					{{checked item.system.damage.special}}
+				/>
+				{{localize "CONAN.Item.Display.VariableDamage.label"}}
+			</label>
+		</div>
+
+		<label for="system.qualities.value">
+			{{localize "CONAN.Item.Qualities.label"}}
+			<a
+				class="trait-selector"
+				data-options="weaponQualities"
+				data-has-values="true"
+				data-allow-empty-values="true"
+			>
+				<i class="fas fa-edit"></i>
+			</a>
+		</label>
+
+		<ul class="qualities-list tags">
+			{{#each item.system.qualities.value}}
+				<span
+					class="tag"
+					data-tooltip="{{this.description}}"
+				>
+					{{this.label}}
+				</span>
+			{{/each}}
+		</ul>
+
+	</div>
+
+</div>

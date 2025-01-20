@@ -1,0 +1,93 @@
+{{#if rollData.item}}
+	<h2>{{rollData.item.name}}</h2>
+	<h3>{{rollData.title}}</h4>
+{{else}}
+	<h2>{{rollData.title}}</h2>
+{{/if}}
+<h4>
+	{{rollData.difficulty.display}}
+</h4>
+{{#ifCond rollData.assists.numDice '>' 0}}
+<h4>
+	{{rollData.difficulty.assistDisplay}}
+</h4>
+{{/ifCond}}
+{{#ifCond rollData.difficulty.increase '>' 0}}
+	<div class="difficulty-increased">
+		{{localize 'CONAN.SkillRoll.DifficultyIncreased'}}
+	</div>
+{{/ifCond}}
+{{#if rollData.ignoreDifficultyIncrease}}
+	<div class="difficulty-increased">
+		{{localize 'CONAN.SkillRoll.DifficultyIncreaseIgnored'}}
+	</div>
+{{/if}}
+<div class="roll-card">
+	{{#each results.rolls as |roll r|}}
+		<span
+			id="{{r}}"
+			{{#if roll.complication}}
+				class="roll-list-entry roll complication"
+			{{else if roll.critical}}
+				class="roll-list-entry roll critical"
+			{{else if roll.success}}
+				class="roll-list-entry roll success"
+			{{else}}
+				class="roll-list-entry roll fail"
+			{{/if}}
+		>
+			{{roll.result}}
+		</span>
+	{{/each}}
+</div>
+<div class="roll-outcomes">
+	<label>{{localize 'CONAN.SkillRoll.Successes.label'}}: </label>{{results.successes}}
+	{{#ifCond rollData.bonus.successes '>' 0}}
+		(+{{rollData.bonus.successes}} {{localize "CONAN.bonusLowerCase"}})
+	{{/ifCond}}
+	{{#ifCond rollData.bonus.inhuman '>' 0}}
+		(+{{rollData.bonus.inhuman}} {{localize "CONAN.inhumanLowerCase"}})
+	{{/ifCond}}
+	{{#if results.momentum}}
+		<br />
+		<label>{{localize "CONAN.momentum"}}: </label>{{results.momentum}}
+		{{#ifCond rollData.bonus.momentum '>' 0}}
+			(+{{rollData.bonus.momentum}} {{localize "CONAN.bonusLowerCase"}})
+		{{/ifCond}}
+	{{/if}}
+	{{#if results.complications}}
+		<br />
+		<label>{{localize "CONAN.complications"}}: </label>{{results.complications}}
+	{{/if}}
+	{{#ifCond rollData.assists.numDice '>' 0}}
+		<br />
+		<label>{{localize "CONAN.assistRolls"}}: </label>{{rollData.assists.numDice}}
+	{{/ifCond}}
+</div>
+{{#if results.result}}
+	{{#ifEq results.result 'success'}}
+		<h2
+			class="success-or-failure success"
+		>
+			{{localize 'CONAN.SkillRoll.Success.label'}}
+		</h2>
+	{{/ifEq}}
+	{{#ifEq results.result 'failure'}}
+		<h2
+			class="success-or-failure failure"
+		>
+			{{localize 'CONAN.SkillRoll.Failure.label'}}
+		</h2>
+	{{/ifEq}}
+{{/if}}
+{{#if rollData.actorId}}
+	{{#if results.momentum}}
+		<div class="card-buttons">
+			<button
+				class="chat-bank-momentum"
+			>
+			{{localize "CONAN.rollMomentumSpendTitle"}}
+			</button>
+		</div>
+	{{/if}}
+{{/if}}

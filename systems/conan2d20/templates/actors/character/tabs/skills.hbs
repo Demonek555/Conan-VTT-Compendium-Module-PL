@@ -1,0 +1,108 @@
+<div class="tab skills" data-group="primary" data-tab="skills">
+	<ol class="overflow-list skills-pane">
+		{{#each system.attributes as |attr a|}}
+			<div class="grid-container">
+				<div class="header-bar attribute" data-attribute="{{a}}">
+					<div class="attribute-name">
+						<h4
+							class="attribute-name hideable-skills"
+							title="{{attr.tooltip}}"
+						>
+							{{#ifObjIndex ../hiddenTables a}}
+								<i class="fa-solid fa-caret-right"></i>
+							{{else}}
+								<i class="fa-solid fa-caret-down"></i>
+							{{/ifObjIndex}}
+							&nbsp;{{attr.label}}
+						</h4>
+					</div>
+					<div class="attribute-score">
+						<input
+							name="system.attributes.{{a}}.value"
+							type="Number"
+							value="{{attr.value}}"
+							data-dtype="Number"
+							placeholder="10"
+						/>
+					</div>
+				</div>
+
+				<div
+					class="skill-table"
+					data-hideable-table-id="{{a}}"
+					{{#ifObjIndex ../hiddenTables a}}
+						style="display: none;"
+					{{/ifObjIndex}}
+				>
+					<table>
+						<tr class="skill-entry-header">
+							<th class="skill-name-header">
+								{{localize "CONAN.skillShortLabel"}}
+							</th>
+							<th class="skill-expertise-header">
+								{{localize "CONAN.Expertise.label"}}
+							</th>
+							<th class="skill-focus-header">
+								{{localize "CONAN.skillFocusShortLabel"}}
+							</th>
+							<th class="skill-tn-header">
+								{{localize "CONAN.skillTNShortLabel"}}
+							</th>
+							<th class="skill-tab-roll-header"></th>
+							<th></th>
+						</tr>
+						{{#each ../system.skills as |skill s|}}
+							{{#ifEq skill.attribute a}}
+								<tr class="skill-table-entry">
+									<td
+										class="skill-entry-name"
+										data-skill="{{s}}"
+										title="{{skill.tooltip}}"
+									>
+										<h4
+											class="skill-name rollable"
+										>
+											{{skill.label}}
+										</h4>
+									</td>
+									<td class="skill-entry-expertise">
+										<input
+											type="Number"
+											name="system.skills.{{s}}.expertise.value"
+											value="{{skill.expertise.value}}"
+											data-dtype="Number"
+										/>
+									</td>
+									<td class="skill-entry-focus">
+										<input
+											type="Number"
+											name="system.skills.{{s}}.focus.value"
+											value="{{skill.focus.value}}"
+											data-dtype="Number"
+										/>
+									</td>
+									<td class="skill-entry-tn">
+										<input
+											type="Number"
+											name="system.skills.{{s}}.tn.value"
+											value="{{skill.tn.value}}"
+											data-dtype="Number"
+											disabled
+										/>
+									</td>
+									<td
+										class="skill-entry-name"
+										data-skill="{{s}}"
+									>
+										<i class="fas fa-dice-d20 rollable"></i>
+									</td>
+									<td></td>
+								</tr>
+							{{/ifEq}}
+						{{/each}}
+					</table>
+				</div>
+			</div>
+		{{/each}}
+	</ol>
+</div>

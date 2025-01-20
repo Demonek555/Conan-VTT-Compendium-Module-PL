@@ -1,0 +1,80 @@
+<div class="grid-1-columns">
+	<div class="form-group">
+		<div class="requirement-table">
+			<table>
+				<tr>
+					<th width="100px" align="left">{{localize "CONAN.Item.Talent.RequirementType.short.label"}}</th>
+					<th align="left">{{localize "CONAN.Item.Talent.Requirement.label"}}</th>
+					<th align="right">
+						{{#if editable}}
+							<a
+								class="item-control add-talent-requirement"
+								title="{{localize 'CONAN.Item.Talent.AddRequirement.tooltip'}}"
+							>
+								<i class="fa-solid fa-plus fa-lg"></i>
+							</a>
+						{{/if}}
+					</th>
+				</tr>
+				{{#each requirements}}
+					<tr class="requirement-row">
+						<td>
+							{{lookup ../CONFIG.talentRequirementTypes this.type}}
+						</td>
+						<td>
+							{{#ifEq this.type "expertise"}}
+								{{lookup ../CONFIG.skills this.skill}} {{this.value}}
+							{{/ifEq}}
+							{{#ifEq this.type "focus"}}
+								{{lookup ../CONFIG.skills this.skill}} {{this.value}}
+							{{/ifEq}}
+							{{#ifEq this.type "special"}}
+								{{this.value}}
+							{{/ifEq}}
+							{{#ifEq this.type "talent"}}
+								{{#if this.showMin}}
+									<em>{{localize "CONAN.Item.Talent.Requirement.MinCount.hint" min=this.min}}</em>
+								{{/if}}
+								<div class="talent flexrow">
+									{{#each this.talents}}
+										<div class="talent flexrow">
+											<a
+												class="content-link uuid-link"
+												data-link
+												data-type="Item"
+												data-uuid="{{this.uuid}}"
+											>
+												{{this.name}}
+												{{#if this.showRequiredRanks}}
+													({{localize "CONAN.Item.Talent.RequirementType.MinRank.label"}} {{this.rank}})
+												{{/if}}
+											</a>
+										</div>
+									{{/each}}
+								</div>
+							{{/ifEq}}
+						</td>
+						<td align="right">
+							{{#if ../editable}}
+								<a
+									class="item-control item-edit-requirement"
+									data-requirement-index="{{@index}}"
+									title="{{localize 'CONAN.Item.Talent.EditRequirement.tooltip'}}"
+								>
+									<i class="fa-solid fa-pen-to-square"></i>
+								</a>
+								<a
+									class="item-control item-delete-requirement"
+									data-requirement-index="{{@index}}"
+									title="{{localize 'CONAN.Item.Talent.DeleteRequirement.tooltip'}}"
+								>
+									<i class="fas fa-trash"></i>
+								</a>
+							{{/if}}
+						</td>
+					</tr>
+				{{/each}}
+			</table>
+		</div>
+	</div>
+</div>

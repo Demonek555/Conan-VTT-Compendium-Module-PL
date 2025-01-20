@@ -1,0 +1,120 @@
+<div class="sidebar-armor">
+	<div
+		class="courage-value"
+		title="{{localize "CONAN.Actor.Health.Courage.tooltip"}}"
+	>
+		<label>{{localize "CONAN.Actor.Health.Courage.label"}}</label>
+		<input
+			name="system.health.courage"
+			type="Number"
+			value="{{system.health.courage}}"
+			data-dtype="Number"
+			placeholder=""
+		/>
+	</div>
+	<div
+		class="soak-table"
+		title="{{localize "CONAN.Actor.Armor.Soak.tooltip"}}"
+	>
+		<table>
+			<tr class="tracker-header">
+				<th
+					class="armor-header"
+					colspan="2"
+				>
+					{{localize "CONAN.Actor.Armor.Soak.label"}}
+				</th>
+			</tr>
+			<tr class="tracker-entry">
+				<td class="tracker-label">{{localize "CONAN.Item.Armor.Coverage.Head"}}</td>
+				<td class="tracker-score">
+					<input
+						type="Number"
+						name="system.armor.head.soak.[0]"
+						value="{{system.armor.head.soak.[0]}}"
+						disabled
+					/>
+				</td>
+			</tr>
+			<tr class="tracker-entry">
+				<td class="tracker-label">{{localize "CONAN.Item.Armor.Coverage.Torso"}}</td>
+				<td class="tracker-score">
+					<input
+						type="Number"
+						name="system.armor.torso.soak.[0]"
+						value="{{system.armor.torso.soak.[0]}}"
+						disabled
+					/>
+				</td>
+			</tr>
+			<tr class="tracker-entry">
+				<td class="tracker-label">{{localize "CONAN.Item.Armor.Coverage.LeftArm"}}</td>
+				<td class="tracker-score">
+					<input
+						type="Number"
+						name="system.armor.larm.soak.[0]"
+						value="{{system.armor.larm.soak.[0]}}"
+						disabled
+					/>
+				</td>
+			</tr>
+			<tr class="tracker-entry">
+				<td class="tracker-label">{{localize "CONAN.Item.Armor.Coverage.RightArm"}}</td>
+				<td class="tracker-score">
+					<input
+						type="Number"
+						name="system.armor.rarm.soak.[0]"
+						value="{{system.armor.rarm.soak.[0]}}"
+						disabled
+					/>
+				</td>
+			</tr>
+			<tr class="tracker-entry">
+				<td class="tracker-label">{{localize "CONAN.Item.Armor.Coverage.LeftLeg"}}</td>
+				<td class="tracker-score">
+					<input
+						type="Number"
+						name="system.armor.lleg.soak.0"
+						value="{{system.armor.lleg.soak.[0]}}"
+						disabled
+					/>
+				</td>
+			</tr>
+			<tr class="tracker-entry">
+				<td class="tracker-label">{{localize "CONAN.Item.Armor.Coverage.RightLeg"}}</td>
+				<td class="tracker-score">
+					<input
+						type="Number"
+						name="system.armor.rleg.soak.0"
+						value="{{system.armor.rleg.soak.[0]}}"
+						disabled
+					/>
+				</td>
+			</tr>
+			<tr class="table-footer">
+				<th class="shield-header">{{localize "CONAN.Actor.Armor.Shield.label"}}</th>
+				<td class="shield-tracker-score">
+					<input
+						type="Number"
+						name="system.armor.shield.soak.0"
+						value="{{system.armor.shield.soak.[0]}}"
+						disabled
+					/>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="armor-qualities">
+		<label>{{localize "CONAN.Actor.Armor.ActiveQualities.label"}}</label>
+		<ul class="tags">
+			{{#each system.armor.qualityCount.displayQualities}}
+				<li
+					class="tag"
+					data-tooltip="{{this.description}}"
+				>
+					{{this.label}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</div>

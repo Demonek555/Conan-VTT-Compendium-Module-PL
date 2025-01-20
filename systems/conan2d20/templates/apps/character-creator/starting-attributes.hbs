@@ -1,0 +1,27 @@
+<div class="form-group character-creator">
+	<div class="setting-grid character-creator">
+		<div class="grid-3-columns character-creator starting-attributes">
+			{{#each stage.attributes}}
+				<div class="starting-attributes quantity-grid">
+					<div class="quantity-header" data-tooltip="{{this.tooltip}}">
+						{{this.label}}
+					</div>
+					<input
+						type="number"
+						min="6"
+						max="8"
+						value="{{this.value}}"
+						data-attribute="{{this.attribute}}"
+						disabled
+					/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</div>

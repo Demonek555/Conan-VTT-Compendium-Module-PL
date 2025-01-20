@@ -1,0 +1,434 @@
+<div class="dialog">
+  <div class="dialog-content skill-roller">
+
+		{{!-- Difficulty setting --}}
+
+		<div class="difficulty-settings">
+			<div
+				class="label"
+				{{#if isActorRoll}}
+					data-tooltip="{{localize "CONAN.SkillRoll.Difficulty.Actor.tooltip"}}"
+				{{else}}
+					data-tooltip="{{localize "CONAN.SkillRoll.Difficulty.Basic.tooltip"}}"
+				{{/if}}
+			>
+				{{localize 'CONAN.SkillRoll.Difficulty.label'}}
+			</div>
+
+			{{#if isActorRoll}}
+				<div class="difficulty-complication-row">
+					<div class="dialog-inputs skill-roller grid-3-columns">
+			{{else}}
+				<div>
+					<div class="dialog-inputs skill-roller grid-6-columns">
+			{{/if}}
+				{{#each difficulties as |difficulty index|}}
+					<button
+						class="skill-roller difficulty button {{#if difficulty.active}}active{{/if}}"
+						title="{{difficulty.tooltip}}"
+						data-difficulty={{index}}
+					>
+						D{{index}}
+					</button>
+				{{/each}}
+				</div>
+
+			{{#if isActorRoll}}
+				{{!-- COMPLICATION THRESHOLD --}}
+				<div style="padding-top: 4px;">
+					<div class="quantity-grid">
+						<div
+							class="quantity-header"
+							data-tooltip="{{localize 'CONAN.SkillRoll.Complication.tooltip'}}"
+						>
+							{{localize 'CONAN.SkillRoll.Complication.Short.label'}}
+						</div>
+						<input id="skill-complication" type="number" min="0" value="{{rollData.skill.complication}}" data-quantity-type="skill.complication" disabled/>
+						<div class="quantity-up">
+							<i class="fa-regular fa-square-plus"></i>
+						</div>
+						<div class="quantity-down">
+							<i class="fa-regular fa-square-minus"></i>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>
+						<input
+							type="checkbox"
+							id="ignoreDifficultyIncrease"
+							value="1"
+							data-dtype="Boolean"
+							{{checked rollData.ignoreDifficultyIncrease}}
+						/>
+						{{localize 'CONAN.skillRoller.IgnoreWoundsOrTrauma'}}
+					</label>
+				</div>
+				{{#if isGM}}
+					<div class="form-group">
+						<label>
+							<input
+								type="checkbox"
+								id="isPlayerOwned"
+								value="1"
+								data-dtype="Boolean"
+								{{checked isPlayerOwned}}
+							/>
+							{{localize 'CONAN.skillRoller.Player'}}
+						</label>
+					</div>
+				{{/if}}
+			{{/if}}
+
+			</div>
+		</div>
+
+		{{!-- Attribute and Skill/Expertise Selectors --}}
+
+		{{#if isActorRoll}}
+			<div class="dialog-inputs skill-roller skill-selectors grid-2-columns">
+				<div>
+					<div
+						class="label"
+						data-tooltip="{{localize 'CONAN.SkillRoll.Attribute.tooltip'}}"
+					>
+						{{localize 'CONAN.SkillRoll.Attribute.label'}}
+					</div>
+					<select class="skill-roller" name="attribute" data-dtype="String">
+						{{#select attribute}}
+							{{#each attributes as |attribute|}}
+							<option
+								value="{{attribute.key}}"
+								{{#ifEq attribute.key ../selectedAttribute}}
+									selected
+								{{/ifEq}}
+							>
+								{{attribute.name}}
+							</option>
+							{{/each}}
+						{{/select}}
+					</select>
+				</div>
+				<div>
+					{{#if isNpc}}
+						<div
+							class="label"
+							data-tooltip="{{localize 'CONAN.SkillRoll.Expertise.tooltip'}}"
+						>
+							{{localize 'CONAN.SkillRoll.Expertise.label'}}
+						</div>
+					{{else}}
+						<div
+							class="label"
+							data-tooltip="{{localize 'CONAN.SkillRoll.Skill.tooltip'}}"
+						>
+							{{localize 'CONAN.skillShortLabel'}}
+						</div>
+					{{/if}}
+					{{#if isNpc}}
+						<select class="skill-roller" name="expertise" data-dtype="String">
+							{{#select expertise}}
+								{{#each expertiseFields as |expertise|}}
+									<option
+										value="{{expertise.key}}"
+										{{#ifEq expertise.key ../selectedExpertise}}
+											selected
+										{{/ifEq}}
+									>
+										{{expertise.name}}
+									</option>
+								{{/each}}
+							{{/select}}
+						</select>
+					{{else}}
+						<select class="skill-roller" name="skill" data-dtype="String">
+							{{#select skill}}
+								{{#each skills as |skill|}}
+									<option
+										value="{{skill.key}}"
+										{{#ifEq skill.key ../selectedSkill}}
+											selected
+										{{/ifEq}}
+									>
+										{{skill.name}}
+									</option>
+								{{/each}}
+							{{/select}}
+						</select>
+					{{/if}}
+				</div>
+			</div>
+
+			{{!-- Dice Purchases and Bonuses --}}
+
+			<div class="extra-dice-hideable">
+				<div class="label">
+					{{localize 'CONAN.SkillRoll.DicePurchase.label'}}
+				</div>
+
+				<div class="dialog-inputs skill-roller grid-3-columns">
+
+					{{!-- FORTUNE SPENDS --}}
+					<div class="quantity-grid {{#if isPlayerOwnedNpc}}disable{{/if}}">
+						<div
+							class="quantity-header"
+							{{#ifCond actorData.type '===' 'npc'}}
+								data-tooltip="{{localize 'CONAN.SkillRoll.DicePurchase.Fortune.NPC.tooltip'}}"
+							{{else}}
+								data-tooltip="{{localize 'CONAN.SkillRoll.DicePurchase.Fortune.Character.tooltip'}}"
+							{{/ifCond}}
+						>
+							{{localize 'CONAN.Fortune'}}
+						</div>
+						<input type="number" min="0" max="3" value="{{rollData.spends.fortune}}" data-quantity-type="spends.fortune" disabled/>
+						<div class="quantity-up">
+							<i class="fa-regular fa-square-plus"></i>
+						</div>
+						<div class="quantity-down">
+							<i class="fa-regular fa-square-minus"></i>
+						</div>
+					</div>
+
+					{{!-- MOMENTUM SPENDS --}}
+					<div class="quantity-grid {{#unless isPlayerOwned}}disable{{/unless}}">
+						<div
+							class="quantity-header"
+							data-tooltip="{{localize 'CONAN.SkillRoll.DicePurchase.Momentum.tooltip'}}"
+						>
+							{{localize 'CONAN.Momentum'}}
+						</div>
+						<input id="momentum" type="number" min="0" max="3" value="{{rollData.spends.momentum}}" data-quantity-type="spends.momentum" disabled/>
+						<div class="quantity-up">
+							<i class="fa-regular fa-square-plus"></i>
+						</div>
+						<div class="quantity-down">
+							<i class="fa-regular fa-square-minus"></i>
+						</div>
+					</div>
+
+					{{!-- DOOM SPENDS --}}
+					<div class="quantity-grid">
+						<div
+							class="quantity-header"
+							{{#if isPlayerOwned}}
+								data-tooltip="{{localize 'CONAN.SkillRoll.DicePurchase.Doom.NPC.tooltip'}}"
+							{{else}}
+								data-tooltip="{{localize 'CONAN.SkillRoll.DicePurchase.Doom.Character.tooltip'}}"
+							{{/if}}
+						>
+							{{localize 'CONAN.Doom'}}
+						</div>
+						<input id="doom" type="number" min="0" max="3" value="{{rollData.spends.doom}}" data-quantity-type="spends.doom" disabled/>
+						<div class="quantity-up">
+							<i class="fa-regular fa-square-plus"></i>
+						</div>
+						<div class="quantity-down">
+							<i class="fa-regular fa-square-minus"></i>
+						</div>
+					</div>
+
+				</div>
+
+				{{#if showBonuses}}
+					<div
+						class="label toggle-show-bonuses"
+						data-tooltip="{{localize 'CONAN.SkillRoll.HideBonuses.tooltip'}}"
+					>
+						<i class="fa-solid fa-caret-down"></i>
+						{{localize 'CONAN.SkillRoll.BonusDice.label'}}
+					</div>
+				{{else}}
+					<div
+						class="label toggle-show-bonuses"
+						data-tooltip="{{localize 'CONAN.SkillRoll.ShowBonuses.tooltip'}}"
+					>
+						<i class="fa-solid fa-caret-right"></i>
+						{{localize 'CONAN.SkillRoll.BonusDice.label'}}
+					</div>
+				{{/if}}
+
+				{{#if showBonuses}}
+					<div class="dialog-inputs skill-roller grid-2-columns">
+
+						{{!-- D20 BONUSES FROM TALENTS/ETC --}}
+						<div class="quantity-grid">
+							<div
+								class="quantity-header"
+								data-tooltip="{{localize 'CONAN.SkillRoll.Bonus.D20.tooltip'}}"
+							>
+								{{localize 'CONAN.SkillRoll.Bonus.D20.label'}}
+							</div>
+							<input type="number" min="0" max="3" value="{{rollData.bonus.dice}}" data-quantity-type="bonus.dice" disabled/>
+							<div class="quantity-up">
+								<i class="fa-regular fa-square-plus"></i>
+							</div>
+							<div class="quantity-down">
+								<i class="fa-regular fa-square-minus"></i>
+							</div>
+						</div>
+
+						{{!-- BONUS MOMENTUM ON SUCCESS --}}
+						<div class="quantity-grid">
+							<div
+								class="quantity-header"
+								data-tooltip="{{localize 'CONAN.SkillRoll.Bonus.Momentum.tooltip'}}"
+							>
+								{{localize 'CONAN.Momentum'}}
+							</div>
+							<input type="number" min="0" value="{{rollData.bonus.momentum}}" data-quantity-type="bonus.momentum" disabled/>
+							<div class="quantity-up">
+								<i class="fa-regular fa-square-plus"></i>
+							</div>
+							<div class="quantity-down">
+								<i class="fa-regular fa-square-minus"></i>
+							</div>
+						</div>
+					</div>
+
+					<div class="dialog-inputs skill-roller grid-2-columns">
+						{{!-- BONUS SUCCESSES ON AT LEAST ONE SUCCESS --}}
+						<div class="quantity-grid">
+							<div
+								class="quantity-header"
+								data-tooltip="{{localize 'CONAN.SkillRoll.Bonus.Success.tooltip'}}"
+							>
+								{{localize 'CONAN.SkillRoll.Success.label'}}
+							</div>
+							<input type="number" min="0" value="{{rollData.bonus.successes}}" data-quantity-type="bonus.successes" disabled/>
+							<div class="quantity-up">
+								<i class="fa-regular fa-square-plus"></i>
+							</div>
+							<div class="quantity-down">
+								<i class="fa-regular fa-square-minus"></i>
+							</div>
+						</div>
+
+						{{!-- INHUMAN SUCCESSES ALWAYS APPLY --}}
+						<div class="quantity-grid {{#unless isNpc}}disable{{/unless}}">
+							<div
+								class="quantity-header"
+								data-tooltip="{{localize 'CONAN.SkillRoll.Bonus.Inhuman.tooltip'}}"
+							>
+								{{localize 'CONAN.SkillRoll.Bonus.Inhuman.label'}}
+							</div>
+							<input type="number" min="0" value="{{rollData.bonus.inhuman}}" data-quantity-type="bonus.inhuman" disabled/>
+							<div class="quantity-up">
+								<i class="fa-regular fa-square-plus"></i>
+							</div>
+							<div class="quantity-down">
+								<i class="fa-regular fa-square-minus"></i>
+							</div>
+						</div>
+
+					</div>
+				{{/if}} {{!-- #if showBonuses --}}
+			</div>
+
+		{{else}} {{!-- #if isActorRoll --}}
+
+			{{!-- Not an Actor roll, so display the generic interface --}}
+
+			<div class="dialog-inputs skill-roller grid-3-columns">
+
+				{{!-- TARGET NUMBER --}}
+				<div class="quantity-grid">
+					<div
+						class="quantity-header"
+						data-tooltip="{{localize 'CONAN.SkillRoll.TN.tooltip'}}"
+					>
+						{{localize 'CONAN.SkillRoll.TN.label'}}
+					</div>
+					<input id="skill-tn" type="number" min="0" value="{{rollData.skill.tn}}" data-quantity-type="skill.tn" disabled/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+
+				{{!-- FOCUS POINTS --}}
+				<div class="quantity-grid">
+					<div
+						class="quantity-header"
+						data-tooltip="{{localize 'CONAN.SkillRoll.Focus.tooltip'}}"
+					>
+						{{localize 'CONAN.SkillRoll.Focus.label'}}
+					</div>
+					<input id="skill-focus" type="number" min="0" value="{{rollData.skill.focus}}" data-quantity-type="skill.focus" disabled/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+
+				{{!-- COMPLICATION THRESHOLD --}}
+				<div class="quantity-grid">
+					<div
+						class="quantity-header"
+						data-tooltip="{{localize 'CONAN.SkillRoll.Complication.tooltip'}}"
+					>
+						{{localize 'CONAN.SkillRoll.Complication.Short.label'}}
+					</div>
+					<input id="skill-complication" type="number" min="0" value="{{rollData.skill.complication}}" data-quantity-type="skill.complication" disabled/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+
+			</div>
+
+		{{/if}} {{!-- if isActorRoll --}}
+
+			<hr />
+
+			<div class="test-details">
+				{{rollData.difficulty.display}}
+			</div>
+
+			<div class="difficulty-increased">
+				{{#if difficultyIncreased}}
+					{{localize 'CONAN.SkillRoll.DifficultyIncreased'}}
+				{{else}}
+					&nbsp;
+				{{/if}}
+			</div>
+
+		{{!-- Show the dice that will be rolled --}}
+
+		<div
+			class="skill-roller grid-5-columns"
+			title="Select the amount of dice to roll"
+		>
+			{{#each dice as |die index|}}
+				<div
+					data-dice-number="{{index}}"
+					{{#if die.active}}
+						class="dice selected"
+					{{else}}
+						class="dice unselected"
+					{{/if}}
+				>
+				{{#if die.active}}
+					?
+				{{else}}
+					&nbsp;
+				{{/if}}
+				</div>
+			{{/each}}
+		</div>
+
+		{{!-- Submit button --}}
+
+		<div class="dialog-inputs">
+			<button class="roll-skill-check">
+				{{localize 'CONAN.RollDice'}}
+			</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,148 @@
+<div class="form-group">
+	<div class="setting-grid">
+		<div class="grid-1-columns">
+			<label>
+				<span>
+					<a
+						class="roll archetype-roll"
+						data-roll-type="nature"
+						data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{stage.label}}"
+					>
+						<i class="fa-solid fa-dice"></i>
+					</a>
+					{{stage.label}}
+				</span>
+			</label>
+
+			{{#if stage.archetype}}
+				<div class="flexrow">
+					<a
+						class="content-link uuid-link"
+						data-link
+						data-type="Item"
+						data-uuid="{{stage.archetype.uuid}}"
+						title="Item"
+					>
+						{{stage.archetype.name}}
+					</a>
+				</div>
+			{{/if}}
+
+			<input
+				data-is-item="true"
+				list="{{stage.uuid}}-cc_archetypes_list"
+				name="archetypeUuid"
+				placeholder="{{localize "CONAN.Form.SelectArchetype.prompt"}}"
+				type="text"
+				value=""
+			/>
+			<datalist id="{{stage.uuid}}-cc_archetypes_list">
+				{{#each stage.unselected}}
+					<option
+						data-uuid="{{this.uuid}}"
+						value="{{this.name}}"
+					></option>
+				{{/each}}
+			</datalist>
+
+			{{#if stage.archetype}}
+				<div>{{{stage.archetypeDescriptionHTML}}}</div>
+			{{/if}}
+
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<div class="setting-grid stacked">
+		{{#if stage.archetype}}
+
+			<div class="grid-1-columns">
+				<label>{{localize "CONAN.CharacterCreator.Archetype.CareerSkill.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.Archetype.CareerSkill.description"}}</em></p>
+				<div class="flexrow">
+					{{#each stage.careerSkills}}
+						<a
+							class="fake-uuid-link"
+							data-uuid="{{this.skill}}"
+							title="Item"
+						>
+							{{this.label}}
+						</a>
+					{{/each}}
+				</div>
+			</div>
+
+			<div class="grid-1-columns">
+				<label>{{localize "CONAN.CharacterCreator.Archetype.CareerTalent.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.Archetype.CareerTalent.description"}}</em></p>
+				{{#each stage.careerTalents}}
+					<div class="flexrow">
+						<a
+							class="content-link uuid-link"
+							data-link
+							data-uuid="{{this.uuid}}"
+							title="Item"
+						>
+							{{this.name}}
+						</a>
+					</div>
+				{{/each}}
+			</div>
+
+			<div class="grid-1-columns">
+				<label>{{localize "CONAN.CharacterCreator.Archetype.MandatorySkills.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.Archetype.MandatorySkills.description"}}</em></p>
+				<div class="flexrow">
+					{{#each stage.mandatorySkills}}
+						<a
+							class="fake-uuid-link"
+							data-uuid="{{this.skill}}"
+							title="Item"
+						>
+							{{this.label}}
+						</a>
+					{{/each}}
+				</div>
+			</div>
+
+			<div>
+				<label>{{localize "CONAN.CharacterCreator.Archetype.ElectiveSkills.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.Archetype.ElectiveSkills.description"}}</em></p>
+				<table>
+					<tr>
+						<th>&nbsp;</th>
+						<th>{{localize "CONAN.CharacterCreator.Select.label"}}</th>
+						<th>{{localize "CONAN.CharacterCreator.Expertise.label"}}</th>
+						<th>{{localize "CONAN.CharacterCreator.Focus.label"}}</th>
+					</tr>
+					{{#each stage.electiveSkills}}
+						<tr class="item-row">
+							<td>
+								<div class="flexrow">
+									<a class="fake-uuid-link">
+										{{this.label}}
+									</a>
+								</div>
+							</td>
+							<td align="center">
+								<input
+									type="checkbox"
+									name="archetype_electiveSkill::{{this.skill}}"
+									value="{{this.skill}}"
+									{{checked this.checked}}
+								/>
+							</td>
+							<td align="center">
+								{{numberFormat this.bonus decimals=0 sign=true}}
+							</td>
+							<td align="center">
+								{{numberFormat this.bonus decimals=0 sign=true}}
+							</td>
+						</tr>
+					{{/each}}
+				</table>
+			</div>
+
+		{{/if}}
+	</div>
+</div>

@@ -1,0 +1,28 @@
+<div
+	class="conan2d20 chat-card item-card"
+	data-actor-id="{{actorId}}"
+	data-item-id="{{item.id}}"
+	draggable="true"
+>
+	<header class="card-header flexrow">
+		<h2>{{item.name}}</h2>
+		<img src="{{item.img}}" title="{{item.name}}" />
+	</header>
+
+	<div class="card-content">
+		{{{data.description.value}}}
+	</div>
+
+	{{#if canUseItem}}
+		<div class="card-buttons">
+			<button
+				class="chat-use-kit"
+				data-action="useKit"
+			>
+				{{localize 'CONAN.kitUseLabel'}}
+			</button>
+		</div>
+	{{/if}}
+
+	{{> partials/card-footer-properties }}
+</div>

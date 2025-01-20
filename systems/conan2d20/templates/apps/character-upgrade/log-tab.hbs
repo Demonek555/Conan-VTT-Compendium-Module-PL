@@ -1,0 +1,22 @@
+<div class="tab log" data-group="primary" data-tab="log">
+	<div class="grid-1-columns">
+		<table>
+			<tr>
+				<th>{{localize "CONAN.CharacterUpgrade.Date.label"}}</th>
+				<th style="text-align: left;">{{localize "CONAN.CharacterUpgrade.UpgradePurchased.label"}}</th>
+				<th>{{localize "CONAN.CharacterUpgrade.Cost.label"}}</th>
+			</tr>
+			{{#each logEntries}}
+				<tr class="item-row">
+					<td>{{this.dateString}}</td>
+					<td style="text-align: left;">
+						{{{this.message}}}
+					</td>
+					<td>
+						{{this.spend}}
+					</td>
+				</tr>
+			{{/each}}
+		</table>
+	</div>
+</div>

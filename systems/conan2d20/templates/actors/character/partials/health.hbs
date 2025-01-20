@@ -1,0 +1,194 @@
+<div class="health-container">
+	<div class="sidebar-health">
+		<div class="vigor-container">
+			<div class="vigor-label">
+				<h2>{{localize "CONAN.Actor.Health.Vigor.label"}}</h2>
+			</div>
+			<div
+				class="value-mouse-adjust vigor-value"
+				data-value-type="Vigor"
+			>
+				<input title="{{localize 'CONAN.Actor.Health.Vigor.tooltip'}}"
+					name="system.health.physical.value"
+					type="text"
+					value="{{system.health.physical.value}}"
+					data-dtype="Number"
+					placeholder="20"
+					size="1"
+					{{#if disableManualHealthEdit}}
+						readonly
+					{{/if}}
+				/>
+				<label class="vigor-sub">{{localize "CONAN.healthVigorSubCur"}}</label>
+			</div>
+			<div
+				class="value-mouse-adjust vigor-max"
+				data-value-type="VigorBonus"
+			>
+				<input title="{{localize 'CONAN.Actor.Health.Vigor.tooltip'}}"
+					name="system.health.physical.max"
+					type="text"
+					value="{{system.health.physical.max}}"
+					data-dtype="Number"
+					placeholder="20"
+					size="1"
+					{{#if disableManualHealthEdit}}
+						readonly
+					{{/if}}
+				/>
+				<label class="vigor-sub">{{localize "CONAN.healthVigorSubMax"}}</label>
+			</div>
+		</div>
+		<div class="vigor-wounds">
+			<label>{{localize 'CONAN.woundsLabel'}}</label>
+			<span title="{{localize 'CONAN.woundsTitle'}}">
+				<div class="dots-row" data-target="system.health.physical.wounds.value">
+					{{#each system.health.physical.wounds.dots as |v k|}}
+					<span
+						class="wound-dot"
+						data-target="system.health.physical.wounds.dots.{{k}}.status"
+					>
+						<input
+							type="hidden"
+							data-index="{{k}}"
+							name="system.health.physical.wounds.dots.{{k}}.status"
+							value="{{v.status}}"
+							data-dtype="String"
+						/>
+						<i
+							class="traumas wounds {{v.icon}}"
+							data-target="system.health.physical.wounds.dots.{{k}}.icon"
+						></i>
+					</span>
+					{{/each}}
+				</div>
+			</span>
+		</div>
+		<div class="resolve-container">
+			<div class="resolve-label">
+				<h2>{{localize 'CONAN.Actor.Health.Resolve.label'}}</h2>
+			</div>
+			<div
+				class="value-mouse-adjust resolve-value"
+				data-value-type="Resolve"
+			>
+				<input
+					title="{{localize 'CONAN.Actor.Health.Resolve.tooltip'}}"
+					name="system.health.mental.value"
+					type="text"
+					value="{{system.health.mental.value}}"
+					data-dtype="Number"
+					placeholder="20"
+					size="1"
+					{{#if disableManualHealthEdit}}
+						readonly
+					{{/if}}
+				/>
+				<label class=resolve-sub>{{localize 'CONAN.healthVigorSubCur'}}</label>
+			</div>
+			<div
+				class="value-mouse-adjust resolve-max"
+				data-value-type="ResolveBonus"
+			>
+				<input
+					title="{{localize 'CONAN.Actor.Health.Resolve.tooltip'}}"
+					name="system.health.mental.max"
+					type="text"
+					value="{{system.health.mental.max}}"
+					data-dtype="Number"
+					placeholder="20"
+					size="1"
+					{{#if disableManualHealthEdit}}
+						readonly
+					{{/if}}
+				/>
+				<label class=resolve-sub>{{localize 'CONAN.healthVigorSubMax'}}</label>
+			</div>
+		</div>
+		<div class="resolve-traumas">
+			<label>{{localize 'CONAN.traumasLabel'}}</label>
+			<span title="{{localize 'CONAN.traumasTitle'}}">
+				<div class="dots-row" data-target="system.health.mental.traumas.value">
+					{{#each system.health.mental.traumas.dots as |v k|}}
+					<span
+						class="wound-dot"
+						data-target="system.health.mental.traumas.dots.{{k}}.status"
+					>
+						<input
+							type="hidden"
+							data-index="{{k}}"
+							name="system.health.mental.traumas.dots.{{k}}.status"
+							value="{{v.status}}"
+							data-dtype="String"
+						/>
+						<i
+							class="traumas wounds {{v.icon}}"
+							data-target="system.health.mental.traumas.dots.{{k}}.icon"
+						></i>
+					</span>
+					{{/each}}
+				</div>
+			</span>
+		</div>
+	</div>
+</div>
+<div class="exhaustion-trackers">
+	<div
+		class="value-mouse-adjust fatigue-tracker"
+		data-value-type="Fatigue"
+	>
+		<input
+			name="system.health.physical.fatigue"
+			type="number"
+			value="{{system.health.physical.fatigue}}"
+			title="{{localize 'CONAN.fatigueTitle'}}"
+			data-dtype="Number"
+			placeholder="0"
+			size="2"
+			{{#if disableManualHealthEdit}}
+				readonly
+			{{/if}}
+		/>
+	</div>
+	<div
+		class="value-mouse-adjust despair-tracker"
+		data-value-type="Despair"
+	>
+		<input
+			name="system.health.mental.despair"
+			type="number"
+			value="{{system.health.mental.despair}}"
+			title="{{localize 'CONAN.despairTitle'}}"
+			data-dtype="Number"
+			placeholder="0"
+			size="2"
+			{{#if disableManualHealthEdit}}
+				readonly
+			{{/if}}
+		/>
+	</div>
+</div>
+
+<div class="health-bonuses">
+	{{#ifCond system.health.physical.bonus '!=' '0'}}
+	<div class="vigor-bonus">
+			{{#ifCond system.health.physical.bonus '>' '0'}}
+			<i class="fas fa-plus pos" title="+{{system.health.physical.bonus}}"></i>
+			{{/ifCond}}
+			{{#ifCond system.health.physical.bonus '<' '0'}}
+			<i class="fas fa-minus neg" title="{{system.health.physical.bonus}}"></i>
+			{{/ifCond}}
+	</div>
+	{{/ifCond}}
+
+	{{#ifCond system.health.mental.bonus '!=' '0'}}
+	<div class="resolve-bonus">
+			{{#ifCond system.health.mental.bonus '>' '0'}}
+			<i class="fas fa-plus pos" title="+{{system.health.mental.bonus}}"></i>
+			{{/ifCond}}
+			{{#ifCond system.health.mental.bonus '<' '0'}}
+			<i class="fas fa-minus neg" title="{{system.health.mental.bonus}}"></i>
+			{{/ifCond}}
+	</div>
+	{{/ifCond}}
+</div>

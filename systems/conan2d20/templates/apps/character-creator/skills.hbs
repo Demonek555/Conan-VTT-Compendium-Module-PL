@@ -1,0 +1,83 @@
+<div class="form-group">
+	<div class="setting-grid">
+
+		<div class="grid-1-columns">
+			{{#if showSkillTable}}
+				<table>
+					<tr>
+						<th>{{localize "CONAN.CharacterCreator.Skill.label"}}</th>
+						<th>+1</th>
+						<th>+2</th>
+						<th>+3</th>
+					</tr>
+					{{#each stage.selectedSkills}}
+						<tr class="item-row">
+							<td>
+								<div class="flexrow">
+									<a
+										class="fake-uuid-link"
+										title="Remove Skill"
+									>
+										<i
+											class="delete-choice fas fa-delete-right"
+											data-action="delete"
+											data-uuid="{{this.uuid}}"
+										></i>
+										{{this.name}}
+									</a>
+								</div>
+							</td>
+							<td align="center">
+								<input
+									type="radio"
+									name="finishing_skill::{{this.uuid}}"
+									value="{{this.uuid}}::1"
+									{{#ifEq this.bonus 1}}
+										checked
+									{{/ifEq}}
+								/>
+							</td>
+							<td align="center">
+								<input
+									type="radio"
+									name="finishing_skill::{{this.uuid}}"
+									value="{{this.uuid}}::2"
+									{{#ifEq this.bonus 2}}
+										checked
+									{{/ifEq}}
+								/>
+							</td>
+							<td align="center">
+								<input
+									type="radio"
+									name="finishing_skill::{{this.uuid}}"
+									value="{{this.uuid}}::3"
+									{{#ifEq this.bonus 3}}
+										checked
+									{{/ifEq}}
+								/>
+							</td>
+						</tr>
+					{{/each}}
+				</table>
+			{{/if}}
+			<input
+				list="{{stage.uuid}}-cc_finishingSkills_list"
+				data-is-item="true"
+				name="finishingSkillUuid"
+				placeholder="{{localize "CONAN.Form.SelectSkill.prompt"}}"
+				type="text"
+				value=""
+			/>
+			<datalist id="{{stage.uuid}}-cc_finishingSkills_list">
+				{{#each stage.availableSkills}}
+					<option
+						data-uuid="{{this.uuid}}"
+						value="{{this.name}}"
+					></option>
+				{{/each}}
+			</datalist>
+		</div>
+
+	</div>
+</div>

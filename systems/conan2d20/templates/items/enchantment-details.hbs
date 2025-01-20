@@ -1,0 +1,235 @@
+<div class="form-group">
+	<div class="setting-grid">
+
+		<label>{{localize "CONAN.Item.Enchantment.Type.label"}}</label>
+		<select name="system.enchantmentType" data-dtype="String">
+			{{#select item.system.enchantmentType}}
+				{{#each CONFIG.enchantmentTypes as |name type|}}
+					<option value="{{type}}">
+						{{name}}
+					</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+		<label>{{localize "CONAN.Sorcery.Difficulty.label"}}</label>
+		<select name="system.difficulty" data-dtype="String">
+			{{#select item.system.difficulty}}
+				{{#each CONFIG.rollDifficultyLevels as |label key|}}
+					<option value="{{key}}">
+						{{localize label}}
+					</option>
+				{{/each}}
+			{{/select}}
+		</select>
+
+		{{#ifCond item.system.enchantmentType '!=' 'reinforcedFabric' }}
+
+			{{#ifEq item.system.enchantmentType 'talisman'}}
+				<label>{{localize "CONAN.Item.Enchantment.Talisman.label"}}</label>
+				<select name="system.traits.talismanType" data-dtype="String">
+					{{#select item.system.traits.talismanType}}
+						{{#each CONFIG.enchantmentTalismanTypes as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+
+				<label>{{localize "CONAN.Item.Enchantment.Hindrance.label"}}</label>
+				<input
+					type="text"
+					name="system.traits.hindrance"
+					value="{{item.system.traits.hindrance}}"
+					data-dtype="Text"
+				/>
+			{{/ifEq}}
+
+			{{#ifEq item.system.enchantmentType 'lotusPollen'}}
+				<label>{{localize "CONAN.Item.Enchantment.LotusPollenColor.label"}}</label>
+				<select name="system.traits.lotusPollenColor" data-dtype="String">
+					{{#select item.system.traits.lotusPollenColor}}
+						{{#each CONFIG.lotusPollenColors as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+
+				<label>{{localize "CONAN.Item.Enchantment.LotusPollenUse.label"}}</label>
+				<select name="system.traits.lotusPollenUse" data-dtype="String">
+					{{#select item.system.traits.lotusPollenUses}}
+						{{#each CONFIG.lotusPollenUses as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+
+				<label>{{localize "CONAN.Item.Enchantment.LotusPollenForm.label"}}</label>
+				<select name="system.traits.lotusPollenForm" data-dtype="String">
+					{{#select item.system.traits.lotusPollenForm}}
+						{{#each CONFIG.lotusPollenForms as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+			{{/ifEq}}
+
+			{{#ifEq item.system.enchantmentType 'burningLiquid'}}
+				<label>{{localize "CONAN.Item.Enchantment.Volatility.label"}}</label>
+				<select name="system.traits.volatility" data-dtype="String">
+					{{#select item.system.traits.volatility}}
+						{{#each CONFIG.enchantmentVolatilities as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+			{{/ifEq}}
+
+			{{#ifEq item.system.enchantmentType 'blindingPowder'}}
+				<label>{{localize "CONAN.Item.Enchantment.Strength.label"}}</label>
+				<select name="system.traits.strength" data-dtype="String">
+					{{#select item.system.traits.strength}}
+						{{#each CONFIG.enchantmentBlindingStrengths as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+			{{/ifEq}}
+
+			{{#ifEq item.system.enchantmentType 'explodingPowder'}}
+				<label>{{localize "CONAN.Item.Enchantment.Item.label"}}</label>
+				<select name="system.traits.explodingItem" data-dtype="String">
+					{{#select item.system.traits.explodingItem}}
+						{{#each CONFIG.enchantmentExplodingItems as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+
+				<label>{{localize "CONAN.Item.Enchantment.Strength.label"}}</label>
+				<select name="system.traits.strength" data-dtype="String">
+					{{#select item.system.traits.strength}}
+						{{#each CONFIG.enchantmentStrengths as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+			{{/ifEq}}
+
+			{{#ifEq item.system.enchantmentType 'upasGlass'}}
+				<label>{{localize "CONAN.Item.Enchantment.Size.label"}}</label>
+				<select name="system.traits.size" data-dtype="String">
+					{{#select item.system.traits.size}}
+						{{#each CONFIG.upasGlassSizes as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+			{{/ifEq}}
+
+			{{#ifCond item.system.enchantmentType '!=' 'talisman'}}
+				{{#ifCond item.system.enchantmentType '!=' 'lotusPollen'}}
+					{{#ifEq item.system.enchantmentType 'upasGlass'}}
+						<label>{{localize "CONAN.Item.Enchantment.Cover.label"}}</label>
+					{{else}}
+						<label>{{localize "CONAN.Item.Enchantment.Damage.label"}}</label>
+					{{/ifEq}}
+					<div class="base-damage">
+						<input
+							type="Number"
+							name="system.damage.dice"
+							value="{{item.system.damage.dice}}"
+							data-dtype="Number"
+							min="1"
+						/>
+						<div class="combat-dice"></div>
+					</div>
+				{{/ifCond}}
+			{{/ifCond}}
+
+			<label>{{localize "CONAN.Item.Enchantment.Uses.label"}}</label>
+			<input
+				type="Number"
+				name="system.uses.value"
+				value="{{item.system.uses.value}}"
+				data-dtype="Number"
+			/>
+
+			{{#ifCond item.system.enchantmentType '!=' 'talisman'}}
+				{{#ifCond item.system.enchantmentType '!=' 'lotusPollen'}}
+					<label for="system.effects.value">
+						{{localize "CONAN.Item.Enchantment.Effects.label"}}
+						<a
+							class="trait-selector"
+							data-options="weaponQualities"
+							data-has-values="true"
+							data-allow-empty-values="true"
+						>
+							<i class="fas fa-edit"></i>
+						</a>
+					</label>
+					<ul class="qualities-list tags">
+						{{#each item.system.effects.value}}
+							<span
+								class="tag"
+								data-tooltip="{{this.description}}"
+							>
+								{{this.label}}
+							</span>
+						{{/each}}
+					</ul>
+				{{/ifCond}}
+			{{/ifCond}}
+
+		{{else}}
+
+			<label>{{localize "CONAN.Item.Enchantment.Ingredients.label"}}</label>
+			<input
+				type="Number"
+				name="system.traits.ingredient"
+				value="{{item.system.traits.ingredient}}"
+				data-dtype="Number"
+			/>
+
+			<label>{{localize "CONAN.Item.Enchantment.Uses.label"}}</label>
+			<input
+				type="Number"
+				name="system.uses.value"
+				value="{{item.system.uses.value}}"
+				data-dtype="Number"
+			/>
+
+			<label for="system.damage.hitLocation">
+				{{localize "CONAN.Item.Enchantment.HitLocation.label"}}
+				<a class="trait-selector" data-options="coverageTypes"
+					><i class="fas fa-edit"></i
+				></a>
+			</label>
+			<ul class="coverages-list co-value co-large">
+				{{#each item.system.damage.hitLocation as |v k|}}
+					<span class="tag {{k}}">
+						{{v}}
+					</span>
+				{{/each}}
+			</ul>
+
+		{{/ifCond}}
+	</div>
+</div>

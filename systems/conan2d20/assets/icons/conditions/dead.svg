@@ -1,0 +1,27 @@
+<svg height="512" width="512" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+	<path d="M0 0h512v512H0z" fill="url(#pattern)" fill-opacity="1"></path><svg>
+		<defs>
+			<linearGradient id="a" x1="240" y1="16" x2="240" y2="496" gradientUnits="userSpaceOnUse">
+				<stop offset="0" stop-color="#7d787a"></stop>
+				<stop offset="1" stop-color="#423e44"></stop>
+			</linearGradient>
+		</defs>
+		<path fill="url(#a)" fill-rule="evenodd" d="M0 0h512v512H0z"></path>
+		<path d="M8 0l30.63 37.93 259.87-9.84 178.4 11.95L504 0H204.7l-10.2 8.779L159.4 0z" overflow="visible"
+			fill="#fff" fill-opacity=".269" fill-rule="evenodd"></path>
+		<path d="M2.809 511.6l42.841-40.7L184 468.5l27.4 26.6 10.5-23.8 250.1 7 6.7 18.3 29.3 15.7z" overflow="visible"
+			fill-opacity=".24" fill-rule="evenodd"></path>
+		<path d="M511.7 16.15l-39.1 50.39-2 324.26 10.1 19.9-7.3 53.5 20.9 9.1 18 23.8L512 215l-15.5-28.8 15.4-11.4z"
+			overflow="visible" fill-opacity=".19" fill-rule="evenodd"></path>
+		<path d="M0 15.18L35.12 61.1l-8.61 93.8 10.19 13.9-5.13 97.4-14.85 18.9 12.62 23.3 7.5 83.9v57.4L-.743 496.5z"
+			overflow="visible" fill="#fff" fill-opacity=".099" fill-rule="evenodd"></path>
+		<path
+			d="M51.56 56.62L43.16 141l10.74 22.4-8.99 103.7-10.46 17.5 7.05 21.8 10.61 116.8 21.9 32.6 109.29.5 34.2-12.4 6.5 12.5 235.3 2.3 6.9-33.9-13.7-12.6 6.2-20.4-6-331.94-150-14.62-29.5 1.34-1.4 25.57-60.4-22.77z"
+			overflow="visible" fill="#797677" fill-opacity=".434" fill-rule="evenodd"></path>
+	</svg>
+	<g class="" style="" transform="translate(0,0)">
+		<path
+			d="M255.997 16.004c-120 0-239.997 60-239.997 149.998C16 226.002 61 256 61 316c0 45-15 45-15 75 0 14.998 48.01 32.002 89.998 44.998v60h239.997v-60s90.567-27.957 90-45c-.933-27.947-15-30-15-74.998 0-30 45.642-91.42 44.998-149.998 0-90-119.998-149.998-239.996-149.998zm-90 179.997c33.137 0 60 26.864 60 60 0 33.136-26.863 60-60 60C132.863 316 106 289.136 106 256c0-33.136 26.862-60 59.998-60zm179.998 0c33.136 0 60 26.864 60 60 0 33.136-26.864 60-60 60-33.136 0-60-26.864-60-60 0-33.136 26.864-60 60-60zm-89.998 105c15 0 45 60 45 75 0 29.998 0 29.998-15 29.998h-60c-15 0-15 0-15-30 0-15 30-74.998 45-74.998z"
+			fill="#e4d16f" fill-opacity="1"></path>
+	</g>
+</svg>

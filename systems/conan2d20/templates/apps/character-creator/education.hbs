@@ -1,0 +1,183 @@
+<div class="form-group">
+	<div class="setting-grid">
+		<div class="grid-1-columns">
+			<label>
+				<span>
+					<a
+						class="roll education-roll"
+						data-roll-type="education"
+						data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{stage.label}}"
+					>
+						<i class="fa-solid fa-dice"></i>
+					</a>
+					{{stage.label}}
+				</span>
+			</label>
+
+			{{#if stage.education}}
+				<div class="flexrow">
+					<a
+						class="content-link uuid-link"
+						data-link
+						data-type="Item"
+						data-uuid="{{stage.education.uuid}}"
+						title="Item"
+					>
+						{{stage.education.name}}
+					</a>
+				</div>
+			{{/if}}
+
+			<input
+				data-is-item="true"
+				list="{{stage.uuid}}-cc_educations_list"
+				name="educationUuid"
+				placeholder="{{localize "CONAN.Form.SelectEducation.prompt"}}"
+				type="text"
+				value=""
+			/>
+			<datalist id="{{stage.uuid}}-cc_educations_list">
+				{{#each stage.unselected}}
+					<option
+						data-uuid="{{this.uuid}}"
+						value="{{this.name}}"
+					></option>
+				{{/each}}
+			</datalist>
+
+			{{#if stage.education}}
+				<div>{{{stage.educationDescriptionHTML}}}</div>
+			{{/if}}
+
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<div class="setting-grid stacked">
+		{{#if stage.education}}
+
+			{{#if stage.hasAttribute}}
+				<div class="grid-1-columns">
+					<div>
+						<label>{{localize "CONAN.CharacterCreator.Nature.AttributeImprovement.label"}}</label>
+						<p><em>{{localize "CONAN.CharacterCreator.Nature.AttributeImprovement.description"}}</em></p>
+						<div class="flexrow">
+							<a
+								class="fake-uuid-link"
+								title="Item"
+							>
+								{{stage.educationAttribute}}
+							</a>
+						</div>
+					</div>
+				</div>
+			{{/if}}
+
+			<div class="grid-1-columns">
+				<label>{{localize "CONAN.CharacterCreator.MandatorySkills.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.MandatorySkills.description"}}</em></p>
+				<div class="flexrow">
+					{{#each stage.mandatorySkills}}
+						<a
+							class="fake-uuid-link"
+							data-uuid="{{this.skill}}"
+							title="Item"
+						>
+							{{this.label}}
+						</a>
+					{{/each}}
+				</div>
+			</div>
+
+			<div>
+				<label>{{localize "CONAN.CharacterCreator.ElectiveSkills.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.ElectiveSkills.description"}}</em></p>
+				<table>
+					<tr>
+						<th>&nbsp;</th>
+						<th>{{localize "CONAN.CharacterCreator.Select.label"}}</th>
+						<th>{{localize "CONAN.CharacterCreator.Expertise.label"}}</th>
+						<th>{{localize "CONAN.CharacterCreator.Focus.label"}}</th>
+					</tr>
+					{{#each stage.electiveSkills}}
+						<tr class="item-row">
+							<td>
+								<div class="flexrow">
+									<a class="fake-uuid-link">
+										{{this.label}}
+									</a>
+								</div>
+							</td>
+							<td align="center">
+								<input
+									type="checkbox"
+									name="education_electiveSkill::{{this.skill}}"
+									value="{{this.skill}}"
+									{{checked this.checked}}
+								/>
+							</td>
+							<td align="center">
+								{{numberFormat this.bonus decimals=0 sign=true}}
+							</td>
+							<td align="center">
+								{{numberFormat this.bonus decimals=0 sign=true}}
+							</td>
+						</tr>
+					{{/each}}
+				</table>
+			</div>
+
+			<div class="grid-1-columns">
+				<label>{{localize "CONAN.CharacterCreator.Talent.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.Talent.description"}}</em></p>
+				<table>
+					<tr>
+						<th>{{localize "CONAN.CharacterCreator.Talent.label"}}</th>
+						<th>{{localize "CONAN.CharacterCreator.LinkedSkill.label"}}</th>
+						<th>{{localize "CONAN.CharacterCreator.Select.label"}}</th>
+					</tr>
+					{{#each stage.educationTalents}}
+						<tr class="item-row">
+							<td>
+								<div class="flexrow">
+									<a
+										class="content-link uuid-link"
+										data-link
+										data-uuid="{{this.item.uuid}}"
+										title="Item"
+									>
+										{{this.item.name}}
+										{{#if this.item.system.multiRank}}
+											({{localize "CONAN.Item.Talent.Rank.label"}} {{this.rank}})
+										{{/if}}
+									</a>
+								</div>
+							</td>
+							<td>
+								<div class="flexrow">
+									<a
+										class="fake-uuid-link"
+										data-uuid="{{this.item.uuid}}"
+										title="Item"
+									>
+										{{lookup ../CONFIG.skills this.item.system.linkedSkill}}
+									</a>
+								</div>
+							</td>
+							<td align="center">
+								<input
+									type="radio"
+									name="education_talent"
+									value="{{this.item.uuid}}"
+									{{#ifEq ../selectedTalent this.item.uuid}}
+										checked
+									{{/ifEq}}
+								/>
+							</td>
+						</tr>
+					{{/each}}
+				</table>
+			</div>
+		{{/if}}
+	</div>
+</div>

@@ -1,0 +1,95 @@
+<div class="dialog">
+  <div class="dialog-content soak-dice-roller">
+
+		<div class="label">
+			{{localize 'CONAN.Type'}}
+		</div>
+
+		{{!-- SOAK TYPE OPTIONS --}}
+		<div class="grid-2-columns">
+			{{#each soakTypes as |soakType index|}}
+			<button
+				class="soak-dice-roller soak-type button {{#if soakType.active}}active{{/if}}"
+				title="{{soakType.tooltip}}"
+				data-soak-type={{soakType.value}}
+			>
+				{{soakType.name}}
+			</button>
+			{{/each}}
+		</div>
+
+		<div class="label">
+			{{localize 'CONAN.Presets'}}
+		</div>
+
+		{{!-- DEFAULT COVER OPTIONS --}}
+		<div
+			class="cover-presets grid-2-columns"
+			{{#ifCond soakType '!==' 'cover'}}
+				style="display: none;"
+			{{/ifCond}}7
+		>
+
+			{{#each coverPresets as |preset index|}}
+			<button
+				class="soak-dice-roller soak-preset button {{#if preset.active}}active{{/if}}"
+				title="{{preset.tooltip}}"
+				data-preset={{preset.numDice}}
+			>
+				{{preset.name}}
+			</button>
+			{{/each}}
+
+		</div>
+
+		{{!-- DEFAULT MORALE OPTIONS --}}
+		<div
+			class="morale-presets grid-2-columns"
+			{{#ifCond soakType '!==' 'morale'}}
+				style="display: none;"
+			{{/ifCond}}
+		>
+
+			{{#each moralePresets as |preset index|}}
+			<button
+				class="soak-dice-roller soak-preset button {{#if preset.active}}active{{/if}}"
+				title="{{preset.tooltip}}"
+				data-preset={{preset.numDice}}
+			>
+				{{preset.name}}
+			</button>
+			{{/each}}
+		</div>
+
+
+		<div class="grid-1-columns">
+
+			{{!-- BASE DICE QUANTITY --}}
+			<div class="soak-dice-roller quantity-grid">
+				<div class="quantity-header">
+					{{#if itemName}}
+						{{itemName}}
+          {{else}}
+            {{localize 'CONAN.SoakDice'}}
+					{{/if}}
+				</div>
+				<input id="numDice" type="number" min="1" value="{{rollData.base.numDice}}" data-quantity-type="base.numDice" disabled/>
+				<div class="quantity-up">
+					<i class="fa-regular fa-square-plus"></i>
+				</div>
+				<div class="quantity-down">
+					<i class="fa-regular fa-square-minus"></i>
+				</div>
+			</div>
+
+		</div>
+
+		{{!-- Submit button --}}
+		<div class="dialog-inputs">
+			<button class="roll-dice">
+				{{localize 'CONAN.RollDice'}}
+			</button>
+		</div>
+
+	</div>
+</div>

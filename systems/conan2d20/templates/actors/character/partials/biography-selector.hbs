@@ -1,0 +1,34 @@
+<div class="pc pc_{{config.name}}">
+	<div>
+		{{#if owner}}
+			<a class="item-selector" data-options="{{config.name}}" for="system.background.{{config.name}}">
+				<i class="fa-solid fa-pen-to-square fa-sm"></i>
+			</a>
+		{{/if}}
+		<label for="pc_{{config.name}}">
+			{{config.label}}
+		</label>
+	</div>
+	<span
+		title="{{config.tooltip}}"
+	>
+		{{#if config.item}}
+			<a
+				class="content-link uuid-link"
+				data-link
+				data-type="Item"
+				data-uuid="{{config.item.uuid}}"
+			>
+				{{config.item.name}}
+			</a>
+		{{else}}
+			<input
+				id="pc pc_{{config.name}}"
+				type="text"
+				value=""
+				data-dtype="String"
+				disabled="disabled"
+			/>
+		{{/if}}
+	</span>
+</div>

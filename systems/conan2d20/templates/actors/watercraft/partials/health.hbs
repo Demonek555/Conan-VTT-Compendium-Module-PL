@@ -1,0 +1,72 @@
+<section class="npc-health">
+	<div class="npc-sheet-sub-heading">
+		<h3>
+			{{localize "CONAN.npc.sections.health"}}
+		</h3>
+	</div>
+
+	<div class="npc-sheet-attributes__3-column-grid">
+
+		<div class="attribute-entry">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.watercraft.health.soak.label"}}
+			</h4>
+			<div class="npc-sheet-field__value">
+				<input
+					data-dtype="Number"
+					name="system.armor"
+					placeholder="&mdash;"
+					type="number"
+					value="{{system.armor}}"
+				/>
+			</div>
+		</div>
+
+		<div class="attribute-entry">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.watercraft.health.structure.label"}}
+			</h4>
+			<div class="npc-health__score">
+				<input
+					data-dtype="Number"
+					name="system.health.physical.value"
+					placeholder="0"
+					type="number"
+					value="{{system.health.physical.value}}"
+				/>
+				/
+				<input
+					name="system.health.physical.max"
+					data-dtype="Number"
+					type="number"
+					value="{{system.health.physical.max}}"
+					placeholder="0"
+				/>
+			</div>
+		</div>
+
+		<div class="attribute-entry">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.watercraft.health.breaks.label"}}
+			</h4>
+			<div class="npc-health__score">
+				<input
+					data-dtype="Number"
+					name="system.health.physical.wounds.value"
+					placeholder="0"
+					type="number"
+					value="{{system.health.physical.wounds.value}}"
+				/>
+				/
+				<input
+					data-dtype="Number"
+					name="system.health.physical.wounds.max"
+					placeholder="0"
+					type="number"
+					value="{{system.health.physical.wounds.max}}"
+				/>
+			</div>
+		</div>
+
+	</div>
+</section>

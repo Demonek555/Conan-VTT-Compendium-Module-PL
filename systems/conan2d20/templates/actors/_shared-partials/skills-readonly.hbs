@@ -1,0 +1,80 @@
+{{!-- Readonly version of the Fields of Expertise section --}}
+<div class="npc-skills">
+  <div class="npc-sheet-sub-heading">
+	<h3>{{localize "CONAN.npc.sections.fields"}}</h3>
+  </div>
+  <div class="npc-skills__grid">
+	<div class="npc-skills__item" data-skill="cmb">
+	  <h4 class="npc-sheet-field__label skill-name rollable">
+		{{system.skills.cmb.label}}
+	  </h4>
+			<p>
+				{{#ifCond system.skills.cmb.value '>' 0}}
+					{{system.skills.cmb.value}}
+				{{else}}
+					&mdash;
+				{{/ifCond}}
+			</p>
+	</div>
+	<div class="npc-skills__item" data-skill="mov">
+	  <h4 class="npc-sheet-field__label skill-name rollable">
+		{{system.skills.mov.label}}
+	  </h4>
+			<p>
+				{{#ifCond system.skills.mov.value '>' 0}}
+					{{system.skills.mov.value}}
+				{{else}}
+					&mdash;
+				{{/ifCond}}
+			</p>
+	</div>
+	<div class="npc-skills__item" data-skill="frt">
+	  <h4 class="npc-sheet-field__label skill-name rollable">
+		{{system.skills.frt.label}}
+	  </h4>
+			<p>
+				{{#ifCond system.skills.frt.value '>' 0}}
+					{{system.skills.frt.value}}
+				{{else}}
+					&mdash;
+				{{/ifCond}}
+			</p>
+	</div>
+	<div class="npc-skills__item" data-skill="sns">
+	  <h4 class="npc-sheet-field__label skill-name rollable">
+		{{system.skills.sns.label}}
+	  </h4>
+			<p>
+				{{#ifCond system.skills.sns.value '>' 0}}
+					{{system.skills.sns.value}}
+				{{else}}
+					&mdash;
+				{{/ifCond}}
+			</p>
+	</div>
+	<div class="npc-skills__item" data-skill="knw">
+	  <h4 class="npc-sheet-field__label skill-name rollable">
+		{{system.skills.knw.label}}
+	  </h4>
+			<p>
+				{{#ifCond system.skills.knw.value '>' 0}}
+					{{system.skills.knw.value}}
+				{{else}}
+					&mdash;
+				{{/ifCond}}
+			</p>
+	</div>
+	<div class="npc-skills__item" data-skill="scl">
+	  <h4 class="npc-sheet-field__label skill-name rollable">
+		{{system.skills.scl.label}}
+	  </h4>
+			<p>
+				{{#ifCond system.skills.scl.value '>' 0}}
+					{{system.skills.scl.value}}
+				{{else}}
+					&mdash;
+				{{/ifCond}}
+			</p>
+	</div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div>
+	<h4 class="sidebar-summary">{{localize "CONAN.Item.Weapon.Summary.label"}}</h4>
+
+	<div class="form-group">
+		<div class="setting-grid">
+
+			<label>{{localize "CONAN.Item.Physical.Availability.label"}}</label>
+			<select name="system.availability" data-dtype="Number">
+				{{#select item.system.availability}}
+					{{#each CONFIG.availabilityTypes as |label key|}}
+						<option value="{{key}}">
+							{{localize label}}
+						</option>
+					{{/each}}
+				{{/select}}
+			</select>
+
+			<label>{{localize "CONAN.Item.Physical.Cost.label"}}</label>
+			<input
+				type="Number"
+				name="system.cost"
+				value="{{item.system.cost}}"
+				data-dtype="Number"
+			/>
+
+			<label>{{localize "CONAN.Item.Physical.Encumbrance.label"}}</label>
+			<input
+				type="Number"
+				name="system.encumbrance"
+				value="{{item.system.encumbrance}}"
+				data-dtype="Number"
+			/>
+
+			<label>{{localize "CONAN.Item.Physical.Quantity.label"}}</label>
+			<input
+				type="Number"
+				name="system.quantity"
+				value="{{item.system.quantity}}"
+				data-dtype="Number"
+			/>
+		</div>
+	</div>
+
+	<div class="grid-2-columns">
+		<div class="form-group">
+			<label>
+				<input
+					type="checkbox"
+					name="system.equipped"
+					value="1"
+					data-dtype="Boolean"
+					{{checked item.system.equipped}}
+				/>
+				{{localize "CONAN.Item.Physical.Equipped.label"}}
+			</label>
+		</div>
+
+		<div class="form-group">
+			<label>
+				<input
+					type="checkbox"
+					name="system.broken"
+					value="1"
+					data-dtype="Boolean"
+					{{checked item.system.broken}}
+				/>
+				{{localize "CONAN.Item.Physical.Broken.label"}}
+			</label>
+		</div>
+	</div>
+
+	<div>
+		<ul class="qualities-list tags">
+			{{#each item.system.qualities.value}}
+				<li
+					class="tag"
+					data-tooltip="{{this.description}}"
+				>
+					{{this.label}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+
+</div>

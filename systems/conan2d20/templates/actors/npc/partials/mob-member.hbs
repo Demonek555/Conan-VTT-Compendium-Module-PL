@@ -1,0 +1,63 @@
+<div class="npc-mob-member" data-mob-member-id="{{memberId}}">
+	<div class="npc-mob-member-portrait">
+		<img
+			class="npc-mob-member-portrait__image"
+			{{#if member.dead}}
+				src="systems/conan2d20/assets/icons/skull_and_crossbones.svg"
+			{{else}}
+				src="{{img}}"
+			{{/if}}
+			title="{{name}}"
+		/>
+		<div class="npc-mob-member-wounds">
+			{{#each member.vigor.wounds as |wound index|}}
+					<i
+						class="mob-wound {{#if wound.active}}wounded{{else}}unwounded{{/if}} fas fa-skull"
+						data-mob-member-id="{{../memberId}}"
+						data-wound-index="{{index}}"
+					></i>
+			{{/each}}
+		</div>
+		<div class="npc-mob-member-wounds">
+			{{#each member.resolve.traumas as |wound index|}}
+					<i
+						class="mob-trauma {{#if wound.active}}wounded{{else}}unwounded{{/if}} fas fa-brain"
+						data-mob-member-id="{{../memberId}}"
+						data-trauma-index="{{index}}"
+					></i>
+			{{/each}}
+		</div>
+	</div>
+	<div class="npc-mob-member-health">
+		<div
+			class="quantity-grid"
+			data-mob-member-id="{{memberId}}"
+		>
+			<div class="quantity-header">{{localize 'CONAN.Actor.Health.Vigor.label'}}</div>
+			<div class="quantity-subheader">Max: {{member.vigor.max}}</div>
+			<input type="number" min="0" value="{{member.vigor.value}}" data-quantity-type="Vigor" disabled/>
+			<div class="quantity-up">
+				<i class="fa-regular fa-square-plus"></i>
+			</div>
+			<div class="quantity-down">
+				<i class="fa-regular fa-square-minus"></i>
+			</div>
+			<div class="quantity-subheader">{{localize 'CONAN.Actor.Health.Armor.label'}}: {{member.armor}}</div>
+		</div>
+		<div
+			class="quantity-grid"
+			data-mob-member-id="{{memberId}}"
+		>
+			<div class="quantity-header">{{localize 'CONAN.Actor.Health.Resolve.label'}}</div>
+			<div class="quantity-subheader">Max: {{member.resolve.max}}</div>
+			<input type="number" min="0" value="{{member.resolve.value}}" data-quantity-type="Resolve" disabled/>
+			<div class="quantity-up">
+				<i class="fa-regular fa-square-plus"></i>
+			</div>
+			<div class="quantity-down">
+				<i class="fa-regular fa-square-minus"></i>
+			</div>
+			<div class="quantity-subheader">{{localize 'CONAN.Actor.Health.Courage.label'}}: {{member.courage}}</div>
+		</div>
+	</div>
+</div>

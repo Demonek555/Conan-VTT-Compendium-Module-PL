@@ -1,0 +1,49 @@
+<div class="npc-type-grid">
+	<img
+		class="npc-sheet__portrait"
+		src="{{actor.img}}"
+		data-edit="img"
+		title="{{actor.name}}"
+	/>
+
+	{{#if isPurchasable}}
+		<div class="npc-type">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.transportation.availability.label"}}
+			</h4>
+			<div class="npc-sheet-field__value">
+				<select name="system.availability" data-dtype="Number" class="npc-type-select">
+					{{#select system.availability}}
+						{{#each CONFIG.availabilityTypes as |label key|}}
+							<option value="{{key}}">
+								{{localize label}}
+							</option>
+						{{/each}}
+					{{/select}}
+				</select>
+			</div>
+		</div>
+
+		<div class="npc-categories">
+			{{> actors/_shared-partials/inline-tags
+				label=(localize "CONAN.watercraft.qualities.label")
+				options="WATERCRAFT_QUALITIES"
+				tags=tags
+			}}
+		</div>
+
+		<div class="npc-type">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.transportation.cost.label"}}
+			</h4>
+			<div class="npc-sheet-field__value" style="padding: 4px;">
+				<input
+					name="system.cost"
+					type="Number"
+					value="{{system.cost}}"
+					placeholder="&mdash;"
+				/>
+			</div>
+		</div>
+	{{/if}}
+</div>

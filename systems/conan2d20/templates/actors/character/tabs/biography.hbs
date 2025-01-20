@@ -1,0 +1,45 @@
+<div class="tab character" data-group="primary" data-tab="biography">
+	<section class="character-biography">
+		{{>
+			actors/character/partials/biography-selector
+			config=biographySelectors.caste
+		}}
+		<div class="pc pc_trait">
+			<label for="pc_trait"> {{localize 'CONAN.Actor.Background.Trait.label'}} </label>
+			<span title="{{localize 'CONAN.Actor.Background.Trait.tooltip'}}">
+				<input
+					id="pc pc_trait"
+					name="system.background.trait.value"
+					type="text"
+					value="{{system.background.trait.value}}"
+					data-dtype="String"
+				/>
+			</span>
+		</div>
+		{{> actors/character/partials/biography-selector
+			config=biographySelectors.archetype
+		}}
+		{{> actors/character/partials/biography-selector
+			config=biographySelectors.story
+		}}
+		{{> actors/character/partials/biography-selector
+			config=biographySelectors.nature
+		}}
+		{{> actors/character/partials/biography-selector
+			config=biographySelectors.education
+		}}
+		{{> actors/character/partials/biography-selector
+			config=biographySelectors.warstory
+		}}
+		<div class="biography">
+			{{editor
+				biographyHTML
+				target="system.details.biography.value"
+				button=true
+				editable=editable
+				engine="prosemirror"
+				collaborate=false
+			}}
+		</div>
+	</section>
+</div>

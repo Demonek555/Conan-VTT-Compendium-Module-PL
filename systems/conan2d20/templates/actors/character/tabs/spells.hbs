@@ -1,0 +1,61 @@
+<div class="tab sorcery" data-group="primary" data-tab="sorcery">
+	<div class="sorcery-list item-list">
+		{{#each sorcery as |section sid|}}
+			<div class="header-bar">
+				<h3 class="item-name hideable-items">
+					{{#ifObjIndex ../hiddenTables sid}}
+						<i class="fa-solid fa-caret-right"></i>
+					{{else}}
+						<i class="fa-solid fa-caret-down"></i>
+					{{/ifObjIndex}}
+					&nbsp;{{section.label}}
+				</h3>
+				{{#if ../owner}}
+					<div class="item-controls">
+						<a
+							class="item-control item-create"
+							title="{{localize 'CONAN.createSpellTitle'}}"
+							data-type="{{sid}}"
+							data-spell-type="{{sid}}"
+						>
+							<i class="fas fa-plus"></i>
+						</a>
+					</div>
+				{{/if}}
+			</div>
+			<div
+				class="item-table"
+				data-hideable-table-id="{{sid}}"
+				{{#ifObjIndex ../hiddenTables sid}}
+					style="display: none;"
+				{{/ifObjIndex}}
+			>
+				{{#each section.sorcery as |spell fid|}}
+					<li class="item spell-item" data-item-id="{{spell._id}}">
+						<div class="item-name rollable">
+							<div
+								class="item-image"
+								style="background-image: url({{spell.img}})"
+							>
+								<i class="fas fa-comment-alt"></i>
+							</div>
+							<h4>{{spell.name}}</h4>
+						</div>
+						{{#if ../../owner}}
+							{{#ifEq spell.type 'spell'}}
+								<div class="item-controls">
+									<a
+										class="item-control item-control__attack"
+										title="{{localize 'CONAN.CastSpell'}}"
+									>
+										<i class="fa-regular fa-spider-web"></i>
+									</a>
+								</div>
+							{{/ifEq}}
+						{{/if}}
+					</li>
+				{{/each}}
+			</div>
+		{{/each}}
+	</div>
+</div>

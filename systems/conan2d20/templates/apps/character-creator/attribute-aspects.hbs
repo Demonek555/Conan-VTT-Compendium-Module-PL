@@ -1,0 +1,145 @@
+<div class="form-group">
+	<div class="setting-grid">
+		<div class="grid-2-columns">
+		{{#each stage.aspects}}
+			<div>
+				<label>
+					<span>
+						<a
+							class="roll aspect-roll"
+							data-aspect-index="{{this.aspectIndex}}"
+							data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{this.label}}"
+						>
+							<i class="fa-solid fa-dice"></i>
+						</a>
+						{{this.label}}
+					</span>
+				</label>
+				{{#if this.selected}}
+					<div class="item flexrow">
+						<a
+							class="content-link uuid-link"
+							data-link
+							data-type="Item"
+							data-uuid="{{this.selected.uuid}}"
+							title="Item"
+						>
+							{{this.selected.name}}
+						</a>
+					</div>
+				{{/if}}
+				<input
+					data-is-item="true"
+					list="{{../stage.uuid}}-cc_aspects_list_{{this.aspectIndex}}"
+					name="aspect_{{this.aspectIndex}}"
+					placeholder="{{localize "CONAN.Form.SelectAttributeAspect.prompt"}}"
+					type="text"
+					value=""
+				/>
+				<datalist id="{{../stage.uuid}}-cc_aspects_list_{{this.aspectIndex}}">
+					{{#each this.unselected}}
+						<option
+							data-uuid="{{this.uuid}}"
+							value="{{this.name}}"
+						></option>
+					{{/each}}
+				</datalist>
+			</div>
+		{{/each}}
+		</div>
+		{{#if stage.mandatory.show}}
+			<div>
+				<label>{{localize "CONAN.Item.MandatoryAttributes.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.AttributeAspect.Mandatory.description"}}</em></p>
+				<table>
+					<tr>
+						<th>&nbsp;</th>
+						<th>{{localize "CONAN.CharacterCreator.AttributeAspect.Best.label"}}</th>
+						<th>{{localize "CONAN.CharacterCreator.AttributeAspect.Worst.label"}}</th>
+						<th>{{localize "CONAN.CharacterCreator.AttributeAspect.Bonus.label"}}</th>
+					</tr>
+					{{#each stage.mandatory.attributes}}
+						{{#ifModZero @index 2}}
+							<tr>
+								<th>{{this.aspectName}}</th>
+								<th colspan="3"></th>
+							</tr>
+						{{/ifModZero}}
+						<tr class="item-row">
+							<td>
+								<div class="flexrow">
+									<a class="fake-uuid-link">
+										{{this.name}}
+									</a>
+								</div>
+							</td>
+							<td align="center">
+								<input
+									type="radio"
+									name="mandatoryBest"
+									value="{{this.id}}"
+									{{checked this.best}}
+									{{#if this.worst}}disabled{{/if}}
+								/>
+							</td>
+							<td align="center">
+								<input
+									type="radio"
+									name="mandatoryWorst"
+									value="{{this.id}}"
+									{{checked this.worst}}
+									{{#if this.best}}disabled{{/if}}
+								/>
+							</td>
+							<td align="center">
+								{{numberFormat this.bonus decimals=0 sign=true}}
+							</td>
+						</tr>
+					{{/each}}
+				</table>
+			</div>
+		{{/if}}
+		{{#if stage.optional.show}}
+			<div>
+				<label>{{localize "CONAN.Item.OptionalAttributes.label"}}</label>
+				<p><em>{{localize "CONAN.CharacterCreator.AttributeAspect.Optional.description"}}</em></p>
+
+				<table>
+					<tr>
+						<th>&nbsp;</th>
+						<th>{{localize "CONAN.CharacterCreator.AttributeAspect.Select.label"}}</th>
+						<th>{{localize "CONAN.CharacterCreator.AttributeAspect.Bonus.label"}}</th>
+					</tr>
+					{{#each stage.optional.aspects as |aspect|}}
+						<tr>
+							<th>{{aspect.aspectName}}</th>
+							<th colspan="2">&nbsp;</th>
+						</tr>
+						{{#each this.attributes}}
+							<tr class="item-row">
+								<td>
+									<div class="flexrow">
+										<a class="fake-uuid-link">
+											{{this.name}}
+										</a>
+									</div>
+								</td>
+								<td align="center">
+									<input
+										type="radio"
+										name="{{this.dataName}}"
+										value="{{this.id}}"
+										{{checked this.checked}}
+									/>
+								</td>
+								<td align="center">
+									{{numberFormat this.bonus decimals=0 sign=true}}
+								</td>
+							</tr>
+						{{/each}}
+					{{/each}}
+				</table>
+			</div>
+		{{/if}}
+	</div>
+</div>

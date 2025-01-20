@@ -1,0 +1,155 @@
+<div class="dialog">
+  <div class="dialog-content damage-roller">
+
+		{{#unless isImpactDamage}}
+			<div class="label">
+				{{localize 'CONAN.damageRollAttackType'}}
+			</div>
+
+			{{!-- SOAK TYPE OPTIONS --}}
+			<div class="grid-3-columns">
+				{{#each damageTypes as |damageType index|}}
+				<button
+					class="damage-roller damage-type button {{#if damageType.active}}active{{/if}}"
+					data-damage-type={{damageType.type}}
+				>
+					{{damageType.name}}
+				</button>
+				{{/each}}
+			</div>
+		{{/unless}}
+
+		{{#if itemData}}
+			<div class="label">
+				{{itemData.name}}
+			</div>
+		{{/if}}
+
+		<div class="dialog-inputs damage-roller grid-2-columns">
+
+			{{!-- BASE DICE QUANTITY --}}
+			<div class="damage-roller quantity-grid {{#if itemData}}disable-entry{{/if}}">
+				<div class="quantity-header">
+					{{localize 'CONAN.CombatDice'}}
+				</div>
+				<input id="numDice" type="number" min="1" value="{{rollData.base.numDice}}" data-quantity-type="base.numDice" disabled/>
+				<div class="quantity-up">
+					<i class="fa-regular fa-square-plus"></i>
+				</div>
+				<div class="quantity-down">
+					<i class="fa-regular fa-square-minus"></i>
+				</div>
+			</div>
+
+			{{!-- RELOAD QUANTITY --}}
+			<div class="damage-roller quantity-grid reload-quantity disable-entry">
+				<div class="quantity-header">{{localize "CONAN.Reloads.label"}}</div>
+				<input id="talent" type="number" min="0" step="1" value="0" data-quantity-type="bonus.reloads" disabled/>
+				<div class="quantity-up">
+					<i class="fa-regular fa-square-plus"></i>
+				</div>
+				<div class="quantity-down">
+					<i class="fa-regular fa-square-minus"></i>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="dialog-inputs reload-choice {{#if disableReloads}}disable-entry{{/if}}">
+			<select class="damage-roller reload-select" name="reload" data-dtype="String">
+				<option
+					value=""
+				>
+					{{#if reloadsAvailable}}
+						--- {{localize 'CONAN.SelectAReloadToUse'}} ---
+					{{else}}
+						--- {{localize 'CONAN.NoReloadsAvailable'}} ---
+					{{/if}}
+				</option>
+				{{#select reloadId}}
+					{{#each reloads as |reload|}}
+					<option
+						value="{{reload.name}}"
+					>
+						{{reload.name}} ({{reload.uses}}/{{reload.max}} {{localize 'CONAN.available'}})
+					</option>
+					{{/each}}
+				{{/select}}
+			</select>
+		</div>
+
+		{{#if itemData}}
+			<div class="label">
+				{{localize 'CONAN.BonusDice'}}
+			</div>
+
+			<div class="grid-2-columns">
+
+				{{!-- OTHER DICE --}}
+				<div class="damage-roller quantity-grid">
+					<div class="quantity-header">{{localize "CONAN.other"}}</div>
+					<input id="talent" type="number" min="0" step="1" value="0" data-quantity-type="bonus.other" disabled/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+
+				{{!-- TALENT DICE --}}
+				<div class="damage-roller quantity-grid">
+					<div class="quantity-header">{{localize "CONAN.damageRollTalentSpendLabel"}}</div>
+					<input id="talent" type="number" min="0" step="1" value="0" data-quantity-type="bonus.talent" disabled/>
+					<div class="quantity-up">
+						<i class="fa-regular fa-square-plus"></i>
+					</div>
+					<div class="quantity-down">
+						<i class="fa-regular fa-square-minus"></i>
+					</div>
+				</div>
+
+			</div>
+		{{/if}}
+
+		<div class="label">
+			{{localize 'CONAN.BonusDamage'}}
+		</div>
+
+		<div class="grid-2-columns">
+
+			{{!-- DOOM SPENDS --}}
+			<div class="damage-roller quantity-grid {{#if hasPlayerOwner}}disable-entry{{/if}}">
+				<div class="quantity-header">{{localize "CONAN.Doom"}}</div>
+				<input id="doom" type="number" min="0" step="1" value="0" data-quantity-type="spends.doom" disabled/>
+				<div class="quantity-up">
+					<i class="fa-regular fa-square-plus"></i>
+				</div>
+				<div class="quantity-down">
+					<i class="fa-regular fa-square-minus"></i>
+				</div>
+			</div>
+
+			{{!-- MOMENTUM SPENDS --}}
+			<div class="damage-roller quantity-grid {{#unless hasPlayerOwner}}disable-entry{{/unless}}">
+				<div class="quantity-header">{{localize "CONAN.Momentum"}}</div>
+				<input id="momentum" type="number" min="0" step="1" value="0" data-quantity-type="spends.momentum" disabled/>
+				<div class="quantity-up">
+					<i class="fa-regular fa-square-plus"></i>
+				</div>
+				<div class="quantity-down">
+					<i class="fa-regular fa-square-minus"></i>
+				</div>
+			</div>
+
+		</div>
+
+		{{!-- Submit button --}}
+		<div class="dialog-inputs">
+			<button class="roll-dice">
+				{{localize 'CONAN.RollDice'}}
+			</button>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "title": "Conan Example Table",
+  "id": "conan-example-table",
+  "system": "conan2d20",
+  "joinTheme": "default",
+  "coreVersion": "12.331",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
+  "systemVersion": "2.3.0",
+  "lastPlayed": "Mon Jan 20 2025 18:01:25 GMT+0100 (czas środkowoeuropejski standardowy)",
+  "playtime": 6576
+}

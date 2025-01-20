@@ -1,0 +1,89 @@
+<div class="form-group">
+	<div class="setting-grid">
+		<div class="grid-1-columns">
+			<label>
+				<span>
+					<a
+						class="roll caste-roll"
+						data-roll-type="caste"
+						data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{stage.label}}"
+					>
+						<i class="fa-solid fa-dice"></i>
+					</a>
+					{{stage.label}}
+				</span>
+			</label>
+
+			{{#if stage.caste}}
+				<div class="flexrow">
+					<a
+						class="content-link uuid-link"
+						data-link
+						data-type="Item"
+						data-uuid="{{stage.caste.uuid}}"
+						title="Item"
+					>
+						{{stage.caste.name}}
+					</a>
+				</div>
+			{{/if}}
+
+			<input
+				data-is-item="true"
+				list="{{stage.uuid}}-cc_castes_list"
+				name="casteUuid"
+				placeholder="{{localize "CONAN.Form.SelectCaste.prompt"}}"
+				type="text"
+				value=""
+			/>
+			<datalist id="{{stage.uuid}}-cc_castes_list">
+				{{#each stage.unselected}}
+					<option
+						data-uuid="{{this.uuid}}"
+						value="{{this.name}}"
+					></option>
+				{{/each}}
+			</datalist>
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<div class="setting-grid stacked">
+		{{#if stage.caste}}
+			<div class="grid-2-columns">
+				<div>
+					<label>{{localize "CONAN.CharacterCreator.Caste.CasteSkill.label"}}</label>
+					<div class="flexrow">
+						<a class="fake-uuid-link">
+							{{stage.casteSkill}}
+						</a>
+					</div>
+				</div>
+				<div>
+					<label>{{localize "CONAN.CharacterCreator.Caste.SocialStanding.label"}}</label>
+					<div class="flexrow">
+						<a class="fake-uuid-link">
+							{{stage.caste.system.socialStanding}}
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="grid-1-columns">
+				<label>{{localize "CONAN.CharacterCreator.Caste.CasteTalents.label"}}</label>
+				<div class="flexrow">
+					{{#each stage.casteTalents}}
+						<a
+							class="content-link uuid-link"
+							data-link
+							data-type="Item"
+							data-uuid="{{this.uuid}}"
+							title="Item"
+						>
+							{{this.name}}
+						</a>
+					{{/each}}
+				</div>
+			</div>
+		{{/if}}
+	</div>
+</div>

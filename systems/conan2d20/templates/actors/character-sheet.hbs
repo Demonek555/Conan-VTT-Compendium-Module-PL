@@ -1,0 +1,64 @@
+<form class="{{cssClass}} pc-sheet" autocomplete="off">
+	<aside>
+		<img
+			class="logo"
+			src="systems/conan2d20/assets/conan_logo.png"
+			alt=""
+			srcset=""
+		/>
+
+		<div class="sidebar" data-group="dashboard" data-tab="attributes">
+			{{> actors/character/partials/health }}
+			{{> actors/character/partials/armor }}
+		</div>
+	</aside>
+
+	{{> actors/character/partials/header }}
+
+	<nav class="sheet-navigation" data-group="primary">
+		<a class="item active" data-tab="character">
+			{{localize "CONAN.tabCharacterLabel"}}
+		</a>
+
+		<a class="item" data-tab="inventory">
+			{{localize "CONAN.tabInventoryLabel"}}
+		</a>
+
+		<a class="item" data-tab="biography">
+			{{localize "CONAN.biographyLabel"}}
+		</a>
+
+		<a class="item" data-tab="notes">
+			{{localize "CONAN.notesLabel"}}
+		</a>
+
+		<a class="item" data-tab="actions">
+			{{localize "CONAN.tabActionsLabel"}}
+		</a>
+
+		<a class="item" data-tab="skills">
+			{{localize "CONAN.tabSkillsLabel"}}
+		</a>
+
+		<a class="item" data-tab="talents">
+			{{localize "CONAN.tabTalentsLabel"}}
+		</a>
+
+		<a class="item" data-tab="sorcery">
+			{{localize "CONAN.tabSorceryLabel"}}
+		</a>
+	</nav>
+
+	<section class="sheet-body">
+		<section class="sheet-content content">
+			{{> actors/character/tabs/actions }}
+			{{> actors/character/tabs/biography }}
+			{{> actors/character/tabs/character }}
+			{{> actors/character/tabs/inventory }}
+			{{> actors/character/tabs/notes }}
+			{{> actors/character/tabs/skills }}
+			{{> actors/character/tabs/spells }}
+			{{> actors/character/tabs/talents }}
+		</section>
+	</section>
+</form>

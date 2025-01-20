@@ -1,0 +1,37 @@
+<div>
+
+	<h4 class="sidebar-summary">{{localize "CONAN.kitSummary"}}</h4>
+
+	<div class="form-group">
+		<div class="setting-grid">
+
+			<label>{{localize "CONAN.Item.Physical.Availability.label"}}</label>
+			<select name="system.availability" data-dtype="String">
+				{{#select item.system.availability}}
+					{{#each CONFIG.availabilityTypes as |label key|}}
+						<option value="{{key}}">
+							{{localize label}}
+						</option>
+					{{/each}}
+				{{/select}}
+			</select>
+
+			<label>{{localize "CONAN.Item.Physical.Cost.label"}}</label>
+			<input
+				type="Number"
+				name="system.cost"
+				value="{{item.system.cost}}"
+				data-dtype="Number"
+			/>
+
+			<label>{{localize "CONAN.Item.Physical.Encumbrance.label"}}</label>
+			<input
+				type="Number"
+				name="system.encumbrance"
+				value="{{item.system.encumbrance}}"
+				data-dtype="Number"
+			/>
+
+		</div>
+	</div>
+</div>

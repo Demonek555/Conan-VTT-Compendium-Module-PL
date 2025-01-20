@@ -1,0 +1,75 @@
+<div class="tab skills" data-group="primary" data-tab="skills">
+	<table>
+		<tr class="skill-entry-header">
+			<th></th>
+			<th colspan="3">{{localize 'CONAN.CharacterUpgrade.Expertise.label'}}</th>
+			<th colspan="3">{{localize 'CONAN.CharacterUpgrade.Focus.label'}}</th>
+		</tr>
+		<tr class="skill-entry-header">
+			<th>{{localize "CONAN.CharacterUpgrade.Skill.label"}}</th>
+			<th>{{localize 'CONAN.CharacterUpgrade.Change.label'}}</th>
+			<th>{{localize 'CONAN.CharacterUpgrade.Cost.label'}}</th>
+			<th></th>
+			<th>{{localize 'CONAN.CharacterUpgrade.Change.label'}}</th>
+			<th>{{localize 'CONAN.CharacterUpgrade.Cost.label'}}</th>
+			<th></th>
+		</tr>
+		{{#each this.skills}}
+			<tr class="item-row">
+				<td>
+					{{this.label}}
+				</td>
+				<td>
+					{{#if this.expertise.atMaximum}}
+						&mdash;
+					{{else}}
+						{{this.expertise.value}} &rarr; {{this.expertise.newValue}}
+					{{/if}}
+				</td>
+				<td>
+					{{#if this.expertise.atMaximum}}
+						&mdash;
+					{{else}}
+						{{this.expertise.cost}}
+					{{/if}}
+				</td>
+				<td>
+					{{#if this.expertise.canUpgrade}}
+						<a
+							class="can-upgrade upgrade-skill-link"
+							data-id="{{this.id}}"
+							data-type="expertise"
+							data-value="{{this.expertise.newValue}}"
+							data-tooltip="{{localize 'CONAN.CharacterUpgrade.PurchaseImprovement.tooltip'}}"
+						>
+							<i class="fa-solid fa-coins"></i>
+						</a>
+					{{/if}}
+				</td>
+				<td>
+					{{#if this.focus.atMaximum}}
+						&mdash;
+					{{else}}
+						{{this.focus.value}} &rarr; {{this.focus.newValue}}
+					{{/if}}
+				</td>
+				<td>
+					{{this.focus.cost}}
+				</td>
+				<td>
+					{{#if this.focus.canUpgrade}}
+						<a
+							class="can-upgrade upgrade-skill-link"
+							data-id="{{this.id}}"
+							data-type="focus"
+							data-value="{{this.focus.newValue}}"
+							data-tooltip="{{localize 'CONAN.CharacterUpgrade.PurchaseImprovement.tooltip'}}"
+						>
+							<i class="fa-solid fa-coins"></i>
+						</a>
+					{{/if}}
+				</td>
+			</tr>
+		{{/each}}
+	</table>
+</div>

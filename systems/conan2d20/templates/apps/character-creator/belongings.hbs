@@ -1,0 +1,100 @@
+<div class="form-group">
+	<div class="setting-grid">
+		<div class="grid-1-columns">
+			<label>
+				<span>
+					<a
+						class="roll belonging-roll"
+						data-roll-type="belonging"
+						data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{localize "CONAN.CharacterCreator.Belongings.Belonging.label"}}"
+					>
+						<i class="fa-solid fa-dice"></i>
+					</a>
+					{{localize "CONAN.CharacterCreator.Belongings.Belonging.label"}}
+				</span>
+			</label>
+
+			{{#if stage.belonging}}
+				<div class="flexrow">
+					<a
+						class="content-link uuid-link"
+						data-link
+						data-type="Item"
+						data-uuid="{{stage.belonging.uuid}}"
+						title="Item"
+					>
+						{{stage.belonging.name}}
+					</a>
+				</div>
+			{{/if}}
+		</div>
+
+		<div class="grid-1-columns">
+			<label>
+				<span>
+					<a
+						class="roll garment-roll"
+						data-roll-type="garment"
+						data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{localize "CONAN.CharacterCreator.Belongings.Garment.label"}}"
+					>
+						<i class="fa-solid fa-dice"></i>
+					</a>
+					{{localize "CONAN.CharacterCreator.Belongings.Garment.label"}}
+				</span>
+			</label>
+
+			{{#if stage.garment}}
+				<div class="flexrow">
+					<a
+						class="content-link uuid-link"
+						data-link
+						data-type="Item"
+						data-uuid="{{stage.garment.uuid}}"
+						title="Item"
+					>
+						{{stage.garment.name}}
+					</a>
+				</div>
+			{{/if}}
+		</div>
+
+		<div class="grid-1-columns">
+			<label>
+				<span>
+					<a
+						class="roll weapon-roll"
+						data-roll-type="weapon"
+						data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{localize "CONAN.CharacterCreator.Belongings.Weapon.label"}}"
+					>
+						<i class="fa-solid fa-dice"></i>
+					</a>
+					{{localize "CONAN.CharacterCreator.Belongings.Weapon.label"}}
+				</span>
+			</label>
+
+			{{#if stage.weapon}}
+				<div class="flexrow">
+					<a
+						class="content-link uuid-link"
+						data-link
+						data-type="Item"
+						data-uuid="{{stage.weapon.uuid}}"
+						title="Item"
+					>
+						{{stage.weapon.name}}
+					</a>
+				</div>
+				<div class="flexrow">
+					<a
+						class="fake-uuid-link"
+						data-type="Item"
+						title="Item"
+					>
+						{{stage.provenance}}
+					</a>
+				</div>
+			{{/if}}
+		</div>
+
+	</div>
+</div>

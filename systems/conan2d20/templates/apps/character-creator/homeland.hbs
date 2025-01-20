@@ -1,0 +1,118 @@
+<div class="form-group">
+	<div class="setting-grid">
+		<div class="grid-1-columns">
+			<label>
+				<span>
+					<a
+						class="roll homeland-roll"
+						data-roll-type="homeland"
+						data-tooltip="{{localize "CONAN.CharacterCreator.Roll.tooltip"}} {{stage.label}}"
+					>
+						<i class="fa-solid fa-dice"></i>
+					</a>
+					{{stage.label}}
+				</span>
+			</label>
+
+			{{#if stage.homeland}}
+				<div class="flexrow">
+					<a
+						class="content-link uuid-link"
+						data-link
+						data-type="Item"
+						data-uuid="{{stage.homeland.uuid}}"
+						title="Item"
+					>
+						{{stage.homeland.name}}
+					</a>
+				</div>
+			{{/if}}
+
+			<input
+				data-is-item="true"
+				list="{{stage.uuid}}-cc_homelands_list"
+				name="homelandUuid"
+				placeholder="{{localize "CONAN.Form.SelectHomeland.prompt"}}"
+				type="text"
+				value=""
+			/>
+
+			<datalist id="{{stage.uuid}}-cc_homelands_list">
+				{{#each stage.unselected}}
+					<option
+						data-uuid="{{this.uuid}}"
+						value="{{this.name}}"
+					></option>
+				{{/each}}
+			</datalist>
+
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<div class="setting-grid stacked">
+		{{#if stage.homelandTalent}}
+			<div class="grid-1-columns">
+				<label>
+					{{localize "CONAN.CharacterCreator.Homeland.HomelandTalent.label"}}
+				</label>
+				<div class="flexrow">
+					<a
+						class="content-link uuid-link"
+						data-link
+						data-type="Item"
+						data-uuid="{{stage.homelandTalent.uuid}}"
+						title="Item"
+					>
+						{{stage.homelandTalent.name}}
+					</a>
+				</div>
+				<div>{{{stage.talentDescriptionHTML}}}</div>
+			</div>
+		{{/if}}
+	</div>
+</div>
+<div class="form-group">
+	<div class="setting-grid stacked">
+		{{#if stage.homeland}}
+			<div class="grid-1-columns">
+				<label>
+					{{localize "CONAN.CharacterCreator.Homeland.Language.label"}}
+				</label>
+				{{#if stage.chooseLanguage}}
+					<p><em>{{localize "CONAN.CharacterCreator.Homeland.SelectLanguage.description"}}</em></p>
+					<select name="homelandLanguage">
+						{{#each stage.languages}}
+							<option
+								value="{{this.value}}"
+								{{#ifCond ../language "===" this.value}}
+									selected
+								{{/ifCond}}
+							>
+								{{this.name}}
+							</option>
+						{{/each}}
+					</select>
+				{{else}}
+					<input
+						type="hidden"
+						name="homelandLanguage"
+						value="{{stage.languageItem.uuid}}"
+					/>
+					<p><em>{{localize "CONAN.CharacterCreator.Homeland.Language.description"}}</em></p>
+					<div class="flexrow">
+						<a
+							class="content-link uuid-link"
+							data-link
+							data-type="Item"
+							data-uuid="{{stage.languageItem.uuid}}"
+							title="Item"
+						>
+							{{stage.languageItem.name}}
+						</a>
+					</div>
+				{{/if}}
+			</div>
+		{{/if}}
+	</div>
+</div>

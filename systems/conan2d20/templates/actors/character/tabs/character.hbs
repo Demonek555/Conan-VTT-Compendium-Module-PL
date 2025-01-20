@@ -1,0 +1,63 @@
+<div class="tab character" data-group="primary" data-tab="character">
+	<section class="character-details">
+		<div class="frame">
+			<img
+				class="player-image"
+				alt="{{actor.name}}"
+				src="{{actor.img}}"
+				title="{{actor.name}}"
+				data-edit="img"
+			/>
+		</div>
+		<div class="detail-sheet">
+			<div class="detail-small">
+				<div class="pc pc_age">
+					<label for="pc_age"> {{localize 'CONAN.Actor.Background.Age.label'}} </label>
+					<span>
+						<input
+							id="pc pc_age"
+							name="system.background.age.value"
+							type="Number"
+							value="{{system.background.age.value}}"
+							data-dtype="Number"
+						/>
+					</span>
+				</div>
+				<div class="pc pc_gender">
+					<label for="pc_gender"> {{localize 'CONAN.Actor.Background.Gender.label'}} </label>
+					<span>
+						<input
+							id="pc pc_gender"
+							name="system.background.gender.value"
+							type="text"
+							value="{{system.background.gender.value}}"
+							data-dtype="String"
+						/>
+					</span>
+				</div>
+			</div>
+			{{> actors/character/partials/biography-selector
+				config=biographySelectors.homeland
+			}}
+			<div class="pc pc_languages">
+				<div>
+					<a class="item-selector" data-options="language" for="system.background.languages">
+						<i class="fa-solid fa-pen-to-square fa-sm"></i>
+					</a>
+					<label> {{localize 'CONAN.Actor.Background.Languages.label'}} </label>
+				</div>
+				<ul class="tags">
+					{{#each languages}}
+						<li class="tag {{this.name}}">{{this.name}}</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</section>
+	<div>
+		<hr />
+	</div>
+
+	{{> actors/character/partials/details }}
+
+</div>

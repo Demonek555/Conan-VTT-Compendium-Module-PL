@@ -1,0 +1,98 @@
+<div class="tab stowage" data-group="primary" data-tab="npc-stowage">
+
+	{{> actors/_shared-partials/transport-details }}
+
+	<div class="stowage-list">
+		{{#each inventory as |section sid|}}
+			{{!-- Shared header code --}}
+			<div class="header-bar">
+				<h3 class="item-name hideable-items">
+					{{#ifObjIndex ../hiddenTables sid}}
+						<i class="fa-solid fa-caret-right"></i>
+					{{else}}
+						<i class="fa-solid fa-caret-down"></i>
+					{{/ifObjIndex}}
+					&nbsp;{{section.label}}
+				</h3>
+
+				{{#if section.standardHeader}}
+
+						{{!-- Standard sections with Quantity and Encumbrance --}}
+						<span class="item-property__header item-property-1">
+							{{localize "CONAN.Item.Physical.Quantity.label"}}
+						</span>
+						<span class="item-property__header item-property-2">
+							{{localize "CONAN.encumbranceShortLabel"}}
+						</span>
+
+				{{else}} {{!-- #if section.standardHeader --}}
+
+					{{!-- Consumables have a different header layout --}}
+					{{#ifCond sid '===' 'consumable'}}
+						<span class="item-property__header item-property-1">
+							{{localize "CONAN.sorceryAvailableUsesLabel"}}
+						</span>
+						<span class="item-property__header item-property-2">
+							&nbsp;
+						</span>
+					{{/ifCond}}
+
+					{{!-- Kit items have a different header layout --}}
+					{{#ifCond sid '===' 'kit'}}
+						<span class="item-property__header item-property-1">
+							{{localize "CONAN.kitUsesAvailableLabel"}}
+						</span>
+						<span class="item-property__header item-property-2">
+							{{localize "CONAN.encumbranceShortLabel"}}
+						</span>
+					{{/ifCond}}
+
+				{{/if}} {{!-- #if section.standardHeader --}}
+
+				{{#if section.canCreate}}
+					{{!-- These types of items can be created --}}
+					{{#if ../owner}}
+						<div class="item-controls" style="display: flex">
+							<a
+								class="item-control item-create"
+								data-type="{{sid}}"
+								title="{{localize 'CONAN.createItemTitle'}}"
+							>
+								<i
+									class="fas fa-plus"
+								></i>
+							</a>
+						</div>
+					{{/if}}
+				{{else}}
+					{{!-- These types of items cannot be created --}}
+					{{#if ../owner}}
+						<div class="item-controls" style="display: flex"></div>
+					{{/if}}
+				{{/if}}
+			</div>
+
+			<div
+				class="item-table"
+				data-hideable-table-id="{{sid}}"
+				{{#ifObjIndex ../hiddenTables sid}}
+					style="display: none;"
+				{{/ifObjIndex}}
+			>
+				{{#each section.items as |item itemId|}}
+					{{#unless item.system.hideInInventory}}
+						{{> actors/_shared-partials/item
+							ownedByTransportActor=../../ownedByTransportActor
+							item=item
+							level=1
+							owner=../../owner
+							section=section
+						}}
+					{{/unless}}
+				{{/each}}
+			</div>
+
+		{{/each}}
+	</div>
+
+</div>

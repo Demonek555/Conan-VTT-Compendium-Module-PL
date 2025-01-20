@@ -1,0 +1,83 @@
+<div class="form-group">
+	<div class="setting-grid">
+
+		<div class="grid-1-columns">
+			<table>
+				<tr>
+					<th>{{localize "CONAN.CharacterCreator.Attribute.label"}}</th>
+					<th>{{localize "CONAN.CharacterCreator.Select.label"}}</th>
+					<th>{{localize "CONAN.CharacterCreator.Bonus.label"}}</th>
+				</tr>
+				{{#each stage.attributes}}
+					<tr class="item-row">
+						<td>
+							<div class="flexrow">
+								<a class="fake-uuid-link">
+									{{this.label}}
+								</a>
+							</div>
+						</td>
+						<td align="center">
+							<input
+								type="checkbox"
+								name="finishing_attribute::{{this.attribute}}"
+								value="{{this.attribute}}"
+								{{checked this.checked}}
+							/>
+						</td>
+						<td align="center">
+							{{numberFormat this.bonus decimals=0 sign=true}}
+						</td>
+					</tr>
+				{{/each}}
+			</table>
+		</div>
+
+		{{#if ancientBloodlineNeeded}}
+			<div class="grid-1-columns">
+				<label>
+					<span>
+						{{localize "CONAN.CharacterCreator.Attributes.AncientBloodline.label"}}
+					</span>
+				</label>
+
+				{{#if stage.ancientBloodline}}
+					<div class="flexrow">
+						<a
+							class="content-link uuid-link"
+							data-link
+							data-type="Item"
+							data-uuid="{{stage.ancientBloodline.uuid}}"
+							title="Item"
+						>
+							{{stage.ancientBloodline.name}}
+						</a>
+					</div>
+				{{/if}}
+
+				<input
+					data-is-item="true"
+					list="{{stage.uuid}}-cc_ancientBloodline_list"
+					name="ancientBloodlineUuid"
+					placeholder="{{localize "CONAN.Form.SelectAncientBloodline.prompt"}}"
+					type="text"
+					value=""
+				/>
+				<datalist id="{{stage.uuid}}-cc_ancientBloodline_list">
+					{{#each stage.unselectedAncientBloodlines}}
+						<option
+							data-uuid="{{this.uuid}}"
+							value="{{this.name}}"
+						></option>
+					{{/each}}
+				</datalist>
+
+				{{#if stage.ancientBloodline}}
+					<div>{{{stage.ancientBloodlineDescriptionHTML}}}</div>
+				{{/if}}
+
+			</div>
+		{{/if}}
+
+	</div>
+</div>

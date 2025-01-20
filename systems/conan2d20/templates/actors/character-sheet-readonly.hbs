@@ -1,0 +1,87 @@
+<form class="{{cssClass}} pc-sheet" autocomplete="off">
+	<aside>
+		<img
+			class="logo"
+			src="systems/conan2d20/assets/conan_logo.png"
+			alt=""
+			srcset=""
+		/>
+	</aside>
+
+	{{> actors/character/partials/header }}
+
+	<nav class="sheet-navigation" data-group="primary">
+		<a class="item active" data-tab="character"></a>
+	</nav>
+
+	<section class="sheet-body">
+		<section class="sheet-content content">
+			<div class="tab character" data-group="primary" data-tab="character">
+				<section class="character-details">
+					<div class="frame">
+						<img
+							class="player-image"
+							alt="{{actor.name}}"
+							src="{{actor.img}}"
+							title="{{actor.name}}"
+							data-edit="img"
+						/>
+					</div>
+					<div class="detail-sheet">
+						<div class="detail-small">
+							<div class="pc pc_age">
+								<label for="pc_age"> {{localize 'CONAN.Actor.Background.Age.label'}} </label>
+								<span>
+									<input
+										id="pc pc_age"
+										name="system.background.age.value"
+										type="Number"
+										value="{{system.background.age.value}}"
+										data-dtype="Number"
+									/>
+								</span>
+							</div>
+							<div class="pc pc_gender">
+								<label for="pc_gender"> {{localize 'CONAN.Actor.Background.Gender.label'}} </label>
+								<span>
+									<input
+										id="pc pc_gender"
+										name="system.background.gender.value"
+										type="text"
+										value="{{system.background.gender.value}}"
+										data-dtype="String"
+									/>
+								</span>
+							</div>
+						</div>
+						{{> actors/character/partials/biography-selector
+							config=biographySelectors.homeland
+						}}
+						<div class="pc pc_languages">
+							<div>
+								<label> {{localize 'CONAN.Actor.Background.Languages.label'}} </label>
+							</div>
+							<ul class="tags">
+								{{#each languages}}
+									<li class="tag {{this.name}}">{{this.name}}</li>
+								{{/each}}
+							</ul>
+						</div>
+					</div>
+				</section>
+				<hr />
+				<div class="biography">
+					<h3>{{localize "CONAN.biographyLabel"}}</h3>
+					{{editor
+						biographyHTML
+						target="system.details.biography.value"
+						button=true
+						editable=editable
+						engine="prosemirror"
+						collaborate=false
+					}}
+				</div>
+			</div>
+		</section>
+	</section>
+</form>

@@ -1,0 +1,55 @@
+<div class="tab talents" data-group="primary" data-tab="talents">
+	{{#ifCond talents.length '===' 0}}
+		<p>
+			<em>{{localize 'CONAN.talentTreeEmptyPrompt'}}</em>
+		</p>
+	{{/ifCond}}
+	<div class="talents-list item-list">
+		{{#each talents as |section sid|}}
+			<div class="header-bar">
+				<h3 class="talent-name hideable-items">
+					{{#ifObjIndex ../hiddenTables sid}}
+						<i class="fa-solid fa-caret-right"></i>
+					{{else}}
+						<i class="fa-solid fa-caret-down"></i>
+					{{/ifObjIndex}}
+					&nbsp;{{section.label}}
+				</h3>
+				<div class="item-properties tags talent-totals">
+						<span class="tag tag_secondary">
+							{{localize "CONAN.Actor.TalentsCount.label"}}:
+							{{section.talentCount}},
+							{{localize "CONAN.Actor.RanksCount.label"}}:
+							{{section.ranks}}
+						</span>
+				</div>
+			</div>
+			<div
+				class="item-table"
+				data-hideable-table-id="{{sid}}"
+				{{#ifObjIndex ../hiddenTables sid}}
+					style="display: none;"
+				{{/ifObjIndex}}
+			>
+				{{#each section.talents as |talent fid|}}
+					<li class="item talent-item" data-item-id="{{talent._id}}">
+						<div class="item-name rollable">
+							<div
+								class="item-image"
+								style="background-image: url({{talent.img}})"
+							>
+								<i class="fas fa-comment-alt"></i>
+							</div>
+							<h4>
+								{{talent.name}}
+								{{#if talent.system.multiRank}}
+									(Rank {{talent.system.rank.value}})
+								{{/if}}
+							</h4>
+						</div>
+					</li>
+				{{/each}}
+			</div>
+		{{/each}}
+	</div>
+</div>

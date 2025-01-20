@@ -1,0 +1,166 @@
+<div class="tab inventory" data-group="primary" data-tab="inventory">
+	<div class="inv-header">
+
+		<ol class="gold">
+			<div class="gold-pouch-image"></div>
+			<li
+				class="coin-bar"
+				title="{{localize 'CONAN.goldPouchTitle'}}"
+			>
+				<div class="currency-image"></div>
+				<span>
+					<input
+						type="Number"
+						name="system.resources.gold.value"
+						value="{{system.resources.gold.value}}"
+						data-dtype="Number"
+					/>
+				</span>
+			</li>
+			<li class="subtract-gold" title="{{localize 'CONAN.subtractGoldTitle'}}">
+				<button type="button">-</button>
+			</li>
+			<li class="add-gold" title="{{localize 'CONAN.addGoldTitle'}}">
+				<button type="button">+</button>
+			</li>
+		</ol>
+
+		<ol
+			class="upkeep"
+			title="{{localize 'CONAN.upkeepValueTitle'}}"
+		>
+				<h3 class="upkeep-header">
+					Upkeep
+				</h3>
+				<input
+					type="Number"
+					name="system.resources.upkeep.value"
+					value="{{system.resources.upkeep.value}}"
+					data-dtype="Number"
+					readonly
+				/>
+		</ol>
+
+	</div>
+
+	<div class="inventory-list">
+		{{#each inventory as |section sid|}}
+			{{!-- Shared header code --}}
+			<div class="header-bar">
+				<h3 class="item-name hideable-items">
+					{{#ifObjIndex ../hiddenTables sid}}
+						<i class="fa-solid fa-caret-right"></i>
+					{{else}}
+						<i class="fa-solid fa-caret-down"></i>
+					{{/ifObjIndex}}
+					&nbsp;{{section.label}}
+				</h3>
+
+				{{#if section.standardHeader}}
+
+						{{!-- Standard sections with Quantity and Encumbrance --}}
+						<span class="item-property__header item-property-1">
+							{{localize "CONAN.Item.Physical.Quantity.label"}}
+						</span>
+						<span class="item-property__header item-property-2">
+							{{localize "CONAN.encumbranceShortLabel"}}
+						</span>
+
+				{{else}} {{!-- #if section.standardHeader --}}
+
+					{{!-- Consumables have a different header layout --}}
+					{{#ifCond sid '===' 'consumable'}}
+						<span class="item-property__header item-property-1">
+							{{localize "CONAN.sorceryAvailableUsesLabel"}}
+						</span>
+						<span class="item-property__header item-property-2">
+							&nbsp;
+						</span>
+					{{/ifCond}}
+
+					{{!-- Kit items have a different header layout --}}
+					{{#ifCond sid '===' 'kit'}}
+						<span class="item-property__header item-property-1">
+							{{localize "CONAN.kitUsesAvailableLabel"}}
+						</span>
+						<span class="item-property__header item-property-2">
+							{{localize "CONAN.encumbranceShortLabel"}}
+						</span>
+					{{/ifCond}}
+
+					{{!-- Transportation items have a different header layout --}}
+					{{#ifCond sid '===' 'transportation'}}
+						<span class="item-property__header item-property-1">
+							{{localize "CONAN.Item.Transportation.Passengers.label"}}
+						</span>
+						<span class="item-property__header item-property-2">
+							{{localize "CONAN.Item.Transportation.Stowage.label"}}
+						</span>
+					{{/ifCond}}
+
+				{{/if}} {{!-- #if section.standardHeader --}}
+
+				{{#if section.canCreate}}
+					{{!-- These types of items can be created --}}
+					{{#if ../owner}}
+						<div class="item-controls" style="display: flex">
+							<a
+								class="item-control item-create"
+								data-type="{{sid}}"
+								title="{{localize 'CONAN.createItemTitle'}}"
+							>
+								<i
+									class="fas fa-plus"
+								></i>
+							</a>
+						</div>
+					{{/if}}
+				{{else}}
+					{{!-- These types of items cannot be created --}}
+					{{#if ../owner}}
+						<div class="item-controls" style="display: flex"></div>
+					{{/if}}
+				{{/if}}
+			</div>
+
+			<div
+				class="item-table"
+				data-hideable-table-id="{{sid}}"
+				{{#ifObjIndex ../hiddenTables sid}}
+					style="display: none;"
+				{{/ifObjIndex}}
+			>
+				{{#each section.items as |item itemId|}}
+					{{#unless item.system.hideInInventory}}
+						{{> actors/_shared-partials/item
+							item=item
+							owner=../../owner
+							level=1
+							section=section
+						}}
+					{{/unless}}
+				{{/each}}
+			</div>
+
+		{{/each}}
+	</div>
+
+	{{#with system.encumbrance}}
+	<div class="encumbrance {{#if isEncumbered}}encumbered{{/if}} {{#if isOverLimit}}over-limit{{/if}}">
+		<img
+			src="systems/conan2d20/assets/icons/icon-backpack.png"
+			alt="Encumbrance"
+		/>
+		<span class="encumbrance-bar" style="width:{{limitPercentageMax}}%"></span>
+		<div class="encumbrance-label">
+			<span>
+				{{localize 'CONAN.encumbranceShortLabel'}}: {{combinedEnc}} /
+				{{localize encumbranceFactor.carried}} /
+				{{localize encumbranceFactor.fatigue}}
+			</span>
+			<span>{{localize 'CONAN.encumbranceMaxLabel'}}: {{limit}}</span>
+		</div>
+		<span class="bar-bg"></span>
+	</div>
+	{{/with}}
+</div>

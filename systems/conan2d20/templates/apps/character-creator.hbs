@@ -1,0 +1,138 @@
+<form class="{{cssClass}}" autocomplete="off">
+	<div class="character-creator-grid">
+		<nav class="sheet-navigation" data-group="primary">
+			<h2>{{localize "CONAN.CharacterCreator.Stages.title"}}</h2>
+			{{#each stages}}
+				<div>
+					<a
+						class="stage {{#if stage.active}}active{{/if}}"
+						text="{{this.tooltip}}"
+						data-tab="{{this.name}}"
+					>
+						{{#if this.valid}}
+							<i
+								style="color: darkgreen"
+								class="fa-solid fa-circle-check"
+							></i>
+						{{else}}
+							<i
+								style="color: darkred"
+								class="fa-solid fa-triangle-exclamation"
+							></i>
+						{{/if}}
+						{{this.label}}
+					</a>
+				</div>
+			{{/each}}
+		</nav>
+		<section class="sheet-body">
+			<!-- Sheet Body -->
+			<section class="sheet-content content">
+				{{#each stages}}
+					<div
+						class="tab chargen-stage"
+						data-group="primary"
+						data-tab="{{this.name}}"
+					>
+						<h1>{{this.label}}</h1>
+
+						<p><em>{{this.description}}</em></p>
+
+						{{> (this.template)
+							stage=this
+						}}
+
+						<div class="errors">
+							<ul>
+								{{#each this.errors as |error|}}
+									<li>
+										<em>{{error}}</em>
+									</li>
+								{{/each}}
+								{{#each ../errors as |error|}}
+									<li>
+										<em>{{error}}</em>
+									</li>
+								{{/each}}
+							</ul>
+						</div>
+					</div>
+				{{/each}}
+			</section>
+		</section>
+		<section class="sheet-content sidebar">
+			<h3>{{localize "CONAN.CharacterCreator.SkillsPreview.title"}}</h3>
+			<table class="skills-preview">
+				<tr>
+					<th>{{localize "CONAN.CharacterCreator.SkillsPreview.Header.Skill.header"}}</th>
+					<th>{{localize "CONAN.CharacterCreator.SkillsPreview.Header.Expertise.header.short"}}</th>
+					<th>{{localize "CONAN.CharacterCreator.SkillsPreview.Header.Focus.header.short"}}</th>
+					<th>{{localize "CONAN.CharacterCreator.SkillsPreview.Header.TN.header"}}</th>
+				</tr>
+				{{#each attributes}}
+					<tr>
+						<th>{{this.label}} ({{this.value}})</th>
+						<th colspan="3">&nbsp;</th>
+					</tr>
+					{{#each this.skills}}
+						<tr>
+							<td>{{this.label}}</td>
+							<td align="center">{{this.expertise.value}}</td>
+							<td align="center">{{this.focus.value}}</td>
+							<td align="center">{{this.tn}}</td>
+						</tr>
+					{{/each}}
+				{{/each}}
+			</table>
+			<h3>{{localize "CONAN.CharacterCreator.TalentsPreview.title"}}</h3>
+			<table class="talents-preview">
+				<tr>
+					<th>{{localize "CONAN.CharacterCreator.Talent.label"}}</th>
+					<th>{{localize "CONAN.CharacterCreator.TalentTypeOrSkill.label"}}</th>
+				</tr>
+				{{#each talents}}
+					<tr>
+						<td>
+							<div class="flexrow">
+								<a
+									class="content-link uuid-link"
+									data-link
+									data-uuid="{{this.uuid}}"
+									style="font-size: 12px;"
+									title="Item"
+								>
+									{{this.name}}
+									{{#if this.system.multiRank}}
+										({{localize "CONAN.Item.Talent.Rank.label"}} {{this.system.rank.value}})
+									{{/if}}
+								</a>
+							</div>
+						</td>
+						<td align="center">
+							{{#ifEq this.system.talentType "skill"}}
+								{{lookup ../CONFIG.skills this.system.linkedSkill}}
+							{{else}}
+								{{lookup ../CONFIG.talentTypes this.system.talentType}}
+							{{/ifEq}}
+						</td>
+					</tr>
+				{{/each}}
+			</table>
+			<div class="create-character-button">
+				<button
+					{{#if characterValid}}
+						class="create-character-button enabled"
+					{{else}}
+						class="create-character-button disabled"
+						data-tooltip="{{localize "CONAN.CharacterCreator.CreateButton.ErrorsExist.tooltip"}}"
+						disabled
+					{{/if}}
+				>
+					<i class="fas fa-user-plus"></i>
+					{{localize "CONAN.CharacterCreator.CreateButton.label"}}
+				</button>
+			</div>
+		</section>
+	</div>
+</form>
+1

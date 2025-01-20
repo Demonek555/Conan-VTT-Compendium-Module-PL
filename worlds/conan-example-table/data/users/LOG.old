@@ -1,0 +1,8 @@
+2025/01/20-16:22:02.490 1e5c Recovering log #13
+2025/01/20-16:22:02.493 1e5c Delete type=0 #13
+2025/01/20-16:22:02.494 1e5c Delete type=3 #12
+2025/01/20-18:01:14.577 10bc Level-0 table #17: started
+2025/01/20-18:01:14.577 10bc Level-0 table #17: 0 bytes OK
+2025/01/20-18:01:14.579 10bc Delete type=0 #15
+2025/01/20-18:01:14.585 10bc Manual compaction at level-0 from '!users!GZsO3Gbwnbcv1aQ7' @ 72057594037927935 : 1 .. '!users!GZsO3Gbwnbcv1aQ7' @ 0 : 0; will stop at (end)
+2025/01/20-18:01:14.588 10bc Manual compaction at level-1 from '!users!GZsO3Gbwnbcv1aQ7' @ 72057594037927935 : 1 .. '!users!GZsO3Gbwnbcv1aQ7' @ 0 : 0; will stop at (end)

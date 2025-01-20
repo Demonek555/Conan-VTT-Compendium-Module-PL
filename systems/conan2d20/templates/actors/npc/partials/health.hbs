@@ -1,0 +1,113 @@
+<section class="npc-health">
+	<div class="npc-sheet-sub-heading">
+		<h3>
+			{{localize "CONAN.npc.sections.health"}}
+		</h3>
+	</div>
+	<div class="npc-health__grid">
+		<div class="npc-health__entry">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.Actor.Health.Vigor.label"}}
+			</h4>
+			<div class="npc-sheet-field__value">
+				<div class="npc-health__score">
+					<input
+						name="system.health.physical.value"
+						type="Number"
+						value="{{system.health.physical.value}}"
+					/>
+					/
+					<input
+						name="system.health.physical.max"
+						type="Number"
+						value="{{system.health.physical.max}}"
+					/>
+				</div>
+			</div>
+		</div>
+		<div class="npc-health__entry">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.Actor.Health.Resolve.label"}}
+			</h4>
+			<div class="npc-sheet-field__value">
+					<div class="npc-health__score">
+						<input
+							name="system.health.mental.value"
+							type="Number"
+							value="{{system.health.mental.value}}"
+						/>
+						/
+						<input
+							name="system.health.mental.max"
+							type="Number"
+							value="{{system.health.mental.max}}"
+						/>
+					</div>
+			</div>
+		</div>
+		<div class="npc-health__entry">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.Actor.Health.Armor.label"}}
+			</h4>
+			<div class="npc-sheet-field__value">
+				<input
+					name="system.armor"
+					type="Number"
+					value="{{system.armor}}"
+				/>
+			</div>
+		</div>
+		<div class="npc-health__entry">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.Actor.Health.Courage.label"}}
+			</h4>
+			<div class="npc-sheet-field__value">
+				<input
+					name="system.health.courage"
+					type="Number"
+					value="{{system.health.courage}}"
+				/>
+			</div>
+		</div>
+		<div class="npc-health__entry">
+			<h4 class="npc-sheet-field__label">
+				{{localize "CONAN.healthWounds"}}
+			</h4>
+			<div class="npc-sheet-field__value">
+				<div class="npc-health__score">
+					<input
+						name="system.health.physical.wounds.value"
+						type="Number"
+						value="{{system.health.physical.wounds.value}}"
+					/>
+					/
+					<input
+						name="system.health.physical.wounds.max"
+						type="Number"
+						value="{{system.health.physical.wounds.max}}"
+					/>
+				</div>
+			</div>
+		</div>
+		<div class="npc-health__entry">
+				<h4 class="npc-sheet-field__label">
+					{{localize "CONAN.healthTrauma"}}
+				</h4>
+				<div class="npc-sheet-field__value">
+					<div class="npc-health__score">
+						<input
+							name="system.health.mental.traumas.value"
+							type="Number"
+							value="{{system.health.mental.traumas.value}}"
+						/>
+						/
+						<input
+							name="system.health.mental.traumas.max"
+							type="Number"
+							value="{{system.health.mental.traumas.max}}"
+						/>
+					</div>
+				</div>
+		</div >
+	</div>
+</section>
